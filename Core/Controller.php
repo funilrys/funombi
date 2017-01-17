@@ -26,6 +26,8 @@
 
 namespace Core;
 
+use Core\Files;
+
 /**
  * Base Controller
  *
@@ -84,7 +86,7 @@ abstract class Controller
      */
     protected function before()
     {
-        
+        Files::checkVitalDirectories();
     }
 
     /**
