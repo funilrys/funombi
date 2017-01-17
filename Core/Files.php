@@ -37,6 +37,24 @@ class Files
 {
 
     /**
+     * Return a message to inform developer that a directory is not found
+     * 
+     * @throws \Exception
+     */
+    public static function checkVitalDirectories()
+    {
+        if (static::isDir(Locations::STYLESHEETS) === false) {
+            throw new \Exception("The (vital) directory '" . Locations::PUBLIC_DIR . "/" . Locations::STYLESHEETS . "' is not found");
+        }
+        if (static::isDir(Locations::JAVASCRIPTS) === false) {
+            throw new \Exception("The (vital) directory '" . Locations::PUBLIC_DIR . "/" . Locations::JAVASCRIPTS . "' is not found");
+        }
+        if (static::isDir(Locations::IMAGES) === false) {
+            throw new \Exception("The (vital) directory '" . Locations::PUBLIC_DIR . "/" . Locations::IMAGES . "' is not found");
+        }
+    }
+
+    /**
      * Match a given film according to it's extension. Return the directory 
      * where it should be located.
      * 
@@ -73,14 +91,13 @@ class Files
      */
     public static function createLinkToFile($file, $type, $createHTMLObject)
     {
-        $publicDir = Locations::PUBLIC_DIR;
         if (static::isFile($file) === true && $createHTMLObject === true) {
             if ($type === Locations::STYLESHEETS) {
-                echo "<link href=\"$file\" rel=\"stylesheet\" type=\"text/css\">";
+                echo "<link href = \"$file\" rel=\"stylesheet\" type=\"text/css\">";
             } elseif ($type === Locations::JAVASCRIPTS) {
                 echo "<script src=\"$file\" type=\"text/javascript\"></script>";
             } else {
-                throw new \Exception("Impossible to create an HTLM object for '$publicDir/$file'");
+                throw new \Exception("Impossible to create an HTLM object for '" . Locations::PUBLIC_DIR . "/$file'");
             }
         } else {
             throw new \Exception("$publicDir/$file is not found");
