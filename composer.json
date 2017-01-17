@@ -1,0 +1,14 @@
+{
+    "config": {
+        "vendor-dir": "public/vendor"
+    },
+    "require": {
+        "twig/twig": "~2.0"
+    },
+    "autoload": {
+        "psr-4": {
+             "Core\\": "Core/",
+             "App\\": "App/"
+        }
+    }
+}
