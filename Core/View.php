@@ -26,6 +26,8 @@
 
 namespace Core;
 
+use Core\Files;
+
 /**
  * Base View
  *
@@ -69,6 +71,21 @@ class View
         if ($twig === null) {
             $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/App/Views');
             $twig = new \Twig_Environment($loader);
+
+            $assetFunction = new \Twig_Function('asset', function ($asset, $createHTMLObject = false) {
+                $dir = Files::matchExtensionToFileSystem($asset);
+                $file = $dir . '/' . $asset;
+                Files::createLinkToFile($file, $dir, $createHTMLObject);
+            });
+            
+            $vendorFunction = new \Twig_Function('vendor', function ($vendor, $createHTMLObject = false) {
+                $dir = 'vendor';
+                $file = $dir . '/' . $vendor;
+                Files::createLinkToFile($file, $dir, $createHTMLObject);
+            });
+            
+            $twig->addFunction($assetFunction);
+            $twig->addFunction($vendorFunction);
         }
 
         echo $twig->render($template, $args);
