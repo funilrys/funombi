@@ -77,15 +77,16 @@ class View
                 $file = $dir . '/' . $asset;
                 Files::createLinkToFile($file, $dir, $createHTMLObject);
             });
-            
+
             $vendorFunction = new \Twig_Function('vendor', function ($vendor, $createHTMLObject = false) {
                 $dir = 'vendor';
                 $file = $dir . '/' . $vendor;
                 Files::createLinkToFile($file, $dir, $createHTMLObject);
             });
-            
+
             $twig->addFunction($assetFunction);
             $twig->addFunction($vendorFunction);
+            $twig->addGlobal('currentTheme', 'themes/' . \App\Config\Locations::THEMES_NAME);
         }
 
         echo $twig->render($template, $args);
