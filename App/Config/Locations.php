@@ -40,4 +40,22 @@ class Locations
      */
     const PUBLIC_DIR = 'public';
 
+    /**
+     * Stylsheets directory under PUBLIC_DIR
+     * @var string
+     */
+    const STYLESHEETS = 'styles';
+
+    /**
+     * Images directory under PUBLIC_DIR
+     * @var boolean
+     */
+    const IMAGES = 'images';
+
+    /**
+     * Javascripts  directory under PUBLIC_DIR
+     * @var boolean
+     */
+    const JAVASCRIPTS = 'js';
+
 }
