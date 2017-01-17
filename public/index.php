@@ -49,4 +49,5 @@ $router = new Core\Router();
 // Add the routes
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 
-$router->dispatch(preg_replace("/public\//", '', $_SERVER['QUERY_STRING']));
+
+$router->dispatch(preg_replace("/" . App\Config\Locations::PUBLIC_DIR . "\//", '', $_SERVER['QUERY_STRING']));
