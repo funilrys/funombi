@@ -24,6 +24,8 @@
  * THE SOFTWARE.
  */
 
+namespace App\Config;
+
 /**
  * Errors configuration
  *
