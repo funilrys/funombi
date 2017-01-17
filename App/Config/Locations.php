@@ -36,7 +36,7 @@ class Locations
 
     /**
      * Public directory name
-     * @var boolean
+     * @var string
      */
     const PUBLIC_DIR = 'public';
 
@@ -48,14 +48,20 @@ class Locations
 
     /**
      * Images directory under PUBLIC_DIR
-     * @var boolean
+     * @var string
      */
     const IMAGES = 'images';
 
     /**
      * Javascripts  directory under PUBLIC_DIR
-     * @var boolean
+     * @var string
      */
     const JAVASCRIPTS = 'js';
+
+    /**
+     * Name of the used theme
+     * @var string
+     */
+    const THEME_NAME = 'ajaz';
 
 }
