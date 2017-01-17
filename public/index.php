@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * The MIT License
  *
  * Copyright 2017 Nissar Chababy <contact at funilrys dot com>.
@@ -24,3 +24,29 @@
  * THE SOFTWARE.
  */
 
+/**
+ * Composer
+ */
+if (is_file('vendor/autoload.php')) {
+    require 'vendor/autoload.php';
+} else {
+    echo 'Please install composer dependencies with "composer update".';
+    exit();
+}
+
+/**
+ * Error and Exception handling
+ */
+error_reporting(E_ALL);
+set_error_handler('Core\Error::errorHandler');
+set_exception_handler('Core\Error::exceptionHandler');
+
+/**
+ * Routing
+ */
+$router = new Core\Router();
+
+// Add the routes
+$router->add('', ['controller' => 'Home', 'action' => 'index']);
+
+$router->dispatch(preg_replace("/public\//", '', $_SERVER['QUERY_STRING']));
