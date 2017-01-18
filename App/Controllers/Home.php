@@ -33,7 +33,7 @@ use \Core\View;
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
-class Home
+class Home extends \Core\Controller
 {
 
     /**

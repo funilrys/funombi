@@ -33,7 +33,7 @@ use \Core\View;
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
-class Errors
+class Errors extends \Core\Controller
 {
 
     /**
