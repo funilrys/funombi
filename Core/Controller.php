@@ -33,7 +33,7 @@ use Core\Files;
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
-abstract class Controller
+class Controller
 {
 
     /**
