@@ -86,7 +86,7 @@ class View
 
             $twig->addFunction($assetFunction);
             $twig->addFunction($vendorFunction);
-            $twig->addGlobal('currentTheme', 'themes/' . \App\Config\Locations::THEMES_NAME);
+            $twig->addGlobal('currentTheme', 'themes/' . \App\Config\Locations::THEME_NAME);
         }
 
         echo $twig->render($template, $args);
