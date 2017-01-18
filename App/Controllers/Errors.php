@@ -27,6 +27,7 @@
 namespace App\Controllers;
 
 use \Core\View;
+
 /**
  * Errors controller
  *
@@ -35,34 +36,64 @@ use \Core\View;
 class Errors
 {
 
+    /**
+     * Show Error 403
+     * 
+     * @return void
+     */
     public function forbiddenAction()
     {
         View::renderTemplate('Errors/403.html.twig');
     }
 
+    /**
+     * Show Error 404
+     * 
+     * @return void
+     */
     public function notFoundAction()
     {
         View::renderTemplate('Errors/404.html.twig');
     }
 
+    /**
+     * Show Error 500
+     * 
+     * @return void
+     */
     public function internalServerErrorAction()
     {
         View::renderTemplate('Errors/500.html.twig');
     }
 
+    /**
+     * Show Error 502
+     * 
+     * @return void
+     */
     public function badGatewayAction()
     {
-         View::renderTemplate('Errors/502.html.twig');
+        View::renderTemplate('Errors/502.html.twig');
     }
 
+    /**
+     * Show Error 503
+     * 
+     * @return void
+     */
     public function serviceUnavailableAction()
     {
-         View::renderTemplate('Errors/503.html.twig');
+        View::renderTemplate('Errors/503.html.twig');
     }
 
+    /**
+     * Show Error 504
+     * 
+     * @return void
+     */
     public function gatewayTimeoutAction()
     {
-         View::renderTemplate('Errors/504.html.twig');
+        View::renderTemplate('Errors/504.html.twig');
     }
 
 }
