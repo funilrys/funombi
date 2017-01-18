@@ -26,6 +26,7 @@
 
 namespace App\Controllers;
 
+use \Core\View;
 /**
  * Errors controller
  *
@@ -34,32 +35,32 @@ namespace App\Controllers;
 class Errors
 {
 
-    public function forbidden()
+    public function forbiddenAction()
     {
         View::renderTemplate('Errors/403.html.twig');
     }
 
-    public function notFound()
+    public function notFoundAction()
     {
         View::renderTemplate('Errors/404.html.twig');
     }
 
-    public function internalServerError()
+    public function internalServerErrorAction()
     {
         View::renderTemplate('Errors/500.html.twig');
     }
 
-    public function badGateway()
+    public function badGatewayAction()
     {
          View::renderTemplate('Errors/502.html.twig');
     }
 
-    public function serviceUnavailable()
+    public function serviceUnavailableAction()
     {
          View::renderTemplate('Errors/503.html.twig');
     }
 
-    public function gatewayTimeout()
+    public function gatewayTimeoutAction()
     {
          View::renderTemplate('Errors/504.html.twig');
     }
