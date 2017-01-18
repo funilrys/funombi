@@ -79,9 +79,9 @@ class View
             });
 
             $vendorFunction = new \Twig_Function('vendor', function ($vendor, $createHTMLObject = false) {
-                $dir = 'vendor';
-                $file = $dir . '/' . $vendor;
-                Files::createLinkToFile($file, $dir, $createHTMLObject);
+                $file = 'vendor/' . $vendor;
+                $type = Files::matchExtensionToFileSystem($vendor);
+                Files::createLinkToFile($file, $type, $createHTMLObject);
             });
 
             $twig->addFunction($assetFunction);
