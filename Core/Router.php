@@ -143,7 +143,7 @@ class Router
                 $controller_object = new $controller($this->params);
 
                 $action = $this->params['action'];
-                $action = $this->convertToCamelCase($action);
+                $action = $this->convertToCamelCase($action).'Action';
 
                 if (is_callable([$controller_object, $action])) {
                     $controller_object->$action();
