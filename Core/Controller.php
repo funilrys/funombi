@@ -26,7 +26,6 @@
 
 namespace Core;
 
-use Core\Files;
 
 /**
  * Base Controller
@@ -87,6 +86,7 @@ class Controller
     protected function before()
     {
         Files::checkVitalDirectories();
+        Session::startSession();
     }
 
     /**
