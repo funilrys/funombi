@@ -62,7 +62,8 @@ class Error
     {
         // Code is 404 (not found) or 500 (general error)
         $code = $exception->getCode();
-        if ($code != 404) {
+        $codes = ['403', '404', '500', '502', '503', '504'];
+        if (!in_array($code, $codes)) {
             $code = 500;
         }
         http_response_code($code);
@@ -84,7 +85,7 @@ class Error
 
             error_log($message);
 
-            View::renderTemplate("$code.html");
+            View::renderTemplate("Errors/$code.html.twig");
         }
     }
 
