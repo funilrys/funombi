@@ -3,7 +3,8 @@
         "vendor-dir": "public/vendor"
     },
     "require": {
-        "twig/twig": "~2.0"
+        "twig/twig": "~2.0",
+        "raveren/kint": "^1.0"
     },
     "autoload": {
         "psr-4": {
