@@ -91,11 +91,14 @@ class Files
      */
     public static function createLinkToFile($file, $type, $createHTMLObject)
     {
+        $http = \App\Config\Sessions::SECURED_COOKIES ? 'https://' : 'http://';
+        $siteURL = $http . $_SERVER['HTTP_HOST'] . explode('index.php', $_SERVER['REDIRECT_URL'])[0];
+
         if (static::isFile($file) === true && $createHTMLObject === true) {
             if ($type === Locations::STYLESHEETS) {
-                echo "<link href = \"$file\" rel=\"stylesheet\" type=\"text/css\">";
+                echo "<link href = \"" . $siteURL . $file . "\" rel=\"stylesheet\" type=\"text/css\">";
             } elseif ($type === Locations::JAVASCRIPTS) {
-                echo "<script src=\"$file\" type=\"text/javascript\"></script>";
+                echo "<script src=\"" . $siteURL . $file . "\" type=\"text/javascript\"></script>";
             } else {
                 throw new \Exception("Impossible to create an HTLM object for '" . Locations::PUBLIC_DIR . "/$file'");
             }
