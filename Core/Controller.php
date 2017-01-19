@@ -26,6 +26,7 @@
 
 namespace Core;
 
+use App\Config;
 
 /**
  * Base Controller
@@ -87,6 +88,13 @@ class Controller
     {
         Files::checkVitalDirectories();
         Session::startSession();
+
+        if (Config\Errors::SHOW_ERRORS === true && Config\Debugger::SHOW_DEBUGGER === true) {
+            if (Config\Debugger::SHOW_TRACE === true) {
+                \Kint::trace();
+            }
+            \Kint::dump($_SESSION, $_POST, $_GET);
+        }
     }
 
     /**
