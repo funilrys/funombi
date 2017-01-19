@@ -103,7 +103,7 @@ class Files
                 throw new \Exception("Impossible to create an HTLM object for '" . Locations::PUBLIC_DIR . "/$file'");
             }
         } else {
-            throw new \Exception("$publicDir/$file is not found");
+            throw new \Exception(Locations::PUBLIC_DIR . "/$file is not found");
         }
     }
 
