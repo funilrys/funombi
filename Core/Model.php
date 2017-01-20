@@ -27,6 +27,7 @@
 namespace Core;
 
 use PDO;
+use App\Config\Database;
 
 /**
  * Base Model
