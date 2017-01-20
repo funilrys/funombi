@@ -54,4 +54,178 @@ abstract class Model
         return $db;
     }
 
+    /**
+     * Return rows from the database based on the conditions
+     * 
+     * @param string $table
+     * @param array $conditions  Conditions : select, where, where_or order_by, limit, return_type
+     * @return array
+     */
+    protected static function getRows($table, $conditions = array())
+    {
+        $sql = 'SELECT ';
+        $sql .= array_key_exists("select", $conditions) ? $conditions['select'] : '*';
+        $sql .= ' FROM ' . $table;
+        if (array_key_exists("where", $conditions)) {
+            $sql .= ' WHERE ';
+            $i = 0;
+            foreach ($conditions['where'] as $key => $value) {
+                $pre = ($i > 0) ? ' AND ' : '';
+                $sql .= $pre . $key . " = '" . $value . "'";
+                $i++;
+            }
+        }
+        if (array_key_exists("where_or", $conditions)) {
+            $sql .= ' WHERE ';
+            $i = 0;
+            foreach ($conditions['where_or'] as $key => $value) {
+                $pre = ($i > 0) ? ' OR ' : '';
+                $sql .= $pre . $key . " = '" . $value . "'";
+                $i++;
+            }
+        }
+
+        if (array_key_exists("order_by", $conditions)) {
+            $sql .= ' ORDER BY ' . $conditions['order_by'];
+        }
+
+        if (array_key_exists("start", $conditions) && array_key_exists("limit", $conditions)) {
+            $sql .= ' LIMIT ' . $conditions['start'] . ',' . $conditions['limit'];
+        } elseif (!array_key_exists("start", $conditions) && array_key_exists("limit", $conditions)) {
+            $sql .= ' LIMIT ' . $conditions['limit'];
+        }
+        $db = static::getDB();
+        $query = $db->prepare($sql);
+        $query->execute();
+
+        if (array_key_exists("return_type", $conditions) && $conditions['return_type'] != 'all') {
+            switch ($conditions['return_type']) {
+                case 'count':
+                    $data = $query->rowCount();
+                    break;
+                case 'single':
+                    $data = $query->fetch(PDO::FETCH_ASSOC);
+                    break;
+                default:
+                    $data = '';
+            }
+        } else {
+            if ($query->rowCount() > 0) {
+                $data = $query->fetchAll();
+            }
+        }
+        if (!empty($data)) {
+            return $data;
+        }
+        return !empty($data) ? $data : false;
+    }
+
+    /**
+     * Insert data into the database
+     * 
+     * @param string $table
+     * @param array $data Data to insert to table
+     * @return boolean
+     */
+    protected static function insert($table, $data)
+    {
+        if (!empty($data) && is_array($data)) {
+            $columns = '';
+            $values = '';
+            $i = 0;
+            if (!array_key_exists('created', $data)) {
+                $data['created'] = date("Y-m-d H:i:s");
+            }
+            if (!array_key_exists('modified', $data)) {
+                $data['modified'] = date("Y-m-d H:i:s");
+            }
+
+            $columnString = implode(',', array_keys($data));
+            $valueString = ":" . implode(',:', array_keys($data));
+            $sql = "INSERT INTO " . $table . " (" . $columnString . ") VALUES (" . $valueString . ")";
+
+            $db = static::getDB();
+            $query = $db->prepare($sql);
+
+            foreach ($data as $key => $val) {
+                $query->bindValue(':' . $key, $val);
+            }
+            $insert = $query->execute();
+            return $insert ? $this->db->lastInsertId() : false;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Update data into the database
+     * 
+     * @param string $table Name of the table
+     * @param array $data Data to update
+     * @param array $conditions 
+     * @return boolean
+     */
+    protected static function update($table, $data, $conditions)
+    {
+        if (!empty($data) && is_array($data)) {
+            $colvalSet = '';
+            $whereSql = '';
+            $i = 0;
+            if (!array_key_exists('modified', $data)) {
+                $data['modified'] = time();
+            }
+            foreach ($data as $key => $val) {
+                $pre = ($i > 0) ? ', ' : '';
+                $colvalSet .= $pre . $key . "='" . $val . "'";
+                $i++;
+            }
+            if (!empty($conditions) && is_array($conditions)) {
+                $whereSql .= ' WHERE ';
+                $i = 0;
+                foreach ($conditions as $key => $value) {
+                    $pre = ($i > 0) ? ' AND ' : '';
+                    $whereSql .= $pre . $key . " = '" . $value . "'";
+                    $i++;
+                }
+            }
+            $sql = "UPDATE " . $table . " SET " . $colvalSet . $whereSql;
+            echo $sql;
+            $db = static::getDB();
+            $query = $db->prepare($sql);
+            $update = $query->execute();
+            return $update ? $query->rowCount() : false;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Delete data from the database
+     * 
+     * @param string $table
+     * @param array $conditions
+     * @return boolean
+     */
+    public static function delete($table, $conditions)
+    {
+        $whereSql = '';
+        if (!empty($conditions) && is_array($conditions)) {
+            $whereSql .= ' WHERE ';
+            $i = 0;
+            foreach ($conditions as $key => $value) {
+                $pre = ($i > 0) ? ' AND ' : '';
+                $whereSql .= $pre . $key . " = '" . $value . "'";
+                $i++;
+            }
+        }
+        $sql = "DELETE FROM " . $table . $whereSql;
+        $db = static::getDB();
+        $delete = $db->exec($sql);
+
+        if ($delete === true) {
+            return true;
+        }
+        return false;
+    }
+
 }
