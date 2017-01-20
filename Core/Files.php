@@ -102,6 +102,8 @@ class Files
             } else {
                 throw new \Exception("Impossible to create an HTLM object for '" . Locations::PUBLIC_DIR . "/$file'");
             }
+        } elseif ($createHTMLObject !== true && static::isFile($file) === true) {
+            echo $siteURL . $file;
         } else {
             throw new \Exception(Locations::PUBLIC_DIR . "/$file is not found");
         }
