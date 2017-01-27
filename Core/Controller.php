@@ -70,7 +70,18 @@ class Controller
         $method = $name . 'Action';
 
         if (method_exists($this, $method)) {
+
+            Files::checkVitalDirectories();
+            Session::startSession();
+
             if ($this->before() !== false) {
+                if (Config\Errors::SHOW_ERRORS === true && Config\Debugger::SHOW_DEBUGGER === true) {
+                    if (Config\Debugger::SHOW_TRACE === true) {
+                        \Kint::trace();
+                    }
+                    \Kint::dump($_SESSION, $_POST, $_GET);
+                }
+
                 call_user_func_array([$this, $method], $args);
                 $this->after();
             }
@@ -86,15 +97,7 @@ class Controller
      */
     protected function before()
     {
-        Files::checkVitalDirectories();
-        Session::startSession();
-
-        if (Config\Errors::SHOW_ERRORS === true && Config\Debugger::SHOW_DEBUGGER === true) {
-            if (Config\Debugger::SHOW_TRACE === true) {
-                \Kint::trace();
-            }
-            \Kint::dump($_SESSION, $_POST, $_GET);
-        }
+        
     }
 
     /**
