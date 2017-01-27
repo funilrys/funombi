@@ -84,8 +84,20 @@ class View
                 Files::createLinkToFile($file, $type, $createHTMLObject);
             });
 
+            if (class_exists('\App\Models\TwigFunctions')) {
+                $twigFunctions = new \App\Models\TwigFunctions();
+
+                /**
+                 * $twigFunctions->functions must be an array
+                 */
+                foreach ($twigFunctions->functions as $value) {
+                    $twig->addFunction($value);
+                }
+            }
+
             $twig->addFunction($assetFunction);
             $twig->addFunction($vendorFunction);
+
             $twig->addGlobal('currentTheme', 'themes/' . \App\Config\Locations::THEME_NAME);
         }
 
