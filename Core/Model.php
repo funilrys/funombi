@@ -229,4 +229,16 @@ abstract class Model
         return false;
     }
 
+    /**
+     * Get the current value of \App\Config\Sessions::SECURED_COOKIES
+     *  and generate the complete site URL
+     * 
+     * @return string
+     */
+    public static function siteURL()
+    {
+        $http = \App\Config\Sessions::SECURED_COOKIES ? 'https://' : 'http://';
+        return $http . $_SERVER['HTTP_HOST'] . explode('index.php', $_SERVER['REDIRECT_URL'])[0];
+    }
+
 }
