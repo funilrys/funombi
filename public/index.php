@@ -49,11 +49,11 @@ $router = new Core\Router();
 // Add the routes
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 
-$router->add('403',['controller' => 'Errors', 'action' => 'forbidden']);
-$router->add('404',['controller' => 'Errors', 'action' => 'notFound']);
-$router->add('500',['controller' => 'Errors', 'action' => 'internalServerError']);
-$router->add('502',['controller' => 'Errors', 'action' => 'badGateway']);
-$router->add('503',['controller' => 'Errors', 'action' => 'serviceUnavailable']);
-$router->add('504',['controller' => 'Errors', 'action' => 'gatewayTimeout']);
+$router->add('403', ['controller' => 'Errors', 'action' => 'forbidden']);
+$router->add('404', ['controller' => 'Errors', 'action' => 'notFound']);
+$router->add('500', ['controller' => 'Errors', 'action' => 'internalServerError']);
+$router->add('502', ['controller' => 'Errors', 'action' => 'badGateway']);
+$router->add('503', ['controller' => 'Errors', 'action' => 'serviceUnavailable']);
+$router->add('504', ['controller' => 'Errors', 'action' => 'gatewayTimeout']);
 
 $router->dispatch(preg_replace("/" . App\Config\Locations::PUBLIC_DIR . "\//", '', $_SERVER['QUERY_STRING']));
