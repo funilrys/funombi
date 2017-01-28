@@ -94,17 +94,6 @@ class View
                     $twig->addFunction($value);
                 }
             }
-            
-            if (class_exists('\App\Models\TwigGlobals')) {
-                $twigGlobals = new \App\Models\TwigGlobals();
-
-                /**
-                 * $twigGlobals->globals must be an associative array
-                 */
-                foreach ($twigGlobals->globals as $key => $value) {
-                    $twig->addGlobal($key, $value);
-                }
-            }
 
             if (class_exists('\App\Models\TwigGlobals')) {
                 $twigGlobals = new \App\Models\TwigGlobals();
