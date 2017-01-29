@@ -135,10 +135,10 @@ abstract class Model
             $values = '';
             $i = 0;
             if (!array_key_exists('created', $data)) {
-                $data['created'] = date("Y-m-d H:i:s");
+                $data['created'] = time();
             }
             if (!array_key_exists('modified', $data)) {
-                $data['modified'] = date("Y-m-d H:i:s");
+                $data['modified'] = time();
             }
 
             $columnString = implode(',', array_keys($data));
@@ -152,7 +152,7 @@ abstract class Model
                 $query->bindValue(':' . $key, $val);
             }
             $insert = $query->execute();
-            return $insert ? $this->db->lastInsertId() : false;
+            return $insert ? $db->lastInsertId() : false;
         } else {
             return false;
         }
@@ -190,7 +190,7 @@ abstract class Model
                 }
             }
             $sql = "UPDATE " . $table . " SET " . $colvalSet . $whereSql;
-            echo $sql;
+
             $db = static::getDB();
             $query = $db->prepare($sql);
             $update = $query->execute();
