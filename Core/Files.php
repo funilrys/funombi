@@ -39,7 +39,7 @@ class Files
     /**
      * Return a message to inform developer that a directory is not found
      * 
-     * @throws \Exception
+     * @throws \Exception Directory does not exit
      */
     public static function checkVitalDirectories()
     {
@@ -55,10 +55,10 @@ class Files
     }
 
     /**
-     * Match a given film according to it's extension. Return the directory 
-     * where it should be located.
+     * Match a given film according to it's extension. 
+     * Return the directory where it should be located.
      * 
-     * @param string $file
+     * @param string $file File to match with
      * 
      * @return string
      * @throws \Exception Extension is not matched
@@ -83,8 +83,8 @@ class Files
      * Return a link or an HTML object linked to the desired file according 
      * to $type which come from matchExtensionToFileSystem()
      * 
-     * @param string $file
-     * @param string $type
+     * @param string $file File to create Link to
+     * @param string $type Type if the file (link =  Locations::STYLESHEETS | script = Locations::JAVASCRIPTS)
      * @param boolean $createHTMLObject
      * 
      * @throws \Exception Impossible to create HTML object|File not found
@@ -112,8 +112,8 @@ class Files
     /**
      * Check if file exist and is readable
      * 
-     * @param string $file
-     * 
+     * @param string $file File to check existence
+     *  
      * @return boolean
      */
     public static function isFile($file)
@@ -127,7 +127,7 @@ class Files
     /**
      * Check if file exist and is readable
      * 
-     * @param string $dir
+     * @param string $dir Directory to check existence
      * 
      * @return boolean
      */
