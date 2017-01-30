@@ -27,6 +27,7 @@
 namespace Core;
 
 use PDO;
+use DateTime;
 use App\Config\Database;
 
 /**
@@ -135,10 +136,11 @@ abstract class Model
             $values = '';
             $i = 0;
             if (!array_key_exists('created', $data)) {
-                $data['created'] = time();
+                $date = new DateTime();
+                $data['created'] = $date->getTimestamp();
             }
             if (!array_key_exists('modified', $data)) {
-                $data['modified'] = time();
+                $data['modified'] = $date->getTimestamp();
             }
 
             $columnString = implode(',', array_keys($data));
@@ -173,7 +175,8 @@ abstract class Model
             $whereSql = '';
             $i = 0;
             if (!array_key_exists('modified', $data)) {
-                $data['modified'] = time();
+                $date = new DateTime();
+                $data['modified'] = $date->getTimestamp();
             }
             foreach ($data as $key => $val) {
                 $pre = ($i > 0) ? ', ' : '';
