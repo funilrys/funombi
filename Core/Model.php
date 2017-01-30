@@ -60,11 +60,18 @@ abstract class Model
      * Return rows from the database based on the conditions
      * 
      * @param string $table
-     * @param array $conditions  Conditions : select, where, where_or, order_by, limit, return_type
+     * @param array $conditions  Conditions : select, where, where_or, where_comp_operator, order_by, limit, return_type
      * @return array
      */
     protected static function getRows($table, $conditions = array())
     {
+        if (array_key_exists('where_comp_operator', $conditions)) {
+            $compOperator = $conditions['where_comp_operator'];
+        } else {
+            $compOperator = '=';
+        }
+
+
         $sql = 'SELECT ';
         $sql .= array_key_exists("select", $conditions) ? $conditions['select'] : '*';
         $sql .= ' FROM ' . $table;
@@ -73,7 +80,7 @@ abstract class Model
             $i = 0;
             foreach ($conditions['where'] as $key => $value) {
                 $pre = ($i > 0) ? ' AND ' : '';
-                $sql .= $pre . $key . " = '" . $value . "'";
+                $sql .= $pre . $key . " " . $compOperator . "'" . $value . "'";
                 $i++;
             }
         }
@@ -82,7 +89,7 @@ abstract class Model
             $i = 0;
             foreach ($conditions['where_or'] as $key => $value) {
                 $pre = ($i > 0) ? ' OR ' : '';
-                $sql .= $pre . $key . " = '" . $value . "'";
+                $sql .= $pre . $key . " " . $compOperator . "'" . $value . "'";
                 $i++;
             }
         }
@@ -173,7 +180,7 @@ abstract class Model
         if (!empty($data) && is_array($data)) {
             $colvalSet = '';
             $whereSql = '';
-            $i = 0;
+            $i = 0;            
             if (!array_key_exists('modified', $data)) {
                 $date = new DateTime();
                 $data['modified'] = $date->getTimestamp();
