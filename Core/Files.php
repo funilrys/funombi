@@ -99,6 +99,8 @@ class Files
                 echo "<link href = \"" . $siteURL . $file . "\" rel=\"stylesheet\" type=\"text/css\">";
             } elseif ($type === Locations::JAVASCRIPTS) {
                 echo "<script src=\"" . $siteURL . $file . "\" type=\"text/javascript\"></script>";
+            } elseif ($type === Locations::IMAGES) {
+                echo $siteURL . $file;
             } else {
                 throw new \Exception("Impossible to create an HTLM object for '" . Locations::PUBLIC_DIR . "/$file'");
             }
