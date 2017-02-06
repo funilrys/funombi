@@ -71,7 +71,6 @@ abstract class Model
             $compOperator = '=';
         }
 
-
         $sql = 'SELECT ';
         $sql .= array_key_exists("select", $conditions) ? $conditions['select'] : '*';
         $sql .= ' FROM ' . $table;
