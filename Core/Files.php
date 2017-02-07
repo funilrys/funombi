@@ -70,6 +70,7 @@ class Files
         $regxStyle = '/^.*\.(css)$/i';
         $regxJs = '/^.*\.(js)$/i';
         $regxImage = '/^.*\.(jpg|jpeg|png|gif)$/i';
+        
         if (preg_match($regxStyle, $file)) {
             return Locations::STYLESHEETS;
         } elseif (preg_match($regxJs, $file)) {
@@ -122,7 +123,7 @@ class Files
      */
     public static function isFile($file)
     {
-        if (is_file($file) === true) {
+        if (is_file($file)) {
             return true;
         }
         return false;
@@ -137,7 +138,7 @@ class Files
      */
     public static function isDir($dir)
     {
-        if (is_dir($dir) === true) {
+        if (is_dir($dir)) {
             return true;
         }
         return false;
