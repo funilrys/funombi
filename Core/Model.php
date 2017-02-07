@@ -74,6 +74,7 @@ abstract class Model
         $sql = 'SELECT ';
         $sql .= array_key_exists("select", $conditions) ? $conditions['select'] : '*';
         $sql .= ' FROM ' . $table;
+        
         if (array_key_exists("where", $conditions)) {
             $sql .= ' WHERE ';
             $i = 0;
@@ -83,6 +84,7 @@ abstract class Model
                 $i++;
             }
         }
+        
         if (array_key_exists("where_or", $conditions)) {
             $sql .= ' WHERE ';
             $i = 0;
@@ -141,6 +143,7 @@ abstract class Model
             $columns = '';
             $values = '';
             $i = 0;
+            
             if (!array_key_exists('created', $data)) {
                 $date = new DateTime();
                 $data['created'] = $date->getTimestamp();
@@ -236,18 +239,6 @@ abstract class Model
             return true;
         }
         return false;
-    }
-
-    /**
-     * Get the current value of \App\Config\Sessions::SECURED_COOKIES
-     *  and generate the complete site URL
-     * 
-     * @return string
-     */
-    public static function siteURL()
-    {
-        $http = \App\Config\Sessions::SECURED_COOKIES ? 'https://' : 'http://';
-        return $http . $_SERVER['HTTP_HOST'] . explode('index.php', $_SERVER['REDIRECT_URL'])[0];
     }
 
 }
