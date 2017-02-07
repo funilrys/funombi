@@ -43,14 +43,16 @@ class Files
      */
     public static function checkVitalDirectories()
     {
-        if (static::isDir(Locations::STYLESHEETS) === false) {
-            throw new \Exception("The (vital) directory '" . Locations::PUBLIC_DIR . "/" . Locations::STYLESHEETS . "' is not found");
-        }
-        if (static::isDir(Locations::JAVASCRIPTS) === false) {
-            throw new \Exception("The (vital) directory '" . Locations::PUBLIC_DIR . "/" . Locations::JAVASCRIPTS . "' is not found");
-        }
-        if (static::isDir(Locations::IMAGES) === false) {
-            throw new \Exception("The (vital) directory '" . Locations::PUBLIC_DIR . "/" . Locations::IMAGES . "' is not found");
+        $vital = array(
+            Locations::STYLESHEETS => static::isDir(Locations::STYLESHEETS),
+            Locations::JAVASCRIPTS => static::isDir(Locations::JAVASCRIPTS),
+            Locations::IMAGES => static::isDir(Locations::IMAGES)
+        );
+
+        foreach ($vital as $key => $value) {
+            if ($value !== true) {
+                throw new \Exception("The (vital) directory '" . Locations::PUBLIC_DIR . "/" . $key . "' is not found");
+            }
         }
     }
 
