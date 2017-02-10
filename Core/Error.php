@@ -26,6 +26,8 @@
 
 namespace Core;
 
+use App\Config;
+
 /**
  * Error & Exception Handler
  *
