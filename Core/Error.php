@@ -89,4 +89,19 @@ class Error
         }
     }
 
+    /**
+     * Show the debugger
+     * 
+     * @return void
+     */
+    public static function showDebugger()
+    {
+        if (Config\Errors::SHOW_ERRORS === true && Config\Debugger::SHOW_DEBUGGER === true) {
+            if (Config\Debugger::SHOW_TRACE === true) {
+                \Kint::trace();
+            }
+            \Kint::dump($GLOBALS, $_SESSION, $_POST, $_GET);
+        }
+    }
+
 }

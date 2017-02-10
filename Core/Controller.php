@@ -75,12 +75,7 @@ class Controller
             Session::startSession();
 
             if ($this->before() !== false) {
-                if (Config\Errors::SHOW_ERRORS === true && Config\Debugger::SHOW_DEBUGGER === true) {
-                    if (Config\Debugger::SHOW_TRACE === true) {
-                        \Kint::trace();
-                    }
-                    \Kint::dump($_SESSION, $_POST, $_GET);
-                }
+                Error::showDebugger();
 
                 call_user_func_array([$this, $method], $args);
                 $this->after();
