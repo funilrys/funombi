@@ -69,7 +69,7 @@ class Files
     {
         $regxStyle = '/^.*\.(css)$/i';
         $regxJs = '/^.*\.(js)$/i';
-        $regxImage = '/^.*\.(jpg|jpeg|png|gif)$/i';
+        $regxImage = '/^.*\.(jpg|jpeg|png|gif|ico)$/i';
         
         if (preg_match($regxStyle, $file)) {
             return Locations::STYLESHEETS;
