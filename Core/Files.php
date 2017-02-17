@@ -97,7 +97,7 @@ class Files
         $http = \App\Config\Sessions::SECURED_COOKIES ? 'https://' : 'http://';
         $siteURL = $http . $_SERVER['HTTP_HOST'] . explode('index.php', $_SERVER['REDIRECT_URL'])[0];
 
-        if (static::isFile($file) === true && $createHTMLObject === true) {
+        if (static::isFile($file) && $createHTMLObject) {
             if ($type === Locations::STYLESHEETS) {
                 echo "<link href = \"" . $siteURL . $file . "\" rel=\"stylesheet\" type=\"text/css\">";
             } elseif ($type === Locations::JAVASCRIPTS) {
@@ -107,7 +107,7 @@ class Files
             } else {
                 throw new \Exception("Impossible to create an HTLM object for '" . Locations::PUBLIC_DIR . "/$file'");
             }
-        } elseif ($createHTMLObject !== true && static::isFile($file) === true) {
+        } elseif ($createHTMLObject !== true && static::isFile($file)) {
             echo $siteURL . $file;
         } else {
             throw new \Exception(Locations::PUBLIC_DIR . "/$file is not found");
