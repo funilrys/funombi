@@ -26,8 +26,6 @@
 
 namespace Core;
 
-use App\Config;
-
 /**
  * Base Controller
  *
