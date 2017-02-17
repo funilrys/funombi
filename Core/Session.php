@@ -26,6 +26,7 @@
 
 namespace Core;
 
+use Core\Arrays;
 use App\Config\Sessions;
 
 /**
@@ -81,11 +82,12 @@ class Session
     protected static function isSessionStarted()
     {
         if (php_sapi_name() !== 'cli') {
-            if (version_compare(phpversion(), '5.4.0', '>=')) {
-                return session_status() === PHP_SESSION_ACTIVE ? true : false;
-            } else {
-                return session_id() === '' ? true : false;
+            if (version_compare(phpversion(), '5.4.0', '>=') && session_status() === PHP_SESSION_ACTIVE) {
+                return true;
+            } elseif (session_id() === '') {
+                return true;
             }
+            return false;
         }
         return false;
     }
@@ -97,7 +99,7 @@ class Session
      */
     public static function initSessionVariable($toCreate)
     {
-        if (is_array($toCreate)) {
+        if (Arrays::isAssociative($toCreate)) {
             foreach ($toCreate as $key => $value) {
                 $_SESSION[$key] = $value;
             }
