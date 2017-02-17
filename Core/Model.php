@@ -50,6 +50,7 @@ abstract class Model
 
             $dsn = 'mysql:host=' . Database::DB_HOST . ';dbname=' . Database::DB_NAME . ';charset=utf8';
             $db = new PDO($dsn, Database::DB_USER, Database::DB_PASSWORD);
+
             // Throw an Exception when an error occurs
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
@@ -65,6 +66,9 @@ abstract class Model
      */
     protected static function getRows($table, $conditions = array())
     {
+        /**
+         * Check if the key exist so we use the defined operator instead of '='
+         */
         if (array_key_exists('where_comp_operator', $conditions)) {
             $compOperator = $conditions['where_comp_operator'];
         } else {
@@ -74,23 +78,27 @@ abstract class Model
         $sql = 'SELECT ';
         $sql .= array_key_exists("select", $conditions) ? $conditions['select'] : '*';
         $sql .= ' FROM ' . $table;
-        
+
         if (array_key_exists("where", $conditions)) {
             $sql .= ' WHERE ';
             $i = 0;
+            
             foreach ($conditions['where'] as $key => $value) {
                 $pre = ($i > 0) ? ' AND ' : '';
                 $sql .= $pre . $key . " " . $compOperator . "'" . $value . "'";
+                
                 $i++;
             }
         }
-        
+
         if (array_key_exists("where_or", $conditions)) {
             $sql .= ' WHERE ';
             $i = 0;
+            
             foreach ($conditions['where_or'] as $key => $value) {
                 $pre = ($i > 0) ? ' OR ' : '';
                 $sql .= $pre . $key . " " . $compOperator . "'" . $value . "'";
+                
                 $i++;
             }
         }
@@ -104,6 +112,7 @@ abstract class Model
         } elseif (!array_key_exists("start", $conditions) && array_key_exists("limit", $conditions)) {
             $sql .= ' LIMIT ' . $conditions['limit'];
         }
+
         $db = static::getDB();
         $query = $db->prepare($sql);
         $query->execute();
@@ -119,15 +128,14 @@ abstract class Model
                 default:
                     $data = '';
             }
-        } else {
-            if ($query->rowCount() > 0) {
-                $data = $query->fetchAll();
-            }
+        } elseif ($query->rowCount() > 0) {
+            $data = $query->fetchAll();
         }
+
         if (!empty($data)) {
             return $data;
         }
-        return !empty($data) ? $data : false;
+        return false;
     }
 
     /**
@@ -143,11 +151,12 @@ abstract class Model
             $columns = '';
             $values = '';
             $i = 0;
-            
+
             if (!array_key_exists('created', $data)) {
                 $date = new DateTime();
                 $data['created'] = $date->getTimestamp();
             }
+
             if (!array_key_exists('modified', $data)) {
                 $data['modified'] = $date->getTimestamp();
             }
@@ -163,10 +172,13 @@ abstract class Model
                 $query->bindValue(':' . $key, $val);
             }
             $insert = $query->execute();
-            return $insert ? $db->lastInsertId() : false;
-        } else {
+
+            if ($insert) {
+                return $db->lastInsertId();
+            }
             return false;
         }
+        return false;
     }
 
     /**
@@ -182,34 +194,43 @@ abstract class Model
         if (!empty($data) && is_array($data)) {
             $colvalSet = '';
             $whereSql = '';
-            $i = 0;            
+            $i = 0;
+
             if (!array_key_exists('modified', $data)) {
                 $date = new DateTime();
                 $data['modified'] = $date->getTimestamp();
             }
+
             foreach ($data as $key => $val) {
                 $pre = ($i > 0) ? ', ' : '';
                 $colvalSet .= $pre . $key . "='" . $val . "'";
+                
                 $i++;
             }
+
             if (!empty($conditions) && is_array($conditions)) {
                 $whereSql .= ' WHERE ';
                 $i = 0;
+                
                 foreach ($conditions as $key => $value) {
                     $pre = ($i > 0) ? ' AND ' : '';
                     $whereSql .= $pre . $key . " = '" . $value . "'";
+                    
                     $i++;
                 }
             }
-            $sql = "UPDATE " . $table . " SET " . $colvalSet . $whereSql;
 
+            $sql = "UPDATE " . $table . " SET " . $colvalSet . $whereSql;
             $db = static::getDB();
             $query = $db->prepare($sql);
             $update = $query->execute();
-            return $update ? $query->rowCount() : false;
-        } else {
+
+            if ($update) {
+                return $query->rowCount();
+            }
             return false;
         }
+        return false;
     }
 
     /**
@@ -225,17 +246,20 @@ abstract class Model
         if (!empty($conditions) && is_array($conditions)) {
             $whereSql .= ' WHERE ';
             $i = 0;
+
             foreach ($conditions as $key => $value) {
                 $pre = ($i > 0) ? ' AND ' : '';
                 $whereSql .= $pre . $key . " = '" . $value . "'";
+                
                 $i++;
             }
         }
+
         $sql = "DELETE FROM " . $table . $whereSql;
         $db = static::getDB();
         $delete = $db->exec($sql);
 
-        if ($delete === true) {
+        if ($delete) {
             return true;
         }
         return false;
