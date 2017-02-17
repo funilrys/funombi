@@ -82,12 +82,16 @@ class Session
     protected static function isSessionStarted()
     {
         if (php_sapi_name() !== 'cli') {
-            if (version_compare(phpversion(), '5.4.0', '>=') && session_status() === PHP_SESSION_ACTIVE) {
-                return true;
+            if (version_compare(phpversion(), '5.4.0', '>=')) {
+                if (session_status() === PHP_SESSION_ACTIVE) {
+                    return true;
+                }
+                return false;
             } elseif (session_id() === '') {
                 return true;
+            } else {
+                return false;
             }
-            return false;
         }
         return false;
     }
