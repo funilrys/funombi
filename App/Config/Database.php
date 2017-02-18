@@ -57,5 +57,11 @@ class Database
      * @var string
      */
     const DB_PASSWORD = 'your-database-password';
+    
+    /**
+     * Prefix to append to table name
+     * @var string
+     */
+    const TABLE_PREFIX = 'your-table-prefix';
 
 }
