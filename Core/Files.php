@@ -156,4 +156,54 @@ class Files
         return hash_file($algo, $path);
     }
 
+    /**
+     * Compare master file hash with local file
+     * 
+     * @param string $file Path to the file
+     * @return boolean
+     */
+    public static function isHashSameAsSystem($file)
+    {
+        $currentHash = static::hashFile($file);
+
+        $hashFile = dirname(__FILE__ . '../') . '/hashes.json';
+        $Root = dirname(__DIR__, 1) . '/';
+
+        $filepath = explode($Root, $file);
+        $pathToAccessFile = explode('/', $filepath[1]);
+        $fileToCheck = explode('.php', $pathToAccessFile[2])[0];
+
+        $systemHash = static::getJSON($hashFile, $pathToAccessFile[1], $fileToCheck);
+
+        if (hash_equals($currentHash, $systemHash)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Get and read the content of a JSON
+     * 
+     * @param string $file
+     * @param string $toRead 
+     * @param string $toGet
+     * @return boolean
+     */
+    public static function getJSON($file, $toRead = null, $toGet = null)
+    {
+        $str = file_get_contents($file);
+        $decoded = json_decode($str, true);
+
+        if ($toRead === null && $toGet === null) {
+            return $decoded;
+        } elseif ($toRead !== null) {
+            $readed = $decoded[$toRead];
+            if ($toGet != null) {
+                return $readed[$toGet];
+            }
+            return $readed;
+        }
+        return false;
+    }
+
 }
