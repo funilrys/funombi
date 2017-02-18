@@ -217,7 +217,7 @@ class Files
     }
 
     /**
-     * This function make it easy to change the defaults credentials of
+     * Function that make it easy to change the defaults credentials of
      * App/Config/Database.php
      * 
      * @param array $data Database credentials | keys: host, name,
@@ -231,22 +231,25 @@ class Files
 
             $currentFile = file_get_contents($databaseFile);
 
-            $oldToNew = array(
-                'host' => 'your-database-host',
-                'name' => 'your-database-name',
-                'user' => 'your-database-username',
-                'password' => 'your-database-password',
-                'prefix' => 'your-table-prefix'
-            );
+            if (strpos($currentFile, 'your') !== false) {
+                $oldToNew = array(
+                    'host' => 'your-database-host',
+                    'name' => 'your-database-name',
+                    'user' => 'your-database-username',
+                    'password' => 'your-database-password',
+                    'prefix' => 'your-table-prefix'
+                );
 
-            foreach ($oldToNew as $key => $value) {
-                if (isset($data[$key])) {
-                    $currentFile = str_replace($value, $data[$key], $currentFile);
+                foreach ($oldToNew as $key => $value) {
+                    if (isset($data[$key])) {
+                        $currentFile = str_replace($value, $data[$key], $currentFile);
+                    }
                 }
-            }
 
-            if (file_put_contents($databaseFile, $currentFile)) {
-                return true;
+                if (file_put_contents($databaseFile, $currentFile)) {
+                    return true;
+                }
+                return false;
             }
             return false;
         }
