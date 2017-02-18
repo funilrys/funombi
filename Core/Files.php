@@ -67,19 +67,18 @@ class Files
      */
     public static function matchExtensionToFileSystem($file)
     {
-        $regxStyle = '/^.*\.(css)$/i';
-        $regxJs = '/^.*\.(js)$/i';
-        $regxImage = '/^.*\.(jpg|jpeg|png|gif|ico)$/i';
+        $regx = array(
+            Locations::STYLESHEETS => '/^.*\.(css)$/i',
+            Locations::JAVASCRIPTS => '/^.*\.(js)$/i',
+            Locations::IMAGES => '/^.*\.(jpg|jpeg|png|gif|ico)$/i'
+        );
 
-        if (preg_match($regxStyle, $file)) {
-            return Locations::STYLESHEETS;
-        } elseif (preg_match($regxJs, $file)) {
-            return Locations::JAVASCRIPTS;
-        } elseif (preg_match($regxImage, $file)) {
-            return Locations::IMAGES;
-        } else {
-            throw new \Exception("File extention of $file is not accepted.");
+        foreach ($regx as $key => $value) {
+            if (preg_match($value, $file)) {
+                return $key;
+            }
         }
+        throw new \Exception("File extention of $file is not accepted.");
     }
 
     /**
