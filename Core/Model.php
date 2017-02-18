@@ -38,6 +38,8 @@ use App\Config\Database;
 abstract class Model
 {
 
+    private static $prefix = Database::TABLE_PREFIX;
+
     /**
      * Get and initiate the PDO database connection
      * 
@@ -85,6 +87,8 @@ abstract class Model
      */
     protected static function getRows($table, $conditions = array())
     {
+        $table = static::addPrefixToTable($table);
+        
         /**
          * Check if the key exist so we use the defined operator instead of '='
          */
@@ -166,6 +170,8 @@ abstract class Model
      */
     protected static function insert($table, $data)
     {
+        $table = static::addPrefixToTable($table);
+        
         if (!empty($data) && is_array($data)) {
             $columns = '';
             $values = '';
@@ -210,6 +216,8 @@ abstract class Model
      */
     protected static function update($table, $data, $conditions)
     {
+        $table = static::addPrefixToTable($table);
+        
         if (!empty($data) && is_array($data)) {
             $colvalSet = '';
             $whereSql = '';
@@ -261,6 +269,8 @@ abstract class Model
      */
     public static function delete($table, $conditions)
     {
+        $table = static::addPrefixToTable($table);
+        
         $whereSql = '';
         if (!empty($conditions) && is_array($conditions)) {
             $whereSql .= ' WHERE ';
