@@ -70,7 +70,7 @@ class Files
         $regxStyle = '/^.*\.(css)$/i';
         $regxJs = '/^.*\.(js)$/i';
         $regxImage = '/^.*\.(jpg|jpeg|png|gif|ico)$/i';
-        
+
         if (preg_match($regxStyle, $file)) {
             return Locations::STYLESHEETS;
         } elseif (preg_match($regxJs, $file)) {
@@ -142,6 +142,19 @@ class Files
             return true;
         }
         return false;
+    }
+
+    /**
+     * get the hash of a file
+     * 
+     * @param string $algo Hash algorithm
+     * @param string $path Path to the file
+     * 
+     * @return string
+     */
+    public static function hashFile($algo, $path)
+    {
+        return hash_file($algo, $path);
     }
 
 }
