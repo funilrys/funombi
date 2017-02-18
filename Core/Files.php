@@ -161,7 +161,7 @@ class Files
      * 
      * @return string
      */
-    public static function hashFile($algo, $path)
+    public static function hashFile($path, $algo = 'sha512')
     {
         return hash_file($algo, $path);
     }
