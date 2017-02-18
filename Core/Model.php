@@ -56,6 +56,51 @@ abstract class Model
         }
         return $db;
     }
+    
+    /**
+     * Check if a database exist or not
+     * 
+     * @param string $name Name of the database to check
+     * @return boolean
+     */
+    public static function isDatabase($name)
+    {
+        $sql = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '" . $name . "'";
+        $db = static::getDB();
+
+        $query = $db->prepare($sql);
+        $query->execute();
+        $isDatabase = $query->fetchColumn();
+
+        if (intval($isDatabase) === 1) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Create a database if don't exist.
+     * 
+     * @param string $name Name of database
+     * @return boolean
+     */
+    public static function createDatabase($name)
+    {
+        if (static::isDatabase($name)) {
+            return true;
+        }
+
+        $sql = "CREATE DATABASE IF NOT EXISTS" . $name;
+        $db = static::getDB();
+        $query = $db->prepare($sql);
+
+        $create = $query->execute();
+
+        if ($create && static::isDatabase($name)) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Return rows from the database based on the conditions
