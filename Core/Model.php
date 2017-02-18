@@ -58,6 +58,25 @@ abstract class Model
     }
 
     /**
+     * Add prefix to table if Database::TABLE_PREFIX is set
+     * 
+     * @param string $table
+     * @return string
+     */
+    protected static function addPrefixToTable($table)
+    {
+        if (!empty(static::$prefix)) {
+            $lastChar = '_';
+            if (substr(static::$prefix, -1) != $lastChar) {
+                return static::$prefix . $lastChar . $table;
+            } else {
+                return static::$prefix . $table;
+            }
+        }
+        return $table;
+    }
+
+    /**
      * Return rows from the database based on the conditions
      * 
      * @param string $table
