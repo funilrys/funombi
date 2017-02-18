@@ -41,7 +41,7 @@ class Files
      * 
      * @return string
      */
-    private static function getRoot()
+    public static function getRoot()
     {
         return dirname(__DIR__, 1) . '/';
     }
