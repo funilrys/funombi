@@ -37,6 +37,16 @@ class Files
 {
 
     /**
+     * Give the current project root path
+     * 
+     * @return string
+     */
+    private static function getRoot()
+    {
+        return dirname(__DIR__, 1) . '/';
+    }
+
+    /**
      * Return a message to inform developer that a directory is not found
      * 
      * @throws \Exception Directory does not exit
