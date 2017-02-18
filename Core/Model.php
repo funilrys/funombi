@@ -56,51 +56,6 @@ abstract class Model
         }
         return $db;
     }
-    
-    /**
-     * Check if a database exist or not
-     * 
-     * @param string $name Name of the database to check
-     * @return boolean
-     */
-    public static function isDatabase($name)
-    {
-        $sql = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '" . $name . "'";
-        $db = static::getDB();
-
-        $query = $db->prepare($sql);
-        $query->execute();
-        $isDatabase = $query->fetchColumn();
-
-        if (intval($isDatabase) === 1) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Create a database if don't exist.
-     * 
-     * @param string $name Name of database
-     * @return boolean
-     */
-    public static function createDatabase($name)
-    {
-        if (static::isDatabase($name)) {
-            return true;
-        }
-
-        $sql = "CREATE DATABASE IF NOT EXISTS" . $name;
-        $db = static::getDB();
-        $query = $db->prepare($sql);
-
-        $create = $query->execute();
-
-        if ($create && static::isDatabase($name)) {
-            return true;
-        }
-        return false;
-    }
 
     /**
      * Return rows from the database based on the conditions
@@ -127,11 +82,11 @@ abstract class Model
         if (array_key_exists("where", $conditions)) {
             $sql .= ' WHERE ';
             $i = 0;
-            
+
             foreach ($conditions['where'] as $key => $value) {
                 $pre = ($i > 0) ? ' AND ' : '';
                 $sql .= $pre . $key . " " . $compOperator . "'" . $value . "'";
-                
+
                 $i++;
             }
         }
@@ -139,11 +94,11 @@ abstract class Model
         if (array_key_exists("where_or", $conditions)) {
             $sql .= ' WHERE ';
             $i = 0;
-            
+
             foreach ($conditions['where_or'] as $key => $value) {
                 $pre = ($i > 0) ? ' OR ' : '';
                 $sql .= $pre . $key . " " . $compOperator . "'" . $value . "'";
-                
+
                 $i++;
             }
         }
@@ -249,18 +204,18 @@ abstract class Model
             foreach ($data as $key => $val) {
                 $pre = ($i > 0) ? ', ' : '';
                 $colvalSet .= $pre . $key . "='" . $val . "'";
-                
+
                 $i++;
             }
 
             if (!empty($conditions) && is_array($conditions)) {
                 $whereSql .= ' WHERE ';
                 $i = 0;
-                
+
                 foreach ($conditions as $key => $value) {
                     $pre = ($i > 0) ? ' AND ' : '';
                     $whereSql .= $pre . $key . " = '" . $value . "'";
-                    
+
                     $i++;
                 }
             }
@@ -295,7 +250,7 @@ abstract class Model
             foreach ($conditions as $key => $value) {
                 $pre = ($i > 0) ? ' AND ' : '';
                 $whereSql .= $pre . $key . " = '" . $value . "'";
-                
+
                 $i++;
             }
         }
