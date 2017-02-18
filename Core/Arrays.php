@@ -44,13 +44,35 @@ class Arrays
      */
     public static function isAssociative($array)
     {
-        if (!is_array($array)) {
-            throw new \Exception("The passed data is not an array. Data: $array");
-        } elseif (array_values($array) !== $array) {
+        if (is_array($array) && array_values($array) !== $array) {
             return true;
         } else {
-            throw new \Exception("The following array is not associative: $array");
+            return false;
         }
+    }
+
+    /**
+     * Rename key(s) of a given array
+     * 
+     * @param array $data 
+     * @param array $toChange associative array: array('oldKey' => 'newKey','oldKey2' => 'newKey2')
+     * @return boolean
+     */
+    public static function renameKey($data, $toChange)
+    {
+        if (is_array($data) && is_array($toChange)) {
+            $originalKeys = array_keys($data);
+
+            $result = array();
+
+
+            foreach ($toChange as $key => $value) {
+                $originalKeys[array_search($key, $originalKeys)] = $value;
+                $result = array_combine($originalKeys, $data);
+            }
+            return $result;
+        }
+        return false;
     }
 
 }
