@@ -115,7 +115,7 @@ class Session
      * 
      * @param array $data Format: array('hello' => 'world') SEARCH FOR $_SESSION['hello'] = 'world'
      * 
-     * @return bool
+     * @return bool True $_SESSION['hello'] === 'world' | False !$_SESSION['hello'] OR $_SESSION['hello'] = 'somethingElse'
      */
     public static function isSessionVariable($data)
     {
