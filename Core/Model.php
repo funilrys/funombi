@@ -56,7 +56,9 @@ abstract class Model
             $dsn = 'mysql:host=' . Database::DB_HOST . ';dbname=' . Database::DB_NAME . ';charset=utf8';
             $db = new PDO($dsn, Database::DB_USER, Database::DB_PASSWORD);
 
-            // Throw an Exception when an error occurs
+            /**
+             * Throw an Exception when an error occurs
+             */
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         return $db;
@@ -65,8 +67,9 @@ abstract class Model
     /**
      * Add prefix to table if Database::TABLE_PREFIX is set
      * 
-     * @param string $table
-     * @return string
+     * @param string $table Table name to add prefix to
+     * 
+     * @return string Table name with prefix
      */
     protected static function addPrefixToTable($table)
     {
