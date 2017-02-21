@@ -109,7 +109,7 @@ class Files
      * 
      * @param string $file File to create Link to
      * @param string $type Type if the file (link =  Locations::STYLESHEETS | script = Locations::JAVASCRIPTS)
-     * @param boolean $createHTMLObject True: we create full HTML object | False: we return only the generated URL
+     * @param bool $createHTMLObject True: we create full HTML object | False: we return only the generated URL
      * 
      * @throws \Exception Impossible to create HTML object|File not found
      */
@@ -140,7 +140,7 @@ class Files
      * 
      * @param string $file File to check existence
      *  
-     * @return boolean True: Exist and is regular | False: (Don't) Exit or (not) regular
+     * @return bool True: Exist and is regular | False: (Don't) Exit or (not) regular
      */
     public static function isFile($file)
     {
@@ -155,7 +155,7 @@ class Files
      * 
      * @param string $dir Directory to check existence
      * 
-     * @return boolean True: Exist and is regular | False: (Don't) Exit or (not) regular
+     * @return bool True: Exist and is regular | False: (Don't) Exit or (not) regular
      */
     public static function isDir($dir)
     {
@@ -182,7 +182,7 @@ class Files
      * Compare master file hash with local file
      * 
      * @param string $file Path to the file
-     * @return boolean
+     * @return bool True: File is the default one | False: File has been modified
      */
     public static function isHashSameAsSystem($file)
     {
@@ -206,10 +206,10 @@ class Files
     /**
      * Get and read the content of a JSON
      * 
-     * @param string $file
-     * @param string $toRead 
-     * @param string $toGet
-     * @return boolean
+     * @param string $file The file to get
+     * @param string $toRead Part of the file to read
+     * @param string $toGet Subpart of $toRead to get
+     * @return data|false
      */
     public static function getJSON($file, $toRead = null, $toGet = null)
     {
@@ -232,8 +232,8 @@ class Files
      * Function that make it easy to change the defaults credentials of
      * App/Config/Database.php
      * 
-     * @param array $data Database credentials | keys: host, name,
-     * @return boolean
+     * @param array $data Database credentials | keys: host, name, user, password, prefix
+     * @return bool
      */
     public static function writeDatabaseConfig($data)
     {
