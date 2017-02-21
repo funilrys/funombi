@@ -65,8 +65,10 @@ class Session
     public static function destroySession()
     {
         session_unset();
-        $params = session_get_cookie_params();
+        
+        $params = session_get_cookie_params();        
         setcookie(session_name(), '', time() - 42000, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+        
         session_destroy();
     }
 
@@ -95,7 +97,9 @@ class Session
     /**
      * Initiate session variable based on an associative array.
      * 
-     * @param array $toCreate
+     * @param array $toCreate Variable to create. Format: array('hello' => 'world','world' => 'hello') === $_SESSION['hello'] = 'world'; $_SESSION['world'] = 'hello'
+     * 
+     * @return void
      */
     public static function initSessionVariable($toCreate)
     {
