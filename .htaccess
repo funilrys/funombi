@@ -1,5 +1,6 @@
 # Activation of RewriteEngine
 RewriteEngine on
+
 # Desactivation of direct access folder under public/vendor
 Options -Indexes
 
@@ -9,8 +10,10 @@ RewriteRule (.*) public/$1 [L]
 
 # If file doesn't exist
 RewriteCond %{REQUEST_FILENAME} !-f
+
 # If direcroty doesn't exist
 RewriteCond %{REQUEST_FILENAME} !-d
+
 # If symbolic link doen't exist
 RewriteCond %{REQUEST_FILENAME} !-l
 
