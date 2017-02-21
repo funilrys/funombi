@@ -110,4 +110,31 @@ class Session
         }
     }
 
+    /**
+     * Check if a session variable is set
+     * 
+     * @param array $data Format: array('hello' => 'world') SEARCH FOR $_SESSION['hello'] = 'world'
+     * 
+     * @return boolean
+     */
+    public static function isSessionVariable($data)
+    {
+        if (is_array($data) && Arrays::isAssociative($data)) {
+            foreach ($data as $key => $value) {
+                if (isset($_SESSION[$key]) && $_SESSION[$key] = $value) {
+                    return true;
+                }
+                return false;
+            }
+        } elseif (is_array($data) && !Arrays::isAssociative($data)) {
+            foreach ($data as $value) {
+                if (isset($_SESSION[$key])) {
+                    return true;
+                }
+                return false;
+            }
+        }
+        return false;
+    }
+
 }
