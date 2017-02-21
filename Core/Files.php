@@ -51,13 +51,20 @@ class Files
      * 
      * @throws \Exception Directory does not exit
      */
-    public static function checkVitalDirectories()
+    public static function checkVitalDirectories($otherDirectories = null)
     {
         $vital = array(
             Locations::STYLESHEETS => static::isDir(Locations::STYLESHEETS),
             Locations::JAVASCRIPTS => static::isDir(Locations::JAVASCRIPTS),
             Locations::IMAGES => static::isDir(Locations::IMAGES)
         );
+        
+        /**
+         * Add ability to add/check custom directories under Locations::Public_DIR
+         */
+        if($otherDirectories !== null && is_array($otherDirectories)){
+            $vital = array_merge($otherDirectories,$vital);
+        }
 
         foreach ($vital as $key => $value) {
             if ($value !== true) {
