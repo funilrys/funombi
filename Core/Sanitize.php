@@ -40,7 +40,7 @@ class Sanitize
      * @param type $option Format: get | post
      * @param string $toGet If specified return the value of the index = $toGet
      * 
-     * @return boolean
+     * @return array Sanitized $_POST or $_GET
      */
     public static function filter($option, $toGet = null)
     {
@@ -50,7 +50,7 @@ class Sanitize
             $data = $_POST;
             
             /**
-             * TODO : Find why this line return some errors
+             * TODO : Find why this line create some errors
              */
             //            array_shift($data);
         } else {
