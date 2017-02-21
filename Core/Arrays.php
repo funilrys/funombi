@@ -37,9 +37,9 @@ class Arrays
     /**
      * Check if an array is associative or not
      * 
-     * @param array $array array to test
+     * @param array $array Array to check
      * 
-     * @return boolean 
+     * @return boolean True: array is associative | False: array is not associative
      * @throws \Exception
      */
     public static function isAssociative($array)
@@ -54,20 +54,29 @@ class Arrays
     /**
      * Rename key(s) of a given array
      * 
-     * @param array $data 
-     * @param array $toChange associative array: array('oldKey' => 'newKey','oldKey2' => 'newKey2')
+     * @param array $data Original array to rename
+     * @param array $toChange Must be associative. Format: array('oldKey' => 'newKey','oldKey2' => 'newKey2')
      * @return boolean
      */
     public static function renameKey($data, $toChange)
     {
-        if (is_array($data) && is_array($toChange)) {
+        if (is_array($data) && static::isAssociative($toChange)) {
+            /**
+             * We list the original keys
+             */
             $originalKeys = array_keys($data);
 
             $result = array();
 
-
             foreach ($toChange as $key => $value) {
+                /**
+                 * We replace the old key with the new one
+                 */
                 $originalKeys[array_search($key, $originalKeys)] = $value;
+                
+                /**
+                 * We combine the keys with their values
+                 */
                 $result = array_combine($originalKeys, $data);
             }
             return $result;
