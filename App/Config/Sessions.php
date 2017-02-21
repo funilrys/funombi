@@ -46,14 +46,14 @@ class Sessions
      * Marks the cookie as accessible only through the HTTP protocol. 
      * This means that the cookie won't be accessible by scripting languages, such as JavaScript. 
      * This setting can effectively help to reduce identity theft through XSS attacks.
-     * @var boolean Default: 'true'
+     * @var bool Default: 'true'
      */
     const HTTP_ONLY = true;
 
     /**
      * Specifies whether cookies should only be sent over secure connections (HTTPS). 
      * Defaults to false.
-     * @var boolean Default: 'false'
+     * @var bool Default: 'false'
      */
     const SECURED_COOKIES = false;
 
