@@ -37,7 +37,10 @@ use App\Config\Database;
  */
 abstract class Model
 {
-
+    /**
+     * Used to append predefined prefix to tables names
+     * @var string Prefix to append to table name 
+     */
     private static $prefix = Database::TABLE_PREFIX;
 
     /**
