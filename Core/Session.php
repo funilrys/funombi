@@ -44,14 +44,10 @@ class Session
      */
     public static function startSession()
     {
-        $sessionName = Sessions::SESSION_NAME;
-        $httponly = Sessions::HTTP_ONLY;
-        $secure = Sessions::SECURED_COOKIES;
-
         $cookieParams = session_get_cookie_params();
-        session_set_cookie_params($cookieParams['lifetime'], $cookieParams['path'], $cookieParams['domain'], $secure, $httponly);
+        session_set_cookie_params($cookieParams['lifetime'], $cookieParams['path'], $cookieParams['domain'], Sessions::SECURED_COOKIES, Sessions::HTTP_ONLY);
 
-        session_name($sessionName);
+        session_name(Sessions::SESSION_NAME);
 
         if (static::isSessionStarted() === false) {
             session_start();
@@ -77,7 +73,7 @@ class Session
     /**
      * Check if session is already started;
      * 
-     * @return boolean
+     * @return bool
      */
     protected static function isSessionStarted()
     {
@@ -115,7 +111,7 @@ class Session
      * 
      * @param array $data Format: array('hello' => 'world') SEARCH FOR $_SESSION['hello'] = 'world'
      * 
-     * @return boolean
+     * @return bool
      */
     public static function isSessionVariable($data)
     {
