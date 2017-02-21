@@ -140,7 +140,7 @@ class Files
      * 
      * @param string $file File to check existence
      *  
-     * @return boolean
+     * @return boolean True: Exist and is regular | False: (Don't) Exit or (not) regular
      */
     public static function isFile($file)
     {
@@ -155,7 +155,7 @@ class Files
      * 
      * @param string $dir Directory to check existence
      * 
-     * @return boolean
+     * @return boolean True: Exist and is regular | False: (Don't) Exit or (not) regular
      */
     public static function isDir($dir)
     {
@@ -166,9 +166,9 @@ class Files
     }
 
     /**
-     * get the hash of a file
+     * Get the hash of a given file
      * 
-     * @param string $algo Hash algorithm
+     * @param string $algo Hash algorithm. Default: 'sha512'
      * @param string $path Path to the file
      * 
      * @return string
