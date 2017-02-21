@@ -89,7 +89,7 @@ class Router
      *
      * @param string $url The route URL
      *
-     * @return boolean  true if a match found, false otherwise
+     * @return bool  true if a match found, false otherwise
      */
     public function match($url)
     {
