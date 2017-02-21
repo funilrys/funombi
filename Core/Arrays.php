@@ -39,7 +39,7 @@ class Arrays
      * 
      * @param array $array Array to check
      * 
-     * @return boolean True: array is associative | False: array is not associative
+     * @return bool True: array is associative | False: array is not associative
      * @throws \Exception
      */
     public static function isAssociative($array)
@@ -56,7 +56,7 @@ class Arrays
      * 
      * @param array $data Original array to rename
      * @param array $toChange Must be associative. Format: array('oldKey' => 'newKey','oldKey2' => 'newKey2')
-     * @return boolean
+     * @return bool
      */
     public static function renameKey($data, $toChange)
     {
