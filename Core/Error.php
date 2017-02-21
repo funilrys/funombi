@@ -26,7 +26,8 @@
 
 namespace Core;
 
-use App\Config;
+use App\Config\Errors;
+use App\Config\Debugger;
 
 /**
  * Error & Exception Handler
@@ -62,15 +63,18 @@ class Error
      */
     public static function exceptionHandler($exception)
     {
-        // Code is 404 (not found) or 500 (general error)
         $code = $exception->getCode();
         $codes = ['403', '404', '500', '502', '503', '504'];
+        
+        /**
+         * If code not in $codes, we change it to 500
+         */
         if (!in_array($code, $codes)) {
             $code = 500;
         }
         http_response_code($code);
 
-        if (\App\Config\Errors::SHOW_ERRORS) {
+        if (Errors::SHOW_ERRORS) {
             echo "<h1>Fatal error</h1>";
             echo "<p>Uncaught exception: '" . get_class($exception) . "'</p>";
             echo "<p>Message: '" . $exception->getMessage() . "'</p>";
@@ -98,8 +102,8 @@ class Error
      */
     public static function showDebugger()
     {
-        if (Config\Errors::SHOW_ERRORS === true && Config\Debugger::SHOW_DEBUGGER === true) {
-            if (Config\Debugger::SHOW_TRACE === true) {
+        if (Errors::SHOW_ERRORS === true && Debugger::SHOW_DEBUGGER === true) {
+            if (Debugger::SHOW_TRACE === true) {
                 \Kint::trace();
             }
             \Kint::dump($GLOBALS, $_SESSION, $_POST, $_GET);
