@@ -82,7 +82,7 @@ abstract class Model
      * Return rows from the database based on the conditions
      * 
      * @param string $table
-     * @param array $conditions  Conditions : select, where, where_or, where_comp_operator, order_by, limit, return_type
+     * @param array $conditions  Conditions : select, where, where_or, where_comp_operator, order_by, group_by limit, return_type
      * @return array
      */
     protected static function getRows($table, $conditions = array())
@@ -108,7 +108,8 @@ abstract class Model
 
             foreach ($conditions['where'] as $key => $value) {
                 $pre = ($i > 0) ? ' AND ' : '';
-                $sql .= $pre . $key . " " . $compOperator . "'" . $value . "'";
+                $operator = (is_array($compOperator)) ? $compOperator[$i] : $compOperator;
+                $sql .= $pre . $key . " " . $operator . "'" . $value . "'";
 
                 $i++;
             }
@@ -134,6 +135,10 @@ abstract class Model
             $sql .= ' LIMIT ' . $conditions['start'] . ',' . $conditions['limit'];
         } elseif (!array_key_exists("start", $conditions) && array_key_exists("limit", $conditions)) {
             $sql .= ' LIMIT ' . $conditions['limit'];
+        }
+        
+        if(array_key_exists("group_by", $conditions)){
+            $sql .= ' GROUP BY ' . $conditions['group_by'];
         }
 
         $db = static::getDB();
