@@ -37,8 +37,8 @@ class Sessions
     /**
      * Specifies the name of the session which is used as cookie name. 
      * It should only contain alphanumeric characters. 
-     * Defaults to 'PHPSESSID'
-     * @var string
+     * PHP set it by default to 'PHPSESSID'
+     * @var string 
      */
     const SESSION_NAME = 'Hello_World';
 
@@ -46,14 +46,14 @@ class Sessions
      * Marks the cookie as accessible only through the HTTP protocol. 
      * This means that the cookie won't be accessible by scripting languages, such as JavaScript. 
      * This setting can effectively help to reduce identity theft through XSS attacks.
-     * @var boolean
+     * @var boolean Default: 'true'
      */
     const HTTP_ONLY = true;
 
     /**
      * Specifies whether cookies should only be sent over secure connections (HTTPS). 
      * Defaults to false.
-     * @var boolean
+     * @var boolean Default: 'false'
      */
     const SECURED_COOKIES = false;
 
