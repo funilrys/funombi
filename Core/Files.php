@@ -84,7 +84,7 @@ class Files
      * 
      * @param string $file File to match with
      * 
-     * @return string
+     * @return string The directory where the given file should be located
      * @throws \Exception Extension is not matched
      */
     public static function matchExtensionToFileSystem($file)
@@ -109,11 +109,11 @@ class Files
      * 
      * @param string $file File to create Link to
      * @param string $type Type if the file (link =  Locations::STYLESHEETS | script = Locations::JAVASCRIPTS)
-     * @param boolean $createHTMLObject
+     * @param boolean $createHTMLObject True: we create full HTML object | False: we return only the generated URL
      * 
      * @throws \Exception Impossible to create HTML object|File not found
      */
-    public static function createLinkToFile($file, $type, $createHTMLObject)
+    public static function createLinkToFile($file, $type, $createHTMLObject = false)
     {
         $http = \App\Config\Sessions::SECURED_COOKIES ? 'https://' : 'http://';
         $siteURL = $http . $_SERVER['HTTP_HOST'] . explode('index.php', $_SERVER['REDIRECT_URL'])[0];
@@ -128,7 +128,7 @@ class Files
             } else {
                 throw new \Exception("Impossible to create an HTLM object for '" . Locations::PUBLIC_DIR . "/$file'");
             }
-        } elseif ($createHTMLObject !== true && static::isFile($file)) {
+        } elseif (!$createHTMLObject && static::isFile($file)) {
             echo $siteURL . $file;
         } else {
             throw new \Exception(Locations::PUBLIC_DIR . "/$file is not found");
