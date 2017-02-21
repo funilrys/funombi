@@ -28,6 +28,8 @@ namespace App\Config;
 
 /**
  * Database configuration
+ * If you're gonna use the writeDatabase() function please do not change the
+ * defaults assignments.
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
@@ -36,31 +38,31 @@ class Database
 
     /**
      * Database host
-     * @var string
+     * @var string Default: 'your-database-host'
      */
     const DB_HOST = 'your-database-host';
 
     /**
      * Database name
-     * @var string
+     * @var string Default: 'your-database-name'
      */
     const DB_NAME = 'your-database-name';
 
     /**
      * Database user
-     * @var string
+     * @var string Default: 'your-database-username'
      */
     const DB_USER = 'your-database-username';
 
     /**
      * Database password
-     * @var string
+     * @var string Default: 'your-database-password'
      */
     const DB_PASSWORD = 'your-database-password';
     
     /**
      * Prefix to append to table name
-     * @var string
+     * @var string Default: 'your-table-prefix'
      */
     const TABLE_PREFIX = 'your-table-prefix';
 
