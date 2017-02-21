@@ -36,7 +36,7 @@ class Errors
 
     /**
      * Show or hide error messages on screen
-     * @var boolean Default: true
+     * @var bool Default: true
      */
     const SHOW_ERRORS = true;
 
