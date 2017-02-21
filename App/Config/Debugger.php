@@ -36,13 +36,13 @@ class Debugger
 
     /**
      * Show or hide debugger
-     * @var boolean Default: false
+     * @var bool Default: false
      */
     const SHOW_DEBUGGER = false;
 
     /**
      * Show or hide the trace function
-     * @var boolean Default: false
+     * @var bool Default: false
      */
     const SHOW_TRACE = false;
 
