@@ -75,6 +75,7 @@ abstract class Model
     {
         if (!empty(static::$prefix)) {
             $lastChar = '_';
+            
             if (substr(static::$prefix, -1) != $lastChar) {
                 return static::$prefix . $lastChar . $table;
             } else {
@@ -87,9 +88,10 @@ abstract class Model
     /**
      * Return rows from the database based on the conditions
      * 
-     * @param string $table
+     * @param string $table Name of the table
      * @param array $conditions  Conditions : select, where, where_or, where_comp_operator, order_by, group_by, limit, return_type
-     * @return array
+     * 
+     * @return array Data from database
      */
     protected static function getRows($table, $conditions = array())
     {
@@ -175,9 +177,9 @@ abstract class Model
     /**
      * Insert data into the database
      * 
-     * @param string $table
+     * @param string $table Name of the table
      * @param array $data Data to insert to table
-     * @return boolean
+     * @return bool 
      */
     protected static function insert($table, $data)
     {
@@ -207,6 +209,7 @@ abstract class Model
             foreach ($data as $key => $val) {
                 $query->bindValue(':' . $key, $val);
             }
+            
             $insert = $query->execute();
 
             if ($insert) {
@@ -222,8 +225,8 @@ abstract class Model
      * 
      * @param string $table Name of the table
      * @param array $data Data to update
-     * @param array $conditions 
-     * @return boolean
+     * @param array $conditions WHERE statement
+     * @return bool
      */
     protected static function update($table, $data, $conditions)
     {
@@ -274,9 +277,9 @@ abstract class Model
     /**
      * Delete data from the database
      * 
-     * @param string $table
-     * @param array $conditions
-     * @return boolean
+     * @param string $table Name of the table
+     * @param array $conditions WHERE statement
+     * @return bool
      */
     public static function delete($table, $conditions)
     {
