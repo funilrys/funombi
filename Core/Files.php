@@ -49,6 +49,8 @@ class Files
     /**
      * Return a message to inform developer that a directory is not found
      * 
+     * @param string $otherDirectories Other directory to check. MUST BE UNDER Locations::PUBLIC_DIR
+     * 
      * @throws \Exception Directory does not exit
      */
     public static function checkVitalDirectories($otherDirectories = null)
@@ -58,15 +60,18 @@ class Files
             Locations::JAVASCRIPTS => static::isDir(Locations::JAVASCRIPTS),
             Locations::IMAGES => static::isDir(Locations::IMAGES)
         );
-        
+
         /**
          * Add ability to add/check custom directories under Locations::Public_DIR
          */
-        if($otherDirectories !== null && is_array($otherDirectories)){
-            $vital = array_merge($otherDirectories,$vital);
+        if ($otherDirectories !== null && is_array($otherDirectories)) {
+            $vital = array_merge($otherDirectories, $vital);
         }
 
         foreach ($vital as $key => $value) {
+            /**
+             * If it's not found, we return Exception
+             */
             if ($value !== true) {
                 throw new \Exception("The (vital) directory '" . Locations::PUBLIC_DIR . "/" . $key . "' is not found");
             }
