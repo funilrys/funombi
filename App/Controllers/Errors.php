@@ -38,6 +38,7 @@ class Errors extends \Core\Controller
 
     /**
      * Show Error 403
+     * Route: /403
      * 
      * @return void
      */
@@ -48,6 +49,7 @@ class Errors extends \Core\Controller
 
     /**
      * Show Error 404
+     * Route: /404
      * 
      * @return void
      */
@@ -58,6 +60,7 @@ class Errors extends \Core\Controller
 
     /**
      * Show Error 500
+     * Route: /500
      * 
      * @return void
      */
@@ -68,6 +71,7 @@ class Errors extends \Core\Controller
 
     /**
      * Show Error 502
+     * Route: /502
      * 
      * @return void
      */
@@ -78,6 +82,7 @@ class Errors extends \Core\Controller
 
     /**
      * Show Error 503
+     * Route: /503
      * 
      * @return void
      */
@@ -88,6 +93,7 @@ class Errors extends \Core\Controller
 
     /**
      * Show Error 504
+     * Route: /504
      * 
      * @return void
      */
