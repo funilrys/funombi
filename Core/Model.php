@@ -82,7 +82,7 @@ abstract class Model
      * Return rows from the database based on the conditions
      * 
      * @param string $table
-     * @param array $conditions  Conditions : select, where, where_or, where_comp_operator, order_by, group_by limit, return_type
+     * @param array $conditions  Conditions : select, where, where_or, where_comp_operator, order_by, group_by, limit, return_type
      * @return array
      */
     protected static function getRows($table, $conditions = array())
