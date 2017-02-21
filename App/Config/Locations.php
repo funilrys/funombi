@@ -27,7 +27,7 @@
 namespace App\Config;
 
 /**
- * Etablishment of vitale directories
+ * Establishment of vital directories
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
@@ -36,31 +36,31 @@ class Locations
 
     /**
      * Public directory name
-     * @var string
+     * @var string Default: 'public'
      */
     const PUBLIC_DIR = 'public';
 
     /**
      * Stylsheets directory under PUBLIC_DIR
-     * @var string
+     * @var string Default: 'styles'
      */
     const STYLESHEETS = 'styles';
 
     /**
      * Images directory under PUBLIC_DIR
-     * @var string
+     * @var string Default: 'images'
      */
     const IMAGES = 'images';
 
     /**
      * Javascripts  directory under PUBLIC_DIR
-     * @var string
+     * @var string Default: 'js'
      */
     const JAVASCRIPTS = 'js';
 
     /**
      * Name of the used theme
-     * @var string
+     * @var string Default: 'ajaz'
      */
     const THEME_NAME = 'ajaz';
 
