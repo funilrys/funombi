@@ -37,6 +37,7 @@ use App\Config\Database;
  */
 abstract class Model
 {
+
     /**
      * Used to append predefined prefix to tables names
      * @var string Prefix to append to table name 
@@ -75,7 +76,7 @@ abstract class Model
     {
         if (!empty(static::$prefix)) {
             $lastChar = '_';
-            
+
             if (substr(static::$prefix, -1) != $lastChar) {
                 return static::$prefix . $lastChar . $table;
             } else {
@@ -96,7 +97,7 @@ abstract class Model
     protected static function getRows($table, $conditions = array())
     {
         $table = static::addPrefixToTable($table);
-        
+
         /**
          * Check if the key exist so we use the defined operator instead of '='
          */
@@ -144,8 +145,8 @@ abstract class Model
         } elseif (!array_key_exists("start", $conditions) && array_key_exists("limit", $conditions)) {
             $sql .= ' LIMIT ' . $conditions['limit'];
         }
-        
-        if(array_key_exists("group_by", $conditions)){
+
+        if (array_key_exists("group_by", $conditions)) {
             $sql .= ' GROUP BY ' . $conditions['group_by'];
         }
 
@@ -184,7 +185,7 @@ abstract class Model
     protected static function insert($table, $data)
     {
         $table = static::addPrefixToTable($table);
-        
+
         if (!empty($data) && is_array($data)) {
             $columns = '';
             $values = '';
@@ -209,7 +210,7 @@ abstract class Model
             foreach ($data as $key => $val) {
                 $query->bindValue(':' . $key, $val);
             }
-            
+
             $insert = $query->execute();
 
             if ($insert) {
@@ -219,19 +220,22 @@ abstract class Model
         }
         return false;
     }
-
+    
     /**
      * Update data into the database
      * 
      * @param string $table Name of the table
      * @param array $data Data to update
      * @param array $conditions WHERE statement
-     * @return bool
+     * @param array $operator Sign of WHERE statement
+     * 
+     * @return boolean
      */
-    protected static function update($table, $data, $conditions)
+    protected static function update($table, $data, $conditions, $operator = '=')
     {
         $table = static::addPrefixToTable($table);
-        
+
+
         if (!empty($data) && is_array($data)) {
             $colvalSet = '';
             $whereSql = '';
@@ -255,7 +259,9 @@ abstract class Model
 
                 foreach ($conditions as $key => $value) {
                     $pre = ($i > 0) ? ' AND ' : '';
-                    $whereSql .= $pre . $key . " = '" . $value . "'";
+
+                    $operator = (is_array($operator)) ? $operator[$i] : $compOperator;
+                    $whereSql .= $pre . $key . " " . $operator . "'" . $value . "'";
 
                     $i++;
                 }
@@ -284,7 +290,7 @@ abstract class Model
     public static function delete($table, $conditions)
     {
         $table = static::addPrefixToTable($table);
-        
+
         $whereSql = '';
         if (!empty($conditions) && is_array($conditions)) {
             $whereSql .= ' WHERE ';
