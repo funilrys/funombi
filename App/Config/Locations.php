@@ -41,7 +41,7 @@ class Locations
     const PUBLIC_DIR = 'public';
 
     /**
-     * Stylsheets directory under PUBLIC_DIR
+     * Stylesheets directory under PUBLIC_DIR
      * @var string Default: 'styles'
      */
     const STYLESHEETS = 'styles';
@@ -59,7 +59,7 @@ class Locations
     const JAVASCRIPTS = 'js';
 
     /**
-     * Name of the used theme
+     * Name of the used template
      * @var string Default: 'ajaz'
      */
     const THEME_NAME = 'ajaz';
