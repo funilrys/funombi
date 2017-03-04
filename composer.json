@@ -6,7 +6,8 @@
         "twig/twig": "~2.0"
     },
     "require-dev": {
-        "atoum/atoum": "^3.0"
+        "atoum/atoum": "^3.0",
+        "atoum/stubs": "^2.5"
     },
     "autoload": {
         "psr-4": {
