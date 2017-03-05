@@ -41,21 +41,14 @@ class Database extends \atoum
      */
     public function testDatabase()
     {
-   
         $this
-            ->given($this->newTestedInstance)
-            ->then
-                ->string($this->testedInstance::DB_HOST)
-                    ->isNotEmpty()
-                ->string($this->testedInstance::DB_NAME)
-                    ->isNotEmpty()
-                ->string($this->testedInstance::DB_USER)
-                    ->isNotEmpty()
-                ->string($this->testedInstance::DB_PASSWORD)
-                    ->isNotEmpty()
-                ->string($this->testedInstance::TABLE_PREFIX)
-                    ->isNotEmpty()
-                          
+                ->given($this->newTestedInstance)
+                ->then
+                    ->string($this->testedInstance::DB_HOST)->isNotEmpty()
+                    ->string($this->testedInstance::DB_NAME)>isNotEmpty()
+                    ->string($this->testedInstance::DB_USER)->isNotEmpty()
+                    ->string($this->testedInstance::DB_PASSWORD)->isNotEmpty()
+                    ->string($this->testedInstance::TABLE_PREFIX)->isNotEmpty()
         ;
     }
 
