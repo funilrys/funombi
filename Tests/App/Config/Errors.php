@@ -29,13 +29,16 @@ namespace App\Config\tests\units;
 require_once dirname(__DIR__, 3) . '/App/Config/Errors.php';
 
 /**
- * Description of Errors
+ * Tests of App\Config\Errors
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
 class Errors extends \atoum
 {
 
+    /**
+     * We test if the const SHOW_ERRORS is boolean
+     */
     public function testErrors()
     {
 
