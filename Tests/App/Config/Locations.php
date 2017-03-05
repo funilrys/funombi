@@ -29,30 +29,27 @@ namespace App\Config\tests\units;
 require_once dirname(__DIR__, 3) . '/App/Config/Locations.php';
 
 /**
- * Description of Locations
+ * Tests of App\Config\Locations
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
 class Locations extends \atoum
 {
+
+    /**
+     * We tests all constants  under App\Config\Locations
+     */
     public function testLocations()
     {
-
         $this
                 ->given($this->newTestedInstance)
                 ->then
-                    ->string($this->testedInstance::PUBLIC_DIR)
-                        ->isNotEmpty()
-                    ->string($this->testedInstance::STYLESHEETS)
-                            ->isNotEmpty()
-                    ->string($this->testedInstance::IMAGES)
-                            ->isNotEmpty()
-                    ->string($this->testedInstance::JAVASCRIPTS)
-                            ->isNotEmpty()
-                    ->string($this->testedInstance::THEME_NAME)
-                            ->isNotEmpty()
-                
-
+                    ->string($this->testedInstance::PUBLIC_DIR)->isNotEmpty()
+                    ->string($this->testedInstance::STYLESHEETS)->isNotEmpty()
+                    ->string($this->testedInstance::IMAGES)->isNotEmpty()
+                    ->string($this->testedInstance::JAVASCRIPTS)->isNotEmpty()
+                    ->string($this->testedInstance::THEME_NAME)->isNotEmpty()
         ;
     }
+
 }
