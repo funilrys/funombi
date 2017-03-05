@@ -95,19 +95,4 @@ class Error
         }
     }
 
-    /**
-     * Show the debugger
-     * 
-     * @return void
-     */
-    public static function showDebugger()
-    {
-        if (Errors::SHOW_ERRORS === true && Debugger::SHOW_DEBUGGER === true) {
-            if (Debugger::SHOW_TRACE === true) {
-                \Kint::trace();
-            }
-            \Kint::dump($GLOBALS, $_SESSION, $_POST, $_GET);
-        }
-    }
-
 }
