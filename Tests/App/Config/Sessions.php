@@ -27,13 +27,18 @@
 namespace App\Config\tests\units;
 
 require_once dirname(__DIR__, 3) . '/App/Config/Sessions.php';
+
 /**
- * Description of Sessions
+ * Tests of App\Config\Sessions
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
 class Sessions extends \atoum
 {
+    
+    /**
+     * We test if constants are valid
+     */
     public function testSessions()
     {
         $this
