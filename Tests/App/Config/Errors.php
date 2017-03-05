@@ -44,7 +44,7 @@ class Errors extends \atoum
         $this
                 ->given($this->newTestedInstance)
                 ->then
-                ->boolean($this->testedInstance::SHOW_ERRORS)
+                    ->boolean($this->testedInstance::SHOW_ERRORS)
         ;
     }
 
