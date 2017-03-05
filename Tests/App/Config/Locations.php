@@ -44,11 +44,16 @@ class Locations extends \atoum
         $this
                 ->given($this->newTestedInstance)
                 ->then
-                    ->string($this->testedInstance::PUBLIC_DIR)->isNotEmpty()
-                    ->string($this->testedInstance::STYLESHEETS)->isNotEmpty()
-                    ->string($this->testedInstance::IMAGES)->isNotEmpty()
-                    ->string($this->testedInstance::JAVASCRIPTS)->isNotEmpty()
-                    ->string($this->testedInstance::THEME_NAME)->isNotEmpty()
+                    ->string($this->testedInstance::PUBLIC_DIR)
+                        ->isNotEmpty()
+                    ->string($this->testedInstance::STYLESHEETS)
+                        ->isNotEmpty()
+                    ->string($this->testedInstance::IMAGES)
+                        ->isNotEmpty()
+                    ->string($this->testedInstance::JAVASCRIPTS)
+                        ->isNotEmpty()
+                    ->string($this->testedInstance::THEME_NAME)
+                        ->isNotEmpty()
         ;
     }
 
