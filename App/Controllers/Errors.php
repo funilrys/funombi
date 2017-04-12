@@ -26,14 +26,15 @@
 
 namespace App\Controllers;
 
-use \Core\View;
+use Core\Controller;
+use Core\View;
 
 /**
  * Errors controller
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
-class Errors extends \Core\Controller
+class Errors extends Controller
 {
 
     /**
