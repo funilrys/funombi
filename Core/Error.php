@@ -27,7 +27,6 @@
 namespace Core;
 
 use App\Config\Errors;
-use App\Config\Debugger;
 
 /**
  * Error & Exception Handler
@@ -65,7 +64,7 @@ class Error
     {
         $code = $exception->getCode();
         $codes = ['403', '404', '500', '502', '503', '504'];
-        
+
         /**
          * If code not in $codes, we change it to 500
          */
