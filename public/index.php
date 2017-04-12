@@ -27,8 +27,10 @@
 /**
  * Composer
  */
-if (is_file('vendor/autoload.php')) {
-    require 'vendor/autoload.php';
+$autoloader = dirname(__FILE__, 1 + 1) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+
+if (is_file($autoloader)) {
+    require $autoloader;
 } else {
     echo 'Please install the dependencies with "composer update".<br /> If this message persist, please check the permissions of your current project.';
     exit();
