@@ -16,3 +16,11 @@ AUTOLOADER
 // composer
 require __DIR__ . '/vendor/autoload.php';
 */
+$autoloader = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+
+if (is_file($autoloader)) {
+    require $autoloader;
+} else {
+    echo 'Please install the dependencies with "composer update". If this message persist, please check the permissions of your current project.';
+    exit();
+}
