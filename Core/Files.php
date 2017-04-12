@@ -232,7 +232,7 @@ class Files
      * Function that make it easy to change the defaults credentials of
      * App/Config/Database.php
      * 
-     * @param array $data Database credentials | keys: host, name, user, password, prefix
+     * @param array $data Database credentials | keys, host, name, user, password, prefix
      * @return bool
      */
     public static function writeDatabaseConfig($data)
