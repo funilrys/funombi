@@ -27,7 +27,7 @@
 /**
  * Composer
  */
-$autoloader = dirname(__FILE__, 1 + 1) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+$autoloader = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
 if (is_file($autoloader)) {
     require $autoloader;
