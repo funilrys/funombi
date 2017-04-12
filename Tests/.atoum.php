@@ -10,6 +10,8 @@ More information on documentation:
 [fr] http://docs.atoum.org/fr/latest/lancement_des_tests.html#fichier-de-configuration
 */
 
+require_once dirname(__DIR__,1).'/vendor/autoload.php';
+
 use \mageekguy\atoum;
 
 $report = $script->addDefaultReport();
