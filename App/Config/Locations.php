@@ -64,4 +64,10 @@ class Locations
      */
     const THEME_NAME = 'ajaz';
 
+    /**
+     * Name & location of the vendor directory
+     * @var string Default: "self::PUBLIC_DIR . DIRECTORY_SEPARATOR. 'vendor'"
+     */
+    const VENDOR = self::PUBLIC_DIR . DIRECTORY_SEPARATOR . 'vendor';
+
 }
