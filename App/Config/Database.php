@@ -59,7 +59,7 @@ class Database
      * @var string Default: 'your-database-password'
      */
     const DB_PASSWORD = 'your-database-password';
-    
+
     /**
      * Prefix to append to table name
      * @var string Default: 'your-table-prefix'
