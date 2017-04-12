@@ -26,14 +26,15 @@
 
 namespace Core\tests\units;
 
-require_once dirname(__DIR__, 2) . '/Core/Arrays.php';
+use atoum;
+use Core\Arrays as classToTest;
 
 /**
  * Tests for Core\Arrays
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
-class Arrays extends \atoum
+class Arrays extends atoum
 {
 
     /**
@@ -60,15 +61,15 @@ class Arrays extends \atoum
         $isNotAnArray = 'Hello,World';
 
         $this
-                ->given($this->newTestedInstance)
+                ->given($array = new classToTest())
                 ->then
-                    ->boolean($this->testedInstance::isAssociative($isAssociative))
+                    ->boolean($array::isAssociative($isAssociative))
                         ->isTrue()
-                    ->boolean($this->testedInstance::isAssociative($isTooAssociative))
+                    ->boolean($array::isAssociative($isTooAssociative))
                         ->isTrue()
-                    ->boolean($this->testedInstance::isAssociative($isNotAssociative))
+                    ->boolean($array::isAssociative($isNotAssociative))
                         ->isFalse()
-                    ->boolean($this->testedInstance::isAssociative($isNotAnArray))
+                    ->boolean($array::isAssociative($isNotAnArray))
                         ->isFalse()
         ;
     }
@@ -96,16 +97,16 @@ class Arrays extends \atoum
         $dataNotArray = 'Hello, world, from,Germany';
         
         $this
-                ->given($this->newTestedInstance)
+                ->given($array = new classToTest())
                 ->then
-                    ->array($this->testedInstance::renameKey($data, $toChange))
+                    ->array($array::renameKey($data, $toChange))
                         ->keys
                             ->isEqualTo($validKeys)
-                    ->array($this->testedInstance::renameKey($data, $toChange))
+                    ->array($array::renameKey($data, $toChange))
                         ->containsValues($validValues)
-                    ->array($this->testedInstance::renameKey($data, $toChange))
+                    ->array($array::renameKey($data, $toChange))
                         ->isNotEmpty()
-                    ->boolean($this->testedInstance::renameKey($dataNotArray,$toChange))
+                    ->boolean($array::renameKey($dataNotArray,$toChange))
                         ->isFalse()                 
         ;
     }

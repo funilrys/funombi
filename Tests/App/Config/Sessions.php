@@ -26,7 +26,8 @@
 
 namespace App\Config\tests\units;
 
-require_once dirname(__DIR__, 3) . '/App/Config/Sessions.php';
+use atoum;
+use App\Config\Sessions as classToTest;
 
 /**
  * Tests of App\Config\Sessions
@@ -42,13 +43,13 @@ class Sessions extends \atoum
     public function testSessions()
     {
         $this
-            ->given($this->newTestedInstance)
+            ->given($session = new classToTest())
             ->then
-                ->string($this->testedInstance::SESSION_NAME)
+                ->string($session::SESSION_NAME)
                     ->isNotEmpty()
                     ->match('/^[-_,a-zA-Z0-9]{1,128}$/')
-                ->boolean($this->testedInstance::HTTP_ONLY)
-                ->boolean($this->testedInstance::SECURED_COOKIES)
+                ->boolean($session::HTTP_ONLY)
+                ->boolean($session::SECURED_COOKIES)
         ;
     }
 }

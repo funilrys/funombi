@@ -26,14 +26,15 @@
 
 namespace App\Config\tests\units;
 
-require_once dirname(__DIR__, 3) . '/App/Config/Locations.php';
+use atoum;
+use App\Config\Locations as classToTest;
 
 /**
  * Tests of App\Config\Locations
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
-class Locations extends \atoum
+class Locations extends atoum
 {
 
     /**
@@ -42,18 +43,27 @@ class Locations extends \atoum
     public function testLocations()
     {
         $this
-                ->given($this->newTestedInstance)
+                ->given($loc = new classToTest())
                 ->then
-                    ->string($this->testedInstance::PUBLIC_DIR)
+                    ->string($loc::PUBLIC_DIR)
                         ->isNotEmpty()
-                    ->string($this->testedInstance::STYLESHEETS)
+                        ->notContains(DIRECTORY_SEPARATOR)
+                    ->string($loc::STYLESHEETS)
                         ->isNotEmpty()
-                    ->string($this->testedInstance::IMAGES)
+                        ->notContains(DIRECTORY_SEPARATOR)
+                    ->string($loc::IMAGES)
                         ->isNotEmpty()
-                    ->string($this->testedInstance::JAVASCRIPTS)
+                        ->notContains(DIRECTORY_SEPARATOR)
+                    ->string($loc::JAVASCRIPTS)
                         ->isNotEmpty()
-                    ->string($this->testedInstance::THEME_NAME)
+                        ->notContains(DIRECTORY_SEPARATOR)
+                    ->string($loc::THEME_NAME)
                         ->isNotEmpty()
+                        ->notContains(DIRECTORY_SEPARATOR)
+                    ->string($loc::VENDOR)
+                        ->isNotEmpty()
+                        ->contains($loc::PUBLIC_DIR)
+                        ->contains(DIRECTORY_SEPARATOR)
         ;
     }
 

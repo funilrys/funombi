@@ -26,14 +26,15 @@
 
 namespace App\Config\tests\units;
 
-require_once dirname(__DIR__, 3) . '/App/Config/Errors.php';
+use atoum;
+use App\Config\Errors as classToTest;
 
 /**
  * Tests of App\Config\Errors
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
-class Errors extends \atoum
+class Errors extends atoum
 {
 
     /**
@@ -42,9 +43,9 @@ class Errors extends \atoum
     public function testErrors()
     {
         $this
-                ->given($this->newTestedInstance)
+                ->given($err = new classToTest())
                 ->then
-                    ->boolean($this->testedInstance::SHOW_ERRORS)
+                    ->boolean($err::SHOW_ERRORS)
         ;
     }
 
