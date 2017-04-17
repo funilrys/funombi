@@ -43,7 +43,7 @@ class Files
      */
     public static function getRoot()
     {
-        return dirname(__DIR__, 1) . '/';
+        return dirname(__DIR__, 1) . DIRECTORY_SEPARATOR;
     }
 
     /**
@@ -131,7 +131,7 @@ class Files
         } elseif (!$createHTMLObject && static::isFile($file)) {
             echo $siteURL . $file;
         } else {
-            throw new \Exception(Locations::PUBLIC_DIR . "/$file is not found");
+            throw new \Exception(Locations::PUBLIC_DIR . DIRECTORY_SEPARATOR . "$file is not found");
         }
     }
 
@@ -188,11 +188,11 @@ class Files
     {
         $currentHash = static::hashFile($file);
 
-        $hashFile = dirname(__FILE__ . '../') . '/hashes.json';
-        $Root = dirname(__DIR__, 1) . '/';
+        $hashFile = dirname(__FILE__ . '../') . DIRECTORY_SEPARATOR . 'hashes.json';
+        $Root = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR;
 
         $filepath = explode($Root, $file);
-        $pathToAccessFile = explode('/', $filepath[1]);
+        $pathToAccessFile = explode(DIRECTORY_SEPARATOR, $filepath[1]);
         $fileToCheck = explode('.php', $pathToAccessFile[2])[0];
 
         $systemHash = static::getJSON($hashFile, $pathToAccessFile[1], $fileToCheck);
@@ -239,7 +239,7 @@ class Files
     {
         if (is_array($data)) {
             $root = static::getRoot();
-            $databaseFile = $root . 'App/Config/Database.php';
+            $databaseFile = $root . 'App' . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'Database.php';
 
             $currentFile = file_get_contents($databaseFile);
 
