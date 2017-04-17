@@ -76,6 +76,8 @@ class Files
                 throw new \Exception("The (vital) directory '" . Locations::PUBLIC_DIR . "/" . $key . "' is not found");
             }
         }
+
+        return true;
     }
 
     /**
