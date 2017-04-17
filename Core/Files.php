@@ -65,7 +65,14 @@ class Files
          * Add ability to add/check custom directories under Locations::Public_DIR
          */
         if ($otherDirectories !== null && is_array($otherDirectories)) {
-            $vital = array_merge($otherDirectories, $vital);
+            $toCheck = array();
+            
+            foreach ($otherDirectories as $value) {
+                $toCheck[$value] = static::isDir($value);
+            }
+
+
+            $vital = array_merge($toCheck, $vital);
         }
 
         foreach ($vital as $key => $value) {
