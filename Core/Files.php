@@ -109,7 +109,7 @@ class Files
                 return $key;
             }
         }
-        throw new \Exception("File extention of $file is not accepted.");
+        throw new \Exception("The extension of $file is not accepted.");
     }
 
     /**
