@@ -66,7 +66,7 @@ class Files
          */
         if ($otherDirectories !== null && is_array($otherDirectories)) {
             $toCheck = array();
-            
+
             foreach ($otherDirectories as $value) {
                 $toCheck[$value] = static::isDir($value);
             }
@@ -235,6 +235,40 @@ class Files
             return $readed;
         }
         return false;
+    }
+
+    /**
+     * Write the default data into App\Config\Database
+     * 
+     * @return boolean
+     */
+    public static function writeDefaultDatabaseConfig()
+    {
+        $consts = array(
+            'DB_HOST' => 'your-database-host',
+            'DB_NAME' => 'your-database-name',
+            'DB_USER' => 'your-database-username',
+            'DB_PASSWORD' => 'your-database-password',
+            'TABLE_PREFIX' => 'your-table-prefix'
+        );
+
+        $root = static::getRoot();
+        $databaseFile = $root . 'App' . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'Database.php';
+
+        foreach ($consts as $key => $value) {
+            $currentFile = file_get_contents($databaseFile);
+
+            $regex = "/const $key = .*;/";
+            $replacement = "const $key = '$value';";
+
+            $currentFile = preg_replace($regex, $replacement, $currentFile);
+
+            if (file_put_contents($databaseFile, $currentFile)) {
+                continue;
+            }
+            return false;
+        }
+        return true;
     }
 
     /**
