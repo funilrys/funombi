@@ -197,14 +197,10 @@ class Files
     {
         $currentHash = static::hashFile($file);
 
-        $hashFile = dirname(__FILE__ . '../') . DIRECTORY_SEPARATOR . 'hashes.json';
-        $Root = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR;
+        $filepath = explode(static::getRoot(), $file);
+        $file = $filepath[1];
 
-        $filepath = explode($Root, $file);
-        $pathToAccessFile = explode(DIRECTORY_SEPARATOR, $filepath[1]);
-        $fileToCheck = explode('.php', $pathToAccessFile[2])[0];
-
-        $systemHash = static::getJSON($hashFile, $pathToAccessFile[1], $fileToCheck);
+        $systemHash = static::getHashesContent(array($file => 'sha512'))[0];
 
         if (hash_equals($currentHash, $systemHash)) {
             return true;
@@ -213,28 +209,38 @@ class Files
     }
 
     /**
+     * Read hashes.json and return a readable result
+     * Possible algorithms: md5, sha1, sha224, sha384, sha512
+     * 
+     * @param array $toGet Format: array(path => algorithm)
+     * @return array
+     */
+    public static function getHashesContent($toGet)
+    {
+        $json = static::getJSON(static::getRoot() . 'hashes.json');
+        $hashes = Arrays::flattenKeysRecursively($json);
+        $result = array();
+
+        foreach ($toGet as $key => $value) {
+            $key = str_replace('/', '.', $key) . '.' . $value;
+            $result = array_merge($result, array($hashes[$key]));
+        }
+
+        return $result;
+    }
+
+    /**
      * Get and read the content of a JSON
      * 
      * @param string $file The file to get
-     * @param string $toRead Part of the file to read
-     * @param string $toGet Subpart of $toRead to get
      * @return data|false
      */
-    public static function getJSON($file, $toRead = null, $toGet = null)
+    public static function getJSON($file)
     {
         $str = file_get_contents($file);
         $decoded = json_decode($str, true);
 
-        if ($toRead === null && $toGet === null) {
-            return $decoded;
-        } elseif ($toRead !== null) {
-            $readed = $decoded[$toRead];
-            if ($toGet != null) {
-                return $readed[$toGet];
-            }
-            return $readed;
-        }
-        return false;
+        return $decoded;
     }
 
     /**
