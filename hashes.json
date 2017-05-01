@@ -161,11 +161,18 @@
         },
         "Core": {
             "Arrays.php": {
-                "md5": "3d27a1d3dddd4814b4cc43bcce3bb8c4",
-                "sha1": "1730c7379c5f2027f6282c2c589333916c9e2e54",
-                "sha224": "a0b54a316e1edc6aa5de0cc5d38a0de1fa729abd21d5eaca59f279f2",
-                "sha384": "d5a4c95f5b9e8301b8db0e16855eca52bde8e7a2bb1c9b317995b49d2702fa543ac03c6ba8ca1be33fa9be0e51696566",
-                "sha512": "22f9d641288ff5ececa041b3928789e92d1a808b21b1416b4048ac7b852979dda4efa671fd0aa2ef3d138e57a33f1a022610a82f3f30b56d026de38df69a4a68"
+                "md5": "24361e7270d9bc960ba442c3844ea4ab",
+                "sha1": "d9280e0dea116a692ab389bcc86186a6dedb6e9d",
+                "sha224": "3d7491ffe6437b4de91a834ccfcc1dfd38c84f2aa4db5a31b3b08fea",
+                "sha384": "18a9eada4113fba9977ff46bc85790203340cf51edcce17912d69be51948d884c25715c180f2a7b2473ad70c41f119fd",
+                "sha512": "3f127fa8941cfdc7c04afae8f2600b42f2e8c814f6411d629292753af39dae15606458c534eb0384f81f3169df23ccd63c59c71e6df013f9c05716ae3b74a351"
+            },
+            "Files.php": {
+                "md5": "5b30be15cd544a9924f0ac596d49f4fc",
+                "sha1": "2e38f0567218b3b1db2ff6228c26c5c5165ba778",
+                "sha224": "edfc19c3806f87b151fd0df917fdb2be650642bd5ab37a0d66b2ff66",
+                "sha384": "6ea5e5ddc3900cfb542179d99e943e5ed6690eb2ca2a20117a2a5ff3072b8b063dd82a5011d2277f4c7425e2ed5476ad",
+                "sha512": "489fc603550612150eae1810ec70a4299456a8107994ba4d9540005fbf6356b30285729fa25f26b44664cd7d0f6c990ad468cfb558054f4e6531d63a11ba2645"
             }
         }
     },
