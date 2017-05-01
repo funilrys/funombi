@@ -110,5 +110,30 @@ class Arrays extends atoum
                         ->isFalse()                 
         ;
     }
+    
+    /**
+     * We test the validity of the output of flattenKeysRecursively()
+     */
+    public function testFlattenKeysRecursively(){
+        $multiDimensional = array(
+            'Hello' => array(
+                'World' => array(
+                    'How' => array(
+                        "Are" => "You?"
+                    )
+                )
+            )
+        );
+        
+        $flatten = array('Hello.World.How.Are' => 'You?');
+        
+        $this
+                ->given($array = new classToTest())
+                ->then
+                    ->array($array::flattenKeysRecursively($multiDimensional))
+                        ->isEqualTO($flatten)
+                
+                ;
+    }
 
 }
