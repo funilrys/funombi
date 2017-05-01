@@ -26,6 +26,7 @@
 
 namespace App\Controllers;
 
+use Core\Controller;
 use Core\View;
 
 /**
@@ -33,7 +34,7 @@ use Core\View;
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
-class Home extends \Core\Controller
+class Home extends Controller
 {
 
     /**
