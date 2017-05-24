@@ -24,6 +24,15 @@
  * THE SOFTWARE.
  */
 
+/**
+ * Class Arrays | Tests/Core/Arrays.php
+ *
+ * @package     funombi\Core\tests
+ * @author      Nissar Chababy <contact at funilrys dot com>
+ * @version     0.0.1
+ * @copyright   Copyright (c) 2017, Nissar Chababy
+ */
+
 namespace Core\tests\units;
 
 use atoum;
@@ -57,20 +66,20 @@ class Arrays extends atoum
         );
 
         $isNotAssociative = array('hello', 'world');
-        
+
         $isNotAnArray = 'Hello,World';
 
         $this
                 ->given($array = new classToTest())
                 ->then
-                    ->boolean($array::isAssociative($isAssociative))
-                        ->isTrue()
-                    ->boolean($array::isAssociative($isTooAssociative))
-                        ->isTrue()
-                    ->boolean($array::isAssociative($isNotAssociative))
-                        ->isFalse()
-                    ->boolean($array::isAssociative($isNotAnArray))
-                        ->isFalse()
+                ->boolean($array::isAssociative($isAssociative))
+                ->isTrue()
+                ->boolean($array::isAssociative($isTooAssociative))
+                ->isTrue()
+                ->boolean($array::isAssociative($isNotAssociative))
+                ->isFalse()
+                ->boolean($array::isAssociative($isNotAnArray))
+                ->isFalse()
         ;
     }
 
@@ -92,29 +101,30 @@ class Arrays extends atoum
         );
 
         $validKeys = array('Hello', 'world', 'from', 'Germany');
-        $validValues = array('Funilrys','is','on','Github');
-        
+        $validValues = array('Funilrys', 'is', 'on', 'Github');
+
         $dataNotArray = 'Hello, world, from,Germany';
-        
+
         $this
                 ->given($array = new classToTest())
                 ->then
-                    ->array($array::renameKey($data, $toChange))
-                        ->keys
-                            ->isEqualTo($validKeys)
-                    ->array($array::renameKey($data, $toChange))
-                        ->containsValues($validValues)
-                    ->array($array::renameKey($data, $toChange))
-                        ->isNotEmpty()
-                    ->boolean($array::renameKey($dataNotArray,$toChange))
-                        ->isFalse()                 
+                ->array($array::renameKey($data, $toChange))
+                ->keys
+                ->isEqualTo($validKeys)
+                ->array($array::renameKey($data, $toChange))
+                ->containsValues($validValues)
+                ->array($array::renameKey($data, $toChange))
+                ->isNotEmpty()
+                ->boolean($array::renameKey($dataNotArray, $toChange))
+                ->isFalse()
         ;
     }
-    
+
     /**
      * We test the validity of the output of flattenKeysRecursively()
      */
-    public function testFlattenKeysRecursively(){
+    public function testFlattenKeysRecursively()
+    {
         $multiDimensional = array(
             'Hello' => array(
                 'World' => array(
@@ -124,16 +134,16 @@ class Arrays extends atoum
                 )
             )
         );
-        
+
         $flatten = array('Hello.World.How.Are' => 'You?');
-        
+
         $this
                 ->given($array = new classToTest())
                 ->then
-                    ->array($array::flattenKeysRecursively($multiDimensional))
-                        ->isEqualTO($flatten)
-                
-                ;
+                ->array($array::flattenKeysRecursively($multiDimensional))
+                ->isEqualTO($flatten)
+
+        ;
     }
 
 }

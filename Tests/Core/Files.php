@@ -24,6 +24,15 @@
  * THE SOFTWARE.
  */
 
+/**
+ * Class Files | Tests/Core/Files.php
+ *
+ * @package     funombi\Core\tests
+ * @author      Nissar Chababy <contact at funilrys dot com>
+ * @version     0.0.1
+ * @copyright   Copyright (c) 2017, Nissar Chababy
+ */
+
 namespace Core\tests\units;
 
 use atoum;
@@ -60,10 +69,10 @@ class Files extends atoum
         $this
                 ->given($files = new classToTest())
                 ->then
-                    ->string($files::getRoot())
-                        ->isNotEmpty()
-                        ->isEqualTo($currentRoot)
-                        ->isNotEqualTo($falseRoot)
+                ->string($files::getRoot())
+                ->isNotEmpty()
+                ->isEqualTo($currentRoot)
+                ->isNotEqualTo($falseRoot)
         ;
     }
 
@@ -88,10 +97,10 @@ class Files extends atoum
         $this
                 ->given($match = new classToTest())
                 ->then
-                    ->string($match::matchExtensionToFileSystem($fileToMatch))->isEqualTo($trueResult)
-                    ->exception(function() use ($match, $fileToMatch2) {
-                        $match::matchExtensionToFileSystem($fileToMatch2);
-                    })->hasMessage("The extension of $fileToMatch2 is not accepted.")
+                ->string($match::matchExtensionToFileSystem($fileToMatch))->isEqualTo($trueResult)
+                ->exception(function() use ($match, $fileToMatch2) {
+                    $match::matchExtensionToFileSystem($fileToMatch2);
+                })->hasMessage("The extension of $fileToMatch2 is not accepted.")
         ;
     }
 
@@ -113,8 +122,8 @@ class Files extends atoum
         $this
                         ->given($isFile = new classToTest())
                         ->then
-                            ->boolean($isFile::isFile($currentRoot . 'Core' . DIRECTORY_SEPARATOR . 'Arrays.php'))->isTrue
-                            ->boolean($isFile::isFile($currentRoot . 'Core' . DIRECTORY_SEPARATOR . 'HelloWorld.php'))->isFalse
+                        ->boolean($isFile::isFile($currentRoot . 'Core' . DIRECTORY_SEPARATOR . 'Arrays.php'))->isTrue
+                        ->boolean($isFile::isFile($currentRoot . 'Core' . DIRECTORY_SEPARATOR . 'HelloWorld.php'))->isFalse
         ;
     }
 
@@ -128,8 +137,8 @@ class Files extends atoum
         $this
                         ->given($isDir = new classToTest())
                         ->then
-                            ->boolean($isDir::isDir($currentRoot . 'Core'))->isTrue
-                            ->boolean($isDir::isDir($currentRoot . 'Hello'))->isFalse
+                        ->boolean($isDir::isDir($currentRoot . 'Core'))->isTrue
+                        ->boolean($isDir::isDir($currentRoot . 'Hello'))->isFalse
         ;
     }
 
@@ -146,7 +155,7 @@ class Files extends atoum
         $this
                 ->given($hash = new classToTest())
                 ->then
-                    ->string($hash::hashFile($path))->isEqualTo($trueHash)
+                ->string($hash::hashFile($path))->isEqualTo($trueHash)
         ;
     }
 
@@ -162,8 +171,8 @@ class Files extends atoum
         $this
                 ->given($files = new classToTest())
                 ->then
-                    ->boolean($files::isHashSameAsSystem($path))->isTrue
-                    ->boolean($files::isHashSameAsSystem($falsePath))
+                ->boolean($files::isHashSameAsSystem($path))->isTrue
+                ->boolean($files::isHashSameAsSystem($falsePath))
         ;
     }
 
@@ -172,7 +181,69 @@ class Files extends atoum
      */
     public function testWriteDatabaseConfig()
     {
-        
+        $pathToFile = classToTest::getRoot() . 'App/Config/Database.php';
+        $currentHash = classToTest::hashFile($pathToFile);
+
+        $newData = array(
+            'host' => 'Hello',
+            'name' => 'World',
+            'user' => 'Iam',
+            'password' => 'WhoIAm',
+            'prefix' => 'hi_'
+        );
+
+        $falseNewData1 = 'hello';
+
+        $this
+                ->given($files = new classToTest())
+                ->then
+                ->boolean($files::writeDatabaseConfig($newData))->isTrue()
+                ->boolean($files::writeDatabaseConfig($falseNewData1))->isFalse()
+                ->string($files::hashFile($pathToFile))->isNotEqualTo($currentHash)
+        ;
+
+        static::temporaryChangeContent($pathToFile, false);
+
+
+        $this
+                ->given($files = new classToTest())
+                ->then
+                ->boolean($files::writeDatabaseConfig($newData))->isFalse()
+        ;
+        chmod($pathToFile, 0644);
+        $this
+                ->given($file = new classToTest())
+                ->then
+                ->boolean($file::writeDatabaseConfig($newData))->isFalse()
+        ;
+        chmod($pathToFile, 0677);
+        $this
+                ->given($file = new classToTest())
+                ->then
+                ->boolean($file::writeDefaultDatabaseConfig())->isTrue()
+        ;
+    }
+
+    /**
+     * Used to change the content of App\Config\Database()
+     * 
+     * @param string $path
+     * @param boolean $reverse
+     * @return boolean
+     */
+    private static function temporaryChangeContent($path, $reverse = false)
+    {
+        $currentFile = file_get_contents($path);
+
+        if ($reverse) {
+            $currentFile = preg_replace('/hello/', 'your', $currentFile);
+        } else {
+            $currentFile = preg_replace('/your/', 'hello', $currentFile);
+        }
+        if (file_put_contents($path, $currentFile)) {
+            return false;
+        }
+        return true;
     }
 
 }
