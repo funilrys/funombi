@@ -24,6 +24,15 @@
  * THE SOFTWARE.
  */
 
+/**
+ * Class Router | App/Core/Router.php
+ *
+ * @package     funombi\Core
+ * @author      Nissar Chababy <contact at funilrys dot com>
+ * @version     0.0.1
+ * @copyright   Copyright (c) 2017, Nissar Chababy
+ */
+
 namespace Core;
 
 /**

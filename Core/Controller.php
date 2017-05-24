@@ -24,6 +24,15 @@
  * THE SOFTWARE.
  */
 
+/**
+ * Class Controller | App/Core/Controller.php
+ *
+ * @package     funombi\Core
+ * @author      Nissar Chababy <contact at funilrys dot com>
+ * @version     0.0.1
+ * @copyright   Copyright (c) 2017, Nissar Chababy
+ */
+
 namespace Core;
 
 /**

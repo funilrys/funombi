@@ -24,6 +24,15 @@
  * THE SOFTWARE.
  */
 
+/**
+ * Class Sanitize | App/Core/Sanitize.php
+ *
+ * @package     funombi\Core
+ * @author      Nissar Chababy <contact at funilrys dot com>
+ * @version     0.0.1
+ * @copyright   Copyright (c) 2017, Nissar Chababy
+ */
+
 namespace Core;
 
 /**
@@ -48,7 +57,7 @@ class Sanitize
             $data = $_GET;
         } elseif ($option === 'post' && isset($_POST)) {
             $data = $_POST;
-            
+
             /**
              * TODO : Find why this line create some errors
              */

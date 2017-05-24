@@ -24,6 +24,15 @@
  * THE SOFTWARE.
  */
 
+/**
+ * Class Model | App/Core/Model.php
+ *
+ * @package     funombi\Core
+ * @author      Nissar Chababy <contact at funilrys dot com>
+ * @version     0.0.1
+ * @copyright   Copyright (c) 2017, Nissar Chababy
+ */
+
 namespace Core;
 
 use PDO;
@@ -220,7 +229,7 @@ abstract class Model
         }
         return false;
     }
-    
+
     /**
      * Update data into the database
      * 

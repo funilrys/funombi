@@ -24,6 +24,15 @@
  * THE SOFTWARE.
  */
 
+/**
+ * Class Session | App/Core/Session.php
+ *
+ * @package     funombi\Core
+ * @author      Nissar Chababy <contact at funilrys dot com>
+ * @version     0.0.1
+ * @copyright   Copyright (c) 2017, Nissar Chababy
+ */
+
 namespace Core;
 
 use Core\Arrays;
@@ -65,10 +74,10 @@ class Session
     public static function destroySession()
     {
         session_unset();
-        
-        $params = session_get_cookie_params();        
+
+        $params = session_get_cookie_params();
         setcookie(session_name(), '', time() - 42000, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
-        
+
         session_destroy();
     }
 
