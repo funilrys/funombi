@@ -24,6 +24,15 @@
  * THE SOFTWARE.
  */
 
+/**
+ * Class Database | Tests/App/Config/Database.php
+ *
+ * @package     funombi\App\Config\tests\units
+ * @author      Nissar Chababy <contact at funilrys dot com>
+ * @version     0.0.1
+ * @copyright   Copyright (c) 2017, Nissar Chababy
+ */
+
 namespace App\Config\tests\units;
 
 use atoum;
@@ -45,11 +54,11 @@ class Database extends atoum
         $this
                 ->given($db = new classToTest())
                 ->then
-                    ->string($db::DB_HOST)->isNotEmpty()
-                    ->string($db::DB_NAME)->isNotEmpty()
-                    ->string($db::DB_USER)->isNotEmpty()
-                    ->string($db::DB_PASSWORD)->isNotEmpty()
-                    ->string($db::TABLE_PREFIX)->isNotEmpty()
+                ->string($db::DB_HOST)->isNotEmpty()
+                ->string($db::DB_NAME)->isNotEmpty()
+                ->string($db::DB_USER)->isNotEmpty()
+                ->string($db::DB_PASSWORD)->isNotEmpty()
+                ->string($db::TABLE_PREFIX)->isNotEmpty()
         ;
     }
 

@@ -24,6 +24,15 @@
  * THE SOFTWARE.
  */
 
+/**
+ * Class Sessions | Tests/App/Config/Sessions.php
+ *
+ * @package     funombi\App\Config\tests
+ * @author      Nissar Chababy <contact at funilrys dot com>
+ * @version     0.0.1
+ * @copyright   Copyright (c) 2017, Nissar Chababy
+ */
+
 namespace App\Config\tests\units;
 
 use atoum;
@@ -36,20 +45,21 @@ use App\Config\Sessions as classToTest;
  */
 class Sessions extends \atoum
 {
-    
+
     /**
      * We test if constants are valid
      */
     public function testSessions()
     {
         $this
-            ->given($session = new classToTest())
-            ->then
+                ->given($session = new classToTest())
+                ->then
                 ->string($session::SESSION_NAME)
-                    ->isNotEmpty()
-                    ->match('/^[-_,a-zA-Z0-9]{1,128}$/')
+                ->isNotEmpty()
+                ->match('/^[-_,a-zA-Z0-9]{1,128}$/')
                 ->boolean($session::HTTP_ONLY)
                 ->boolean($session::SECURED_COOKIES)
         ;
     }
+
 }

@@ -24,6 +24,15 @@
  * THE SOFTWARE.
  */
 
+/**
+ * Class Errors | Tests/App/Config/Errors.php
+ *
+ * @package     funombi\App\Config\tests\units
+ * @author      Nissar Chababy <contact at funilrys dot com>
+ * @version     0.0.1
+ * @copyright   Copyright (c) 2017, Nissar Chababy
+ */
+
 namespace App\Config\tests\units;
 
 use atoum;
@@ -45,7 +54,7 @@ class Errors extends atoum
         $this
                 ->given($err = new classToTest())
                 ->then
-                    ->boolean($err::SHOW_ERRORS)
+                ->boolean($err::SHOW_ERRORS)
         ;
     }
 
