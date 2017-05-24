@@ -33,7 +33,7 @@ $autoloader = $root . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 if (is_file($autoloader)) {
     require $autoloader;
 } else {
-    echo 'Please install the dependencies with "composer update".<br /> If this message persist, please check the permissions of your current project.';
+    echo 'Please install the dependencies with <b>"bin/composer.phar update"</b> from <i>the root directory</i>.<br /><br /> If this message persist, please check the permissions of your current project.';
     exit();
 }
 
