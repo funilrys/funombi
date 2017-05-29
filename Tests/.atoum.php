@@ -1,16 +1,7 @@
 <?php
 
-/*
-  This file will automatically be included before EACH run.
-
-  Use it to configure atoum or anything that needs to be done before EACH run.
-
-  More information on documentation:
-  [en] http://docs.atoum.org/en/latest/chapter3.html#configuration-files
-  [fr] http://docs.atoum.org/fr/latest/lancement_des_tests.html#fichier-de-configuration
- */
-
-$autoloader = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+$root = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR;
+$autoloader = $root . 'public' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
 if (is_file($autoloader)) {
     require $autoloader;
@@ -23,7 +14,7 @@ use mageekguy\atoum;
 
 $report = $script->addDefaultReport();
 
-$coverageField = new atoum\report\fields\runner\coverage\html('Funombi', 'Tests/coverage');
+$coverageField = new atoum\report\fields\runner\coverage\html('Funombi', $root . 'Tests/coverage');
 //$coverageField->setRootUrl('http://url/of/web/site');
 
 $report->addField($coverageField);
