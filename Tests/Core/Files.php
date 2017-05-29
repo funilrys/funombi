@@ -81,7 +81,25 @@ class Files extends atoum
      */
     public function testCheckVitalDirectories()
     {
-        
+        // 
+//        $currentRoot = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR;
+//        $public = Locations::PUBLIC_DIR . DIRECTORY_SEPARATOR;
+//        $images = $public . Locations::IMAGES;
+//
+//        if (classToTest::isDir($images)) {
+//            rename($currentRoot . $images, $currentRoot . $public . 'helloworld');
+//        }
+//
+//        $this
+//                ->given($check = new classToTest())
+//                ->then
+//                ->exception(function() use($check) {
+//                    $check::checkVitalDirectories();
+//                })
+//                ->hasMessage("The (vital) directory '" . $images . "' is not found")
+//        ;
+//
+//        rename($currentRoot . $public . 'helloworld', $currentRoot . $public . Locations::IMAGES);
     }
 
     /**
