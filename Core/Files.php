@@ -58,16 +58,16 @@ class Files
     /**
      * Return a message to inform developer that a directory is not found
      * 
-     * @param string $otherDirectories Other directory to check. MUST BE UNDER Locations::PUBLIC_DIR
-     * 
-     * @throws \Exception Directory does not exit
+     * @param array $otherDirectories Other directory to check. MUST BE UNDER Locations::PUBLIC_DIR
+     * @throws \Exception 
+     * @return boolean
      */
-    public static function checkVitalDirectories($otherDirectories = null)
+    public static function checkVitalDirectories(array $otherDirectories = null)
     {
         $vital = array(
-            Locations::STYLESHEETS => static::isDir(Locations::STYLESHEETS),
-            Locations::JAVASCRIPTS => static::isDir(Locations::JAVASCRIPTS),
-            Locations::IMAGES => static::isDir(Locations::IMAGES)
+            Locations::STYLESHEETS => static::isDir(static::getRoot() . Locations::STYLESHEETS),
+            Locations::JAVASCRIPTS => static::isDir(static::getRoot() . Locations::JAVASCRIPTS),
+            Locations::IMAGES => static::isDir(static::getRoot() . Locations::IMAGES)
         );
 
         /**
@@ -77,7 +77,7 @@ class Files
             $toCheck = array();
 
             foreach ($otherDirectories as $value) {
-                $toCheck[$value] = static::isDir($value);
+                $toCheck[$value] = static::isDir(static::getRoot() . Locations::PUBLIC_DIR . DIRECTORY_SEPARATOR . $value);
             }
 
 
@@ -89,7 +89,7 @@ class Files
              * If it's not found, we return Exception
              */
             if ($value !== true) {
-                throw new \Exception("The (vital) directory '" . Locations::PUBLIC_DIR . "/" . $key . "' is not found");
+                throw new \Exception("The (vital) directory '" . Locations::PUBLIC_DIR . "/$key' is not found");
             }
         }
 
