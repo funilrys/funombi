@@ -101,11 +101,10 @@ class Files
      * Return the directory where it should be located.
      * 
      * @param string $file File to match with
-     * 
      * @return string The directory where the given file should be located
-     * @throws \Exception Extension is not matched
+     * @throws \Exception
      */
-    public static function matchExtensionToFileSystem($file)
+    public static function matchExtensionToFileSystem(string $file)
     {
         $regx = array(
             Locations::STYLESHEETS => '/^.*\.(css)$/i',
