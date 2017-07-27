@@ -25,7 +25,7 @@
  */
 
 /**
- * Class Router | App/Core/Router.php
+ * Class Router | Core/Router.php
  *
  * @package     funombi\Core
  * @author      Nissar Chababy <contact at funilrys dot com>
