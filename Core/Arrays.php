@@ -45,13 +45,10 @@ class Arrays
 
     /**
      * Check if an array is associative or not
-     * 
-     * @param array $array Array to check
-     * 
-     * @return bool True: array is associative | False: array is not associative
-     * @throws \Exception
+     * @param array $array
+     * @return boolean
      */
-    public static function isAssociative($array)
+    public static function isAssociative(array $array)
     {
         if (is_array($array) && array_values($array) !== $array) {
             return true;
