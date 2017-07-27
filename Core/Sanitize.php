@@ -46,12 +46,11 @@ class Sanitize
     /**
      * Used to filter/sanitize 'post' ($_POST) and get ($_GET)
      * 
-     * @param type $option Format: get | post
-     * @param string $toGet If specified return the value of the index = $toGet
-     * 
-     * @return array Sanitized $_POST or $_GET
+     * @param string $option 'get' | 'post'
+     * @param string $toGet If specified return the value of $option[index]
+     * @return boolean Sanitized $_POST or $_GET
      */
-    public static function filter($option, $toGet = null)
+    public static function filter(string $option, string $toGet = null)
     {
         if ($option === 'get' && isset($_GET)) {
             $data = $_GET;
@@ -67,10 +66,6 @@ class Sanitize
         }
 
         foreach ($data as $key => $value) {
-            /**
-             * If the $key in $_POST[$key] match the word 'mail'
-             * insensitively, we sanitize and return the validated value
-             */
             if (preg_match("/mail/mi", $key)) {
                 $sanitized = filter_var($value, FILTER_SANITIZE_EMAIL);
                 $value = filter_var($sanitized, FILTER_VALIDATE_EMAIL);
@@ -80,9 +75,6 @@ class Sanitize
             $data[$key] = $value;
         }
 
-        /**
-         * Case that we don't want all content of $_POST or $_GET
-         */
         if ($toGet !== null) {
             return $data[$toGet];
         }
