@@ -61,13 +61,13 @@ class Arrays
     /**
      * Rename key(s) of a given array
      * 
-     * @param array $data Original array to rename
-     * @param array $toChange Must be associative. Format: array('oldKey' => 'newKey','oldKey2' => 'newKey2')
-     * @return bool
+     * @param array $data Original array to rename.
+     * @param array $toChange Must be associative.
+     * @return boolean
      */
-    public static function renameKey($data, $toChange)
+    public static function renameKey(array $data, array $toChange)
     {
-        if (is_array($data) && static::isAssociative($toChange)) {
+        if (static::isAssociative($toChange) && static::isAssociative($data)) {
             /**
              * We list the original keys
              */
