@@ -221,7 +221,7 @@ class Files
      * @param array $toGet Format: array(path => algorithm)
      * @return array
      */
-    public static function getHashesContent($toGet)
+    public static function getHashesContent(array $toGet)
     {
         $json = static::getJSON(static::getRoot() . 'hashes.json');
         $hashes = Arrays::flattenKeysRecursively($json);
