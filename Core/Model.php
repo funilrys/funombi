@@ -181,7 +181,7 @@ abstract class Model
      * 
      * @param string $table Name of the table
      * @param array $data Data to insert to table
-     * @return bool 
+     * @return boolean 
      */
     protected static function insert(string $table, array $data)
     {
@@ -229,7 +229,7 @@ abstract class Model
      * @param array $data Data to update
      * @param array $conditions WHERE statement
      * @param array $operator Sign of WHERE statement
-     * @return boolean
+     * @return booleanean
      */
     protected static function update(string $table, array $data, array $conditions, array $operator = '=')
     {
@@ -285,9 +285,9 @@ abstract class Model
      * 
      * @param string $table Name of the table
      * @param array $conditions WHERE statement
-     * @return bool
+     * @return boolean
      */
-    public static function delete($table, $conditions)
+    public static function delete(string $table, array $conditions)
     {
         $table = static::addPrefixToTable($table);
 
