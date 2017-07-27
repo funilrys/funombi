@@ -45,7 +45,8 @@ class Arrays
 
     /**
      * Check if an array is associative or not
-     * @param array $array
+     * 
+     * @param array $array The array to check.
      * @return boolean
      */
     public static function isAssociative(array $array)
