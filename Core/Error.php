@@ -67,7 +67,6 @@ class Error
      * Exception handler.
      *
      * @param Exception $exception  The exception
-     *
      * @return void
      */
     public static function exceptionHandler($exception)
