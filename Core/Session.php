@@ -106,11 +106,11 @@ class Session
     /**
      * Initiate session variable based on an associative array.
      * 
+     * @todo Format example
      * @param array $toCreate Variable to create. Format: array('hello' => 'world','world' => 'hello') === $_SESSION['hello'] = 'world'; $_SESSION['world'] = 'hello'
-     * 
      * @return void
      */
-    public static function initSessionVariable($toCreate)
+    public static function initSessionVariable(array $toCreate)
     {
         if (Arrays::isAssociative($toCreate)) {
             foreach ($toCreate as $key => $value) {
