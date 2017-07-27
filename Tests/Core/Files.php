@@ -81,25 +81,39 @@ class Files extends atoum
      */
     public function testCheckVitalDirectories()
     {
-        // 
-//        $currentRoot = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR;
-//        $public = Locations::PUBLIC_DIR . DIRECTORY_SEPARATOR;
-//        $images = $public . Locations::IMAGES;
-//
-//        if (classToTest::isDir($images)) {
-//            rename($currentRoot . $images, $currentRoot . $public . 'helloworld');
-//        }
-//
-//        $this
-//                ->given($check = new classToTest())
-//                ->then
-//                ->exception(function() use($check) {
-//                    $check::checkVitalDirectories();
-//                })
-//                ->hasMessage("The (vital) directory '" . $images . "' is not found")
-//        ;
-//
-//        rename($currentRoot . $public . 'helloworld', $currentRoot . $public . Locations::IMAGES);
+        $currentRoot = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR;
+        $public = Locations::PUBLIC_DIR . DIRECTORY_SEPARATOR;
+        $images = $public . Locations::IMAGES;
+        $renameWith = $public . 'helloworld';
+
+        if (classToTest::isDir($renameWith)) {
+            rename($currentRoot . $renameWith, $currentRoot . $images);
+        }
+
+        $this
+                ->given($check = new classToTest())
+                ->if(classToTest::isDir($images))
+                ->and(
+                        rename($currentRoot . $images, $currentRoot . $renameWith)
+                )
+                ->then
+                ->exception(function() use($check) {
+                    $check::checkVitalDirectories();
+                })
+                ->hasMessage("The (vital) directory '$images' is not found")
+        ;
+
+        rename($currentRoot . $renameWith, $currentRoot . $images);
+
+        $this
+                ->given($check = new classToTest())
+                ->then
+                ->boolean($check::checkVitalDirectories())->isTrue()
+                ->exception(function() use($check) {
+                    $check::checkVitalDirectories(array('testdir'));
+                })
+                ->hasMessage("The (vital) directory 'public/testdir' is not found")
+        ;
     }
 
     /**
