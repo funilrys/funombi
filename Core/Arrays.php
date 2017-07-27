@@ -35,6 +35,8 @@
 
 namespace Core;
 
+use Core\Helpers\Arrays as Helper;
+
 /**
  * Arrays manipulation
  *
@@ -93,36 +95,16 @@ class Arrays
 
     /**
      * Return a map of the flatten keys with corresponding value.
-     * Example: array('Hello' => array('World' => 'Hello)) 
-     *      ====> array('Hello.World' => 'Hello')
      * 
-     * @param array $array
+     * @todo Format example array('Hello' => array('World' => 'Hello))  ====> array('Hello.World' => 'Hello')
+     * @param array $array The array to flatten
      * @return array
      */
     public static function flattenKeysRecursively($array)
     {
         $result = [];
-        static::_flattenKeyRecursively($array, $result, '');
+        Helper::flattenKeyRecursively($array, $result, '');
         return $result;
-    }
-
-    /**
-     * Helpers of flattenKeysRecursively()
-     * 
-     * @param array $array
-     * @param array $result
-     * @param string $parentKey
-     */
-    private static function _flattenKeyRecursively($array, &$result, $parentKey)
-    {
-        foreach ($array as $key => $value) {
-            $itemKey = ($parentKey ? $parentKey . '.' : '') . $key;
-            if (is_array($value)) {
-                static::_flattenKeyRecursively($value, $result, $itemKey);
-            } else {
-                $result[$itemKey] = $value;
-            }
-        }
     }
 
 }
