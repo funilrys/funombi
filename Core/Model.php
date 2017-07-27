@@ -25,7 +25,7 @@
  */
 
 /**
- * Class Model | App/Core/Model.php
+ * Class Model | Core/Model.php
  *
  * @package     funombi\Core
  * @author      Nissar Chababy <contact at funilrys dot com>
