@@ -25,7 +25,7 @@
  */
 
 /**
- * Class Session | App/Core/Session.php
+ * Class Session | Core/Session.php
  *
  * @package     funombi\Core
  * @author      Nissar Chababy <contact at funilrys dot com>
