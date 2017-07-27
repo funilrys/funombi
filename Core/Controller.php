@@ -25,7 +25,7 @@
  */
 
 /**
- * Class Controller | App/Core/Controller.php
+ * Class Controller | Core/Controller.php
  *
  * @package     funombi\Core
  * @author      Nissar Chababy <contact at funilrys dot com>
