@@ -25,7 +25,7 @@
  */
 
 /**
- * Class View | App/Core/View.php
+ * Class View | Core/View.php
  *
  * @package     funombi\Core
  * @author      Nissar Chababy <contact at funilrys dot com>
