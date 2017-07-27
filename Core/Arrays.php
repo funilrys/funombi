@@ -50,7 +50,7 @@ class Arrays
      */
     public static function isAssociative(array $array)
     {
-        if (is_array($array) && array_values($array) !== $array) {
+        if (array_values($array) !== $array) {
             return true;
         } else {
             return false;
