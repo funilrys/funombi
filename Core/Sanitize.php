@@ -25,7 +25,7 @@
  */
 
 /**
- * Class Sanitize | App/Core/Sanitize.php
+ * Class Sanitize | Core/Sanitize.php
  *
  * @package     funombi\Core
  * @author      Nissar Chababy <contact at funilrys dot com>
