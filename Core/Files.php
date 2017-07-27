@@ -241,7 +241,7 @@ class Files
      * @param string $file The file to get
      * @return data|false
      */
-    public static function getJSON($file)
+    public static function getJSON(string $file)
     {
         $str = file_get_contents($file);
         $decoded = json_decode($str, true);
