@@ -48,12 +48,6 @@ abstract class Model
 {
 
     /**
-     * Used to append predefined prefix to tables names
-     * @var string Prefix to append to table name 
-     */
-    private static $prefix = Database::TABLE_PREFIX;
-
-    /**
      * Get and initiate the PDO database connection
      * 
      * @return mixed
@@ -78,19 +72,18 @@ abstract class Model
      * Add prefix to table if Database::TABLE_PREFIX is set
      * 
      * @param string $table Table name to add prefix to
-     * 
      * @return string Table name with prefix
      */
-    protected static function addPrefixToTable($table)
+    protected static function addPrefixToTable(string $table)
     {
-        if (!empty(static::$prefix)) {
+        $prefix = Database::TABLE_PREFIX;
+        if (!empty($prefix)) {
             $lastChar = '_';
 
-            if (substr(static::$prefix, -1) != $lastChar) {
-                return static::$prefix . $lastChar . $table;
-            } else {
-                return static::$prefix . $table;
+            if (substr($prefix, -1) != $lastChar) {
+                return $prefix . $lastChar . $table;
             }
+            return $prefix . $table;
         }
         return $table;
     }
