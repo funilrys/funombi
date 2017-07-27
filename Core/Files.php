@@ -287,12 +287,12 @@ class Files
 
     /**
      * Function that make it easy to change the defaults credentials of
-     * App/Config/Database.php
+     * App/Config/Database
      * 
      * @param array $data Database credentials | keys, host, name, user, password, prefix
      * @return bool
      */
-    public static function writeDatabaseConfig($data)
+    public static function writeDatabaseConfig(array $data)
     {
         if (is_array($data)) {
             $root = static::getRoot();
