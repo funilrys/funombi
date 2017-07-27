@@ -310,7 +310,7 @@ class Files
                 );
 
                 foreach ($oldToNew as $key => $value) {
-                    if (isset($data[$key])) {
+                    if (isset($data[$key]) && preg_match("/\@var\sstring\sDefault:\s'$date[$key]'/", $currentFile)) {
                         $currentFile = str_replace($value, $data[$key], $currentFile);
                     }
                 }
