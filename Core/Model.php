@@ -229,10 +229,9 @@ abstract class Model
      * @param array $data Data to update
      * @param array $conditions WHERE statement
      * @param array $operator Sign of WHERE statement
-     * 
      * @return boolean
      */
-    protected static function update($table, $data, $conditions, $operator = '=')
+    protected static function update(string $table, array $data, array $conditions, array $operator = '=')
     {
         $table = static::addPrefixToTable($table);
 
@@ -261,7 +260,7 @@ abstract class Model
                 foreach ($conditions as $key => $value) {
                     $pre = ($i > 0) ? ' AND ' : '';
 
-                    $operator = (is_array($operator)) ? $operator[$i] : $compOperator;
+                    $operator = (is_array($operator)) ? $operator[$i] : $operator;
                     $whereSql .= $pre . $key . " " . $operator . "'" . $value . "'";
 
                     $i++;
