@@ -182,7 +182,7 @@ class Files extends atoum
         $currentRoot = static::Root();
         $path = $currentRoot . 'App' . DIRECTORY_SEPARATOR . 'Controllers' . DIRECTORY_SEPARATOR . 'Errors.php';
 
-        $trueHash = '43d19909fe2a3f707eb11509a5d41c152966528008762f77d14ae079eb336569b0342934521fec000699d0e4e48f39c3c61eb62d949e1cac74c8b6aeb54a0029';
+        $trueHash = 'a2909f2a83d2e44c7c30ac096e22cc4f5c7a75a1aaae4a2475f2c168fc20d38291621177dcff929c323b4795008a964af57d0d29a8dc8714ec12f3b3bb75f2e5';
 
         $this
                 ->given($hash = new classToTest())
