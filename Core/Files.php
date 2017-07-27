@@ -59,8 +59,8 @@ class Files
      * Return a message to inform developer that a directory is not found
      * 
      * @param array $otherDirectories Other directory to check. MUST BE UNDER Locations::PUBLIC_DIR
-     * @throws \Exception 
      * @return boolean
+     * @throws \Exception 
      */
     public static function checkVitalDirectories(array $otherDirectories = null)
     {
@@ -126,11 +126,11 @@ class Files
      * 
      * @param string $file File to create Link to
      * @param string $type Type if the file (link =  Locations::STYLESHEETS | script = Locations::JAVASCRIPTS)
-     * @param bool $createHTMLObject True: we create full HTML object | False: we return only the generated URL
-     * 
-     * @throws \Exception Impossible to create HTML object|File not found
+     * @param bool $createHTMLObject <b>True:</b> we create full HTML object <br> <b>False:</b> we return only the generated URL
+     * @return void
+     * @throws \Exception
      */
-    public static function createLinkToFile($file, $type, $createHTMLObject = false)
+    public static function createLinkToFile(string $file, string $type, bool $createHTMLObject = false)
     {
         $http = \App\Config\Sessions::SECURED_COOKIES ? 'https://' : 'http://';
         $siteURL = $http . $_SERVER['HTTP_HOST'] . explode('index.php', $_SERVER['REDIRECT_URL'])[0];
