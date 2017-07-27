@@ -51,12 +51,11 @@ class Controller
 
     /**
      * Class constructor
-     *
-     * @param array $route_params  Parameters from the route
-     *
+     * 
+     * @param array $route_params Parameters from the route
      * @return void
      */
-    public function __construct($route_params)
+    public function __construct(array $route_params)
     {
         $this->route_params = $route_params;
     }
