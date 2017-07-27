@@ -29,7 +29,7 @@
  *
  * @package     funombi\App\Config\tests\units
  * @author      Nissar Chababy <contact at funilrys dot com>
- * @version     0.0.1
+ * @version     1.0.0
  * @copyright   Copyright (c) 2017, Nissar Chababy
  */
 
