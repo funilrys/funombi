@@ -168,13 +168,12 @@ class Files
     }
 
     /**
-     * Check if file exist and is readable
+     * Check if directory exist and is readable
      * 
      * @param string $dir Directory to check existence
-     * 
-     * @return bool True: Exist and is regular | False: (Don't) Exit or (not) regular
+     * @return boolean <b>True:</b> Exist and is regular <br> <b>False:</b> Don't Exist or not a regular directory
      */
-    public static function isDir($dir)
+    public static function isDir(string $dir)
     {
         if (is_dir($dir)) {
             return true;
