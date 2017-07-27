@@ -183,7 +183,7 @@ abstract class Model
      * @param array $data Data to insert to table
      * @return bool 
      */
-    protected static function insert($table, $data)
+    protected static function insert(string $table, array $data)
     {
         $table = static::addPrefixToTable($table);
 
