@@ -122,26 +122,26 @@ class Session
     /**
      * Check if a session variable is set
      * 
-     * @param array $data Format: array('hello' => 'world') SEARCH FOR $_SESSION['hello'] = 'world'
-     * 
-     * @return bool True $_SESSION['hello'] === 'world' | False !$_SESSION['hello'] OR $_SESSION['hello'] = 'somethingElse'
+     * @todo Format example 
+     * @param array $data The array which represent the data to check
+     * @return boolean
      */
-    public static function isSessionVariable($data)
+    public static function isSessionVariable(array $data)
     {
         if (is_array($data) && Arrays::isAssociative($data)) {
             foreach ($data as $key => $value) {
-                if (isset($_SESSION[$key]) && $_SESSION[$key] = $value) {
-                    return true;
+                if (isset($_SESSION[$key]) && $_SESSION[$key] !== $value) {
+                    return false;
                 }
-                return false;
             }
+            return true;
         } elseif (is_array($data) && !Arrays::isAssociative($data)) {
             foreach ($data as $value) {
-                if (isset($_SESSION[$key])) {
-                    return true;
+                if (!isset($_SESSION[$key])) {
+                    return false;
                 }
-                return false;
             }
+            return true;
         }
         return false;
     }
