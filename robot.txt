@@ -1,8 +1,0 @@
-User-agent: *
-Disallow: /App/
-Disallow: /Core/
-Disallow: /Tests/
-Disallow; /public/
-Allow: /public/images/
-Allow: /public/js/
-Allow: /public/styles/
