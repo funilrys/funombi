@@ -146,4 +146,21 @@ class Session
         return false;
     }
 
+    /**
+     * Return the current values of given index(es)
+     * 
+     * @param array $data An array with a list of index 
+     * @return array
+     */
+    public static function getValues(array $data)
+    {
+        $results = array();
+        if (!Arrays::isAssociative($data)) {
+            foreach ($data as $value) {
+                $results = array_merge($results, array($value => $_SESSION[$value]));
+            }
+        }
+        return $results;
+    }
+
 }
