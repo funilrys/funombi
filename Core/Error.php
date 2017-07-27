@@ -46,16 +46,17 @@ class Error
 {
 
     /**
-     * Error handler. Convert all errors to Exceptions by throwing an ErrorException.
-     *
-     * @param int $level  Error level
-     * @param string $message  Error message
-     * @param string $file  Filename the error was raised in
-     * @param int $line  Line number in the file
-     *
+     * Error handler. 
+     * Convert all errors to Exceptions by throwing an ErrorException.
+     * 
+     * @param int $level Error level
+     * @param string $message Error message
+     * @param string $file Filename the error was raised in
+     * @param int $line Line number in the file
+     * @throws \ErrorException
      * @return void
      */
-    public static function errorHandler($level, $message, $file, $line)
+    public static function errorHandler(int $level, string $message, string $file, int $line)
     {
         if (error_reporting() !== 0) {  // to keep the @ operator working
             throw new \ErrorException($message, 0, $level, $file, $line);
