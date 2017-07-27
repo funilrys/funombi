@@ -199,7 +199,7 @@ class Files
      * @param string $file Path to the file
      * @return bool True: File is the default one | False: File has been modified
      */
-    public static function isHashSameAsSystem($file)
+    public static function isHashSameAsSystem(string $file)
     {
         $currentHash = static::hashFile($file);
 
