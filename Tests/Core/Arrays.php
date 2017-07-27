@@ -67,8 +67,6 @@ class Arrays extends atoum
 
         $isNotAssociative = array('hello', 'world');
 
-        $isNotAnArray = 'Hello,World';
-
         $this
                 ->given($array = new classToTest())
                 ->then
@@ -77,8 +75,6 @@ class Arrays extends atoum
                 ->boolean($array::isAssociative($isTooAssociative))
                 ->isTrue()
                 ->boolean($array::isAssociative($isNotAssociative))
-                ->isFalse()
-                ->boolean($array::isAssociative($isNotAnArray))
                 ->isFalse()
         ;
     }
