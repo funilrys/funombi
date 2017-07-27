@@ -48,7 +48,8 @@ class Errors extends Controller
 
     /**
      * Show Error 403
-     * Route: /403
+     * 
+     * @route: /403
      * 
      * @return void
      */
@@ -59,7 +60,8 @@ class Errors extends Controller
 
     /**
      * Show Error 404
-     * Route: /404
+     * 
+     * @route: /404
      * 
      * @return void
      */
@@ -70,7 +72,8 @@ class Errors extends Controller
 
     /**
      * Show Error 500
-     * Route: /500
+     * 
+     * @route: /500
      * 
      * @return void
      */
@@ -81,7 +84,8 @@ class Errors extends Controller
 
     /**
      * Show Error 502
-     * Route: /502
+     * 
+     * @route: /502
      * 
      * @return void
      */
@@ -92,7 +96,8 @@ class Errors extends Controller
 
     /**
      * Show Error 503
-     * Route: /503
+     * 
+     * @route: /503
      * 
      * @return void
      */
@@ -103,7 +108,8 @@ class Errors extends Controller
 
     /**
      * Show Error 504
-     * Route: /504
+     * 
+     * @route: /504
      * 
      * @return void
      */
