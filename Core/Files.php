@@ -36,6 +36,7 @@
 namespace Core;
 
 use App\Config\Locations;
+use App\Config\Sessions;
 
 /**
  * File manipulations
@@ -132,7 +133,7 @@ class Files
      */
     public static function createLinkToFile(string $file, string $type, bool $createHTMLObject = false)
     {
-        $http = \App\Config\Sessions::SECURED_COOKIES ? 'https://' : 'http://';
+        $http = Sessions::SECURED_COOKIES ? 'https://' : 'http://';
         $siteURL = $http . $_SERVER['HTTP_HOST'] . explode('index.php', $_SERVER['REDIRECT_URL'])[0];
 
         if (static::isFile($file) && $createHTMLObject) {
