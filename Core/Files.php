@@ -273,7 +273,9 @@ class Files
             $regex = "/const $key = .*;/";
             $replacement = "const $key = '$value';";
 
-            $currentFile = preg_replace($regex, $replacement, $currentFile);
+            if (preg_match("/\@var\sstring\sDefault:\s'$value'/", $currentFile)) {
+                $currentFile = preg_replace($regex, $replacement, $currentFile);
+            }
 
             if (file_put_contents($databaseFile, $currentFile)) {
                 continue;
