@@ -69,6 +69,7 @@ class Controller
      * @param string $name Method name
      * @param array $args Arguments passed to the method
      * @throws \Exception 
+     * @return void
      */
     public function __call(string $name, array $args)
     {
