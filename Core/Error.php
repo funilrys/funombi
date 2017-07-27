@@ -25,7 +25,7 @@
  */
 
 /**
- * Class Error | App/Core/Error.php
+ * Class Error | Core/Error.php
  *
  * @package     funombi\Core
  * @author      Nissar Chababy <contact at funilrys dot com>
