@@ -48,7 +48,8 @@ class Home extends Controller
 
     /**
      * Show the index page
-     * Route: /
+     * 
+     * @route: /
      *
      * @return void
      */
