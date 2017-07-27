@@ -45,14 +45,12 @@ class Router
 
     /**
      * Associative array of routes (routing table)
-     * 
      * @var array
      */
     protected $routes = [];
 
     /**
      * Parameters from the matched route
-     * 
      * @var array
      */
     protected $params = [];
@@ -62,10 +60,9 @@ class Router
      *
      * @param string $route  The route excepted URL
      * @param array  $params Parameters (controller, action, etc.)
-     *
      * @return void
      */
-    public function add($route, $params = [])
+    public function add(string $route, string $params = [])
     {
         // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
@@ -97,10 +94,9 @@ class Router
      * property if a route is found.
      *
      * @param string $url The route URL
-     *
      * @return bool  true if a match found, false otherwise
      */
-    public function match($url)
+    public function match(string $url)
     {
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $url, $matches)) {
@@ -134,10 +130,9 @@ class Router
      * action method
      *
      * @param string $url The route URL
-     *
      * @return void
      */
-    public function dispatch($url)
+    public function dispatch(string $url)
     {
         $url = $this->removeQueryStringVariables($url);
 
@@ -170,10 +165,9 @@ class Router
      * e.g. hello-world => HelloWorld
      *
      * @param string $string The string to convert
-     *
      * @return string
      */
-    protected function convertToStudlyCaps($string)
+    protected function convertToStudlyCaps(string $string)
     {
         return str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
     }
@@ -183,10 +177,9 @@ class Router
      * e.g. hello-world => helloWorld
      *
      * @param string $string The string to convert
-     *
      * @return string
      */
-    protected function convertToCamelCase($string)
+    protected function convertToCamelCase(string $string)
     {
         return lcfirst($this->convertToStudlyCaps($string));
     }
@@ -196,7 +189,7 @@ class Router
      * query string is used for the route, any variables at the end will need
      * to be removed before the route is matched to the routing table. For
      * example:
-     *
+     * <pre>
      *   URL                           $_SERVER['QUERY_STRING']  Route
      *   -------------------------------------------------------------------
      *   localhost                     ''                        ''
@@ -205,16 +198,15 @@ class Router
      *   localhost/users?page=1        users&page=1              users
      *   localhost/users/index         users/index               users/index
      *   localhost/users/index?page=1  users/index&page=1        users/index
-     *
+     * </pre>
      * A URL in the format localhost/?page (one variable name, no value) won't
      * work because the .htaccess in root converts the first ? to & when it's
      * passed through the variable $_SERVER.
      *
      * @param string $url The full URL
-     *
      * @return string The URL with the query string variables removed
      */
-    protected function removeQueryStringVariables($url)
+    protected function removeQueryStringVariables(string $url)
     {
         if ($url != '') {
             $parts = explode('&', $url, 2);
