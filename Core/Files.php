@@ -184,12 +184,11 @@ class Files
     /**
      * Get the hash of a given file
      * 
-     * @param string $algo Hash algorithm. Default: 'sha512'
      * @param string $path Path to the file
-     * 
+     * @param string $algo Hash algorithm. <br> <b>Default:</b> 'sha512'
      * @return string
      */
-    public static function hashFile($path, $algo = 'sha512')
+    public static function hashFile(string $path, string $algo = 'sha512')
     {
         return hash_file($algo, $path);
     }
