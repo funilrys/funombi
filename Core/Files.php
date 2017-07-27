@@ -157,10 +157,9 @@ class Files
      * Check if file exist and is readable
      * 
      * @param string $file File to check existence
-     *  
-     * @return bool True: Exist and is regular | False: (Don't) Exit or (not) regular
+     * @return boolean <b>True:</b> Exist and is regular <br> <b>False:</b> Don't Exist or not a regular file
      */
-    public static function isFile($file)
+    public static function isFile(string $file)
     {
         if (is_file($file)) {
             return true;
