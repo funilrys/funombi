@@ -93,21 +93,16 @@ abstract class Model
      * 
      * @param string $table Name of the table
      * @param array $conditions  Conditions : select, where, where_or, where_comp_operator, order_by, group_by, limit, return_type
-     * 
      * @return array Data from database
      */
-    protected static function getRows($table, $conditions = array())
+    protected static function getRows(string $table, array $conditions = array())
     {
         $table = static::addPrefixToTable($table);
 
         /**
          * Check if the key exist so we use the defined operator instead of '='
          */
-        if (array_key_exists('where_comp_operator', $conditions)) {
-            $compOperator = $conditions['where_comp_operator'];
-        } else {
-            $compOperator = '=';
-        }
+        $operator = (array_key_exists('where_operator', $conditions)) ? $conditions['where_operator'] : '=';
 
         $sql = 'SELECT ';
         $sql .= array_key_exists("select", $conditions) ? $conditions['select'] : '*';
@@ -119,7 +114,7 @@ abstract class Model
 
             foreach ($conditions['where'] as $key => $value) {
                 $pre = ($i > 0) ? ' AND ' : '';
-                $operator = (is_array($compOperator)) ? $compOperator[$i] : $compOperator;
+                $operator = (is_array($operator)) ? $operator[$i] : $operator;
                 $sql .= $pre . $key . " " . $operator . "'" . $value . "'";
 
                 $i++;
@@ -127,12 +122,16 @@ abstract class Model
         }
 
         if (array_key_exists("where_or", $conditions)) {
-            $sql .= ' WHERE ';
+            if (!array_key_exists("where", $conditions)) {
+                $sql .= ' WHERE ';
+            }
             $i = 0;
 
             foreach ($conditions['where_or'] as $key => $value) {
+                $key = preg_replace('/_or/', '', $key);
                 $pre = ($i > 0) ? ' OR ' : '';
-                $sql .= $pre . $key . " " . $compOperator . "'" . $value . "'";
+                $operator = (is_array($operator)) ? $operator[$i] : $operator;
+                $sql .= $pre . $key . " " . $operator . "'" . $value . "'";
 
                 $i++;
             }
