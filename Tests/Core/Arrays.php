@@ -88,7 +88,7 @@ class Arrays extends atoum
             'Hello' => 'Funilrys',
             'How' => 'is',
             'Are' => 'on',
-            'You?' => 'Github'
+            'You?' => 'GitHub'
         );
         $toChange = array(
             'How' => 'world',
@@ -97,9 +97,10 @@ class Arrays extends atoum
         );
 
         $validKeys = array('Hello', 'world', 'from', 'Germany');
-        $validValues = array('Funilrys', 'is', 'on', 'Github');
+        $validValues = array('Funilrys', 'is', 'on', 'GitHub');
 
-        $dataNotArray = 'Hello, world, from,Germany';
+        $invalidData = array('Funilrys', 'is', 'on', 'GitHub');
+        $invalidToChange = array('Hello', 'How', 'Are', 'You?');
 
         $this
                 ->given($array = new classToTest())
@@ -111,7 +112,7 @@ class Arrays extends atoum
                 ->containsValues($validValues)
                 ->array($array::renameKey($data, $toChange))
                 ->isNotEmpty()
-                ->boolean($array::renameKey($dataNotArray, $toChange))
+                ->boolean($array::renameKey($invalidData, $invalidToChange))
                 ->isFalse()
         ;
     }
