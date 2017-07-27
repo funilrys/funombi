@@ -137,7 +137,7 @@ class Session
             return true;
         } elseif (is_array($data) && !Arrays::isAssociative($data)) {
             foreach ($data as $value) {
-                if (!isset($_SESSION[$key])) {
+                if (!isset($_SESSION[$value])) {
                     return false;
                 }
             }
