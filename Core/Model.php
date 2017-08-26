@@ -228,10 +228,10 @@ abstract class Model
      * @param string $table Name of the table
      * @param array $data Data to update
      * @param array $conditions WHERE statement
-     * @param array $operator Sign of WHERE statement
+     * @param array|string $operator Sign of WHERE statement
      * @return booleanean
      */
-    protected static function update(string $table, array $data, array $conditions, array $operator = '=')
+    protected static function update(string $table, array $data, array $conditions, $operator = '=')
     {
         $table = static::addPrefixToTable($table);
 
