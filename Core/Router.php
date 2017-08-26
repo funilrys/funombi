@@ -62,7 +62,7 @@ class Router
      * @param array  $params Parameters (controller, action, etc.)
      * @return void
      */
-    public function add(string $route, string $params = [])
+    public function add(string $route, array $params = [])
     {
         // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
