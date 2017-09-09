@@ -56,7 +56,7 @@ class Arrays
         foreach ($array as $key => $value) {
             $itemKey = ($parentKey ? $parentKey . '.' : '') . $key;
             if (is_array($value)) {
-                static::_flattenKeyRecursively($value, $result, $itemKey);
+                static::flattenKeyRecursively($value, $result, $itemKey);
             } else {
                 $result[$itemKey] = $value;
             }
