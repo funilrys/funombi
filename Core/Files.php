@@ -66,9 +66,9 @@ class Files
     public static function checkVitalDirectories(array $otherDirectories = null)
     {
         $vital = array(
-            Locations::STYLESHEETS => static::isDir(static::getRoot() . Locations::STYLESHEETS),
-            Locations::JAVASCRIPTS => static::isDir(static::getRoot() . Locations::JAVASCRIPTS),
-            Locations::IMAGES => static::isDir(static::getRoot() . Locations::IMAGES)
+            Locations::STYLESHEETS => static::isDir(static::getRoot() . Locations::PUBLIC_DIR . DIRECTORY_SEPARATOR . Locations::STYLESHEETS),
+            Locations::JAVASCRIPTS => static::isDir(static::getRoot() . Locations::PUBLIC_DIR . DIRECTORY_SEPARATOR . Locations::JAVASCRIPTS),
+            Locations::IMAGES => static::isDir(static::getRoot() . Locations::PUBLIC_DIR . DIRECTORY_SEPARATOR . Locations::IMAGES)
         );
 
         /**
@@ -310,7 +310,7 @@ class Files
                 );
 
                 foreach ($oldToNew as $key => $value) {
-                    if (isset($data[$key]) && preg_match("/\@var\sstring\sDefault:\s'$date[$key]'/", $currentFile)) {
+                    if (isset($data[$key]) && preg_match("/\@var\sstring\sDefault:\s'$data[$key]'/", $currentFile)) {
                         $currentFile = str_replace($value, $data[$key], $currentFile);
                     }
                 }
