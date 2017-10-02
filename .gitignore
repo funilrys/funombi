@@ -6,3 +6,6 @@
 # Dev
 /public/vendor/
 composer.lock
+
+# Docs
+/docs/phpdoc-cache-*
