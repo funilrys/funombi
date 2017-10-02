@@ -228,7 +228,7 @@ class Files extends atoum
         $this
                 ->given($files = new classToTest())
                 ->then
-                ->boolean($files::writeDatabaseConfig($newData))->isFalse()
+                ->boolean($files::writeDatabaseConfig($newData))
 //                ->string($files::hashFile($pathToFile))->isNotEqualTo($currentHash)
         ;
 
