@@ -24,6 +24,15 @@
  * THE SOFTWARE.
  */
 
+/**
+ * Class TwigFunctions | App/Models/TwigFunctions.php
+ *
+ * @package     funombi\App\Models
+ * @author      Nissar Chababy <contact at funilrys dot com>
+ * @version     1.0.0
+ * @copyright   Copyright (c) 2017, Nissar Chababy
+ */
+
 namespace App\Models;
 
 use Core\Model;
