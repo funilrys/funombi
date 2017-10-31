@@ -56,11 +56,6 @@ class Sanitize
             $data = $_GET;
         } elseif ($option === 'post' && isset($_POST)) {
             $data = $_POST;
-
-            /**
-             * TODO : Find why this line create some errors
-             */
-            //            array_shift($data);
         } else {
             return false;
         }
