@@ -255,11 +255,11 @@
             "sha512": "577871f534b1977f3e9e4ceb6a119be4637dfd849e58b8ce4572669cf2a8a5c1de8adb8590af520253332c48fda838b4fde93696f71427591a75e1a8b7c96c3c"
         },
         "Sanitize.php": {
-            "md5": "80503457688a24732fb084ecd1daf4b0",
-            "sha1": "d037f46c214a9ac026c7301b889cbb628d46a145",
-            "sha224": "94a0f9aeed6e5c604e7ce99ba89d2121d12aeb63cb777e6cbc10217f",
-            "sha384": "b22053cc6ba9d06facaa4047a781b355b87665ab76f7899c75d01d51ec8570c5647b0aa855c2dabcd06c7208e064e4b9",
-            "sha512": "c8889a2d9590659d4207fff46b452bbc423c5502c0111522a4e2a288a82166106a7fed1ad45baff73aa7676b1fd4f36c3649a5af6024e7e98acca284ffa9c1a8"
+            "md5": "ee48d6ae52f7cb24e093b8ae1e29ecdf",
+            "sha1": "bb7ee1b3fd418d846f23762535fdeba6f9603d0d",
+            "sha224": "66ffdbd6639a3a5fc69642f3777a5e945bcb58d4213e71b8a3e1ef71",
+            "sha384": "d0f84037cd10d108d738383ffed73d2bf3c76f93b417c560109d385cb8414db3366ba32e231527653642b7191fc88f86",
+            "sha512": "bdde2fb0720c36f717231ab5c67545830257cb97a57a1bae8cf49e92affa425a9cc4a8811bf080f2d4c9ca0a5d33387d2bc33108ff2b8b20401dec57adfb0ef5"
         },
         "Session.php": {
             "md5": "b67b755ec5f555ce210c847ec567daf0",
@@ -377,19 +377,19 @@
                     "sha512": "734eccfdc8292bab4504a7732a0d231858fc7bfce786cdbc2c0058037f5ddae75e77c81fd20094c56e144a636239442a3853cd2b1a262a6a385bf9080f4a7751"
                 },
                 "Files.html": {
-                    "md5": "6ea98e1302101375d796863622ecf147",
-                    "sha1": "185c0def8a19267356dee56b4bda2fe1f25de750",
-                    "sha224": "619ca899f8510629800972faa2c6e43e0dfeb95b52c9c60c7fbc32e3",
-                    "sha384": "7785e257b0ba69b6a54bba32b48f1853c453b388bc71ffb0843325335762720dd5dbced45901744ca6d7a5e42cc2a0fb",
-                    "sha512": "c0d76aa56ec0afa9acb1e13c419276191d513e967e45692c14999934ff58b916faeb49c688ec25773955b8183a2bacc00b763b7b468f822f1f4c137112ab2280"
+                    "md5": "7f1d75b55e9e064166c5c010bab84eb2",
+                    "sha1": "9cbfeac7eef78e526212ef46e44c15c0776a58e1",
+                    "sha224": "3ebe66af94a7e0d3a2968e65f9a6a48011cd21bb50092a53a275470f",
+                    "sha384": "b2401f0db4275be91bd5601ecc78fae3e275f17f53ef96b4a57469996e0ac2c0a0ae6981dd084c24b26b5cc5d887bb9a",
+                    "sha512": "21b313f7b9b7a3d72f818871520113509ac2c9b2fae38696e165d932036df70965557b81558ffee97a09e0f659bec0c4cfc13d6dc5a149565c6d0138a1fd8223"
                 }
             },
             "index.html": {
-                "md5": "24dff2bcb832028863d8ebf952cf566b",
-                "sha1": "db902ab3d78799efde335719055ce3e2f97bd1f6",
-                "sha224": "37dba769f2606ce5e7404a6d2ca214e837186cc9caf9af7196d2060f",
-                "sha384": "a2f73d84adeabc462cd0a87331bb25be188d508628ccc45cab68b9cc32fe5ffe9ef77f8b251044001f4fdd5afacdb9fe",
-                "sha512": "490a81fd1c90c071c05d066b9c6bbcd2f820c144189d89a74d0112791fca94d5e96be444a18e9e6dfe7b621b7d10520bc0f15039e109694a2fbea9094f19069c"
+                "md5": "4c77d873d15a45532791cdfa5c6d848b",
+                "sha1": "73edcf251b55385def346f48b9c79dcfe38ead73",
+                "sha224": "f4b23afa56e1bc8cf9f89f5021f15c697cfd4edbc9d07a57f4600945",
+                "sha384": "c54a66e42c577326e1b4b4f17fca41318be3173d2bd40db454ed31eebbfd5469886f61b74d2211bf2143b4e97030d93a",
+                "sha512": "0663786625f63097f025f753bb5f2290cc697f3215d8c814b93e5d61dc35ccbbe3467059c94f131b1936416cbea31e84ee58139142177266d45eac0641b12f2a"
             },
             "screen.css": {
                 "md5": "dac4c37809ad0c132a946be0f886d14b",
@@ -402,25 +402,25 @@
     },
     "bin": {
         "composer.phar": {
-            "md5": "0eedfb38e587faaecedd7d05ae0d4081",
-            "sha1": "d117f74e3acf022a102ac66c620e2bee6b712c58",
-            "sha224": "97ba2575f075b2fe61b3572806b8ceb4ed7beea9dbca93aa2f3a62ba",
-            "sha384": "e423c727c0e87674f08fe6f9c9e0e1875ad7a11bf1f24b4ee7e647c5f9c3243c44908524e95d427fedace23806fa2fbe",
-            "sha512": "bc9c39fb8b0de53f67ca02d0740c25bc270643a80375e17cd8dfa45beba99339c1754c9d2a33d8475ad2a26479bd17c514c8b7b9c2719fd306d91b525a00721c"
+            "md5": "ac2fa3dba437d8f1b9759ce3e648da86",
+            "sha1": "6dc307027b69892191dca036dcc64bb02dd74ab2",
+            "sha224": "9191a4bb067067fb1747163405691f07e02560582ba97cac50fdc6fb",
+            "sha384": "721bdd267649bc259043f49c792df7c95c29619731da3fc6134fe11eae6df557342671958b8a6464f60a7994554abc7e",
+            "sha512": "61dfd2f9262a0a2469e0c1864ab1cce6d3e63f9053faf883cd08307413d92119010638bfbee7c90c9b6977e284814bcb7bfdc01dd9cb9125ac947a2968c791bc"
         },
-        "update-docs": {
-            "md5": "24794020f149009eb397bff5c2e9c00c",
-            "sha1": "0631231f95603de68c51b4e4310763b3287e8c2c",
-            "sha224": "128508e6d339f8c666c5022cadc7b596dbe8e08de4bbbacd7c4946eb",
-            "sha384": "a38b719227133f623c2c6e92ab4f5188f6784e26d05e37a1789ac517e36733fba85ff0e9d55dde8ac4236e4ff2f7e4f1",
-            "sha512": "2ece3711f87ae1d2fff44a5f301a226eaefc39b13580435f63d6fa7cc15bd949caa8e821098f1543384841b68d63b10840df1cd320a5323066a0161f5aeddf33"
+        "update-docs.sh": {
+            "md5": "21430dcbebcfd3782d6c4ecf97353fc3",
+            "sha1": "580fbc7eaae7cc26509dd6b633e014b56e41607e",
+            "sha224": "73d72e337d423e7383fb70d4149575ccc4daf4d4567c2d23937e2baf",
+            "sha384": "97750333da458a48280bbd78b57803baeb107acfb6a708e6a8d4f4ed37e79303645c9be989b89edd7b2f104e7d6b21dd",
+            "sha512": "5e2e79e01c7c102073169b6201b13747abc4c3e792953cece80b5c396da390026e285e31fe367059e729c06f327b4940e2f1d1f31183de9910d1f8d7024e6cd8"
         },
         "update-hashes.py": {
-            "md5": "3c88fd16e36599a0da9c6a52aee5c011",
-            "sha1": "55fbf849b5f14eff58870dc40e8f21ab208cda27",
-            "sha224": "b4f00d650dfd2b523d08252893e162026c97cfd4a7afd4881ce99dc9",
-            "sha384": "edcb35091b9e0a369f2d5c6ee8d41e4ef0b94b96ca04147bce199d6456cdc12aedd66fae1156fdb5808a6b7b9d2d802c",
-            "sha512": "9b364b58c25c4ab71e912febcebce039526fc0434cf9880fb4224f049c2c994e781fee943a3e66a3896c09f132f71bab180e877aa38735791e809eec1d0a6969"
+            "md5": "649e6907e3e147abeb142713d40b3bd9",
+            "sha1": "2c131723745b4429f9daa6713bf0b8266e4f55fc",
+            "sha224": "285d6961a15a25d369215bfea8cacc4d6178c45e4a3918b15537265d",
+            "sha384": "e07d088b42643450486999ef7a6b32745ff748447ea0d68e708f7c7d7fd7d1b0c07bf5a6da740c9d29a678634462b773",
+            "sha512": "3282766f163c4e6f214963a45c260a2ac4244793549ccf10ca84deb166445bb4a215f39fbc98718983fe4318307694e22b92f166968f8876c3f7885aa3480791"
         }
     },
     "composer.json": {
@@ -431,11 +431,11 @@
         "sha512": "09a3e77e53c70daebd144e7d407f76192391ec91a04a8eff055f8ac5170b006ae4493785d9c6e87c2af57534be3868ac9b4c786aa10a4d1846beb982c9bffa74"
     },
     "composer.lock": {
-        "md5": "a99ba06b2624c77287b16178182c5448",
-        "sha1": "32ec766682604fc0356cadfb9c50e51195e3180c",
-        "sha224": "30df4735efcfd387474b9dd69ca47353119778c08d046d706bb311a8",
-        "sha384": "1accc7505a21d07adada24b9f44e4533e236be8148b728d2ea1b769742936d2e1792cf4abc75b065787ee4bf1aa10032",
-        "sha512": "fcbaec72aaec2a6f8f96be9d91dbfee616174a467e9fa26774f3b11bb4d1cbe8aa046487c3c655cb532fb8b6b8ebd9166f7909d96c397be27deadbf9e693c6bb"
+        "md5": "13fa43f02a8dbbcc404583749c861faa",
+        "sha1": "2d007ed65e314aa2e6201dd3de2a8c3279e53fd4",
+        "sha224": "6c24f90a9004a086608572ed5d412bab7b4392c56b06ff243ed19712",
+        "sha384": "0eb8fd9f6f8ecb4f96ec1c9cca52914581578f87353cac5880d4a59c31bc19925cfae0fcd42c2f06a1bb2f85da4c07c0",
+        "sha512": "cf914c4b8a28c715cd1677cf21679e0cd95938acff66aa2ba7a46cdb7d3891e5afbff6d700bc4cd80d52dfd93c6eadf5712ea2a8ad1d163b402a7ea2f965f8fa"
     },
     "docs": {
         ".htaccess": {
@@ -1711,11 +1711,11 @@
         }
     },
     "hashes.json": {
-        "md5": "090baf461210efe3275dc676f0d48b8c",
-        "sha1": "6a708ac9d93f6e69a8644c3d84ac67563e27ea27",
-        "sha224": "f47c4dc1c4810810d3a6216cd2082c842fea84d95d9ce19d16527940",
-        "sha384": "caae18f7a59ed2ba6078bbcb9b4bfb58924494f1544034ade2529e1f673f8373b6b52cd6d230f5e3199d5aef8d387551",
-        "sha512": "e2c2fa52853fe3a7bcc4ac49126c0ceda43bd76e688801c499fe76b34588b4cc08f0dc44ce675bad4e012039b4532e0028ccbdbb50f091575c6bc7e20bbab243"
+        "md5": "1f6884ef0782539b8730d1789c53d5d5",
+        "sha1": "500ebb424591ebeb6120d8432d2bd34c3e7b441b",
+        "sha224": "1c468525493eb7a9f648359539a395821dbbc54d429c44ebbd7a62d9",
+        "sha384": "9c1c494a1bbf2b7d9af7fcaf980b3e27b50178fc3cf75c81b19f92662cfea69c0bf88aac312ec8ec4972015467db2aac",
+        "sha512": "8805619bfcd93c8ab9b9e571ea03c26a28cd61a9e3b7348d0a3f961cd1473ad930fa05c5c0a28554f02e2dae42fc13eefc4b69213037601dac790d27af303add"
     },
     "public": {
         "images": {
