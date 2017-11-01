@@ -36,7 +36,7 @@
 namespace Core;
 
 /**
- * Base Controller
+ * Main logic behind Controller call and usage.
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
@@ -44,13 +44,13 @@ class Controller
 {
 
     /**
-     * Parameters from the matched route
+     * Parameters from the matched route.
      * @var array
      */
     protected $route_params = [];
 
     /**
-     * Class constructor
+     * Class constructor.w
      * 
      * @param array $route_params Parameters from the route
      * @return void

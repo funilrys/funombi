@@ -47,13 +47,13 @@ class TwigFunctions extends Model
 {
 
     /**
-     * List of functions to set into Twig
+     * List of functions to set into Twig.
      * @var array List of functions
      */
     public $functions = array();
 
     /**
-     * This call all methods and add the results into $functions
+     * This call all methods and add the results into $functions.
      */
     public function __construct()
     {

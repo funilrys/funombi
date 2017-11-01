@@ -36,7 +36,7 @@
 namespace Core\Helpers;
 
 /**
- * Helper of Core\Arrays
+ * Helper of Core\Arrays.
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
@@ -44,7 +44,8 @@ class Arrays
 {
 
     /**
-     * Helpers of Core\Arrays::flattenKeysRecursively()
+     * The following helps to flatten an array when 
+     * Core\Arrays::flattenKeysRecursively() is called.
      * 
      * @param array $array The array to flatten
      * @param array $result Where the result goes

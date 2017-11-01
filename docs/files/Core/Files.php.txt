@@ -39,7 +39,7 @@ use App\Config\Locations;
 use App\Config\Sessions;
 
 /**
- * File manipulations
+ * File manipulations.
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
@@ -47,7 +47,7 @@ class Files
 {
 
     /**
-     * Give the current project root path
+     * Get the current project root path.
      * 
      * @return string
      */
@@ -57,7 +57,7 @@ class Files
     }
 
     /**
-     * Return a message to inform developer that a directory is not found
+     * Return a message to inform developer that a directory is not found.
      * 
      * @param array $otherDirectories Other directory to check. MUST BE UNDER Locations::PUBLIC_DIR
      * @return boolean
@@ -123,7 +123,7 @@ class Files
 
     /**
      * Return a link or an HTML object linked to the desired file according 
-     * to $type which come from matchExtensionToFileSystem()
+     * to $type which come from matchExtensionToFileSystem().
      * 
      * @param string $file File to create Link to
      * @param string $type Type if the file (link =  Locations::STYLESHEETS | script = Locations::JAVASCRIPTS)
@@ -154,7 +154,7 @@ class Files
     }
 
     /**
-     * Check if file exist and is readable
+     * Check if file exist and is readable.
      * 
      * @param string $file File to check existence
      * @return boolean <b>True:</b> Exist and is regular <br> <b>False:</b> Don't Exist or not a regular file
@@ -168,7 +168,7 @@ class Files
     }
 
     /**
-     * Check if directory exist and is readable
+     * Check if directory exist and is readable.
      * 
      * @param string $dir Directory to check existence
      * @return boolean <b>True:</b> Exist and is regular <br> <b>False:</b> Don't Exist or not a regular directory
@@ -182,7 +182,7 @@ class Files
     }
 
     /**
-     * Get the hash of a given file
+     * Get the hash of a given file.
      * 
      * @param string $path Path to the file
      * @param string $algo Hash algorithm. <br> <b>Default:</b> 'sha512'
@@ -194,7 +194,7 @@ class Files
     }
 
     /**
-     * Compare master file hash with local file
+     * Compare master file hash with local file.
      * 
      * @param string $file Path to the file
      * @return bool True: File is the default one | False: File has been modified
@@ -215,8 +215,9 @@ class Files
     }
 
     /**
-     * Read hashes.json and return a readable result
-     * Possible algorithms: md5, sha1, sha224, sha384, sha512
+     * Read hashes.json and return a readable result.
+     * 
+     * @note Possible algorithms: md5, sha1, sha224, sha384, sha512
      * 
      * @param array $toGet Format: array(path => algorithm)
      * @return array
@@ -236,10 +237,10 @@ class Files
     }
 
     /**
-     * Get and read the content of a JSON
+     * Get and read the content of a JSON file.
      * 
      * @param string $file The file to get
-     * @return data|false
+     * @return string|false
      */
     public static function getJSON(string $file)
     {
@@ -250,7 +251,7 @@ class Files
     }
 
     /**
-     * Write the default data into App\Config\Database
+     * Write the default data into App\Config\Database.
      * 
      * @return boolean
      */
@@ -286,8 +287,7 @@ class Files
     }
 
     /**
-     * Function that make it easy to change the defaults credentials of
-     * App/Config/Database
+     * Write credentials into App/Config/Database.
      * 
      * @param array $data Database credentials | keys, host, name, user, password, prefix
      * @return bool

@@ -36,7 +36,7 @@
 namespace App\Config;
 
 /**
- * Errors configuration
+ * Errors configuration.
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */

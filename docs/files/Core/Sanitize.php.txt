@@ -36,7 +36,7 @@
 namespace Core;
 
 /**
- * Sanitize manipulation
+ * Can be used to satinize $_POST or $_GET.
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
@@ -45,6 +45,8 @@ class Sanitize
 
     /**
      * Used to filter/sanitize 'post' ($_POST) and get ($_GET)
+     * 
+     * @note if variable match 'mail' we `FILTER_SANITIZE_EMAIL` and not `FILTER_SANITIZE_STRING`.
      * 
      * @param string $option 'get' | 'post'
      * @param string $toGet If specified return the value of $option[index]

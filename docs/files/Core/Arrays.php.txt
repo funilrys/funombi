@@ -38,7 +38,7 @@ namespace Core;
 use Core\Helpers\Arrays as Helper;
 
 /**
- * Arrays manipulation
+ * Arrays manipulations.
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
@@ -46,7 +46,7 @@ class Arrays
 {
 
     /**
-     * Check if an array is associative or not
+     * Check if an array is associative.
      * 
      * @param array $array The array to check.
      * @return boolean
@@ -61,7 +61,7 @@ class Arrays
     }
 
     /**
-     * Rename key(s) of a given array
+     * Rename key(s) of a given array.
      * 
      * @param array $data Original array to rename.
      * @param array $toChange Must be associative.

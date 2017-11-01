@@ -36,7 +36,7 @@
 namespace App\Config;
 
 /**
- * Sessions configuration
+ * Sessions configuration.
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */

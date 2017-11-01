@@ -36,7 +36,7 @@
 namespace Core;
 
 /**
- * The router is in charge of redirect all request to Controller
+ * Main logic behind redirection of all request to Controller.
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
@@ -44,19 +44,19 @@ class Router
 {
 
     /**
-     * Associative array of routes (routing table)
+     * Associative array of routes (routing table).
      * @var array
      */
     protected $routes = [];
 
     /**
-     * Parameters from the matched route
+     * Parameters from the matched route.
      * @var array
      */
     protected $params = [];
 
     /**
-     * Add a route to the routing table
+     * Add a route to the routing table.
      *
      * @param string $route  The route excepted URL
      * @param array  $params Parameters (controller, action, etc.)
@@ -80,7 +80,7 @@ class Router
     }
 
     /**
-     * Get all the routes from the routing table
+     * Get all the routes from the routing table.
      *
      * @return array
      */
@@ -116,7 +116,7 @@ class Router
     }
 
     /**
-     * Get the currently matched parameters
+     * Get the currently matched parameters.
      *
      * @return array
      */
@@ -127,7 +127,7 @@ class Router
 
     /**
      * Dispatch the route, creating the controller object and running the
-     * action method
+     * action method.
      *
      * @param string $url The route URL
      * @return void
