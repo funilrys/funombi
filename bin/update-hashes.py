@@ -1,18 +1,17 @@
-#!/bin/env python
+#!/bin/env python3
 # A John Shots can be found there ==> https://github.com/funilrys/A-John-Shots
-import a_john_shots 
+from os import chdir, getcwd, path
 
-"""The following search every files which match regex, print the result on screen and save the results under hashes.json.""" 
-regex = r'.*' 
+import a_john_shots
+from termcolor import colored
 
-# This should be the default one
-a_john_shots.get('./',search=regex,algorithm='all',output_destination='./hashes.json')
+"""The following search every files which match regex, print the result on screen and save the results under hashes.json."""
+regex = r'.*'
 
-# Uncomment the following if you want to exclude all the public directory
-# a_john_shots.get('./',search=regex,algorithm='all',exclude=['public'],output_destination='./hashes.json')
+if getcwd().endswith('bin'):
+    chdir('..')
 
-# Uncomment the following if you want to exclude all the vendor directory
-# a_john_shots.get('./',search=regex,algorithm='all',exclude=['public\/vendor'],output=True,output_destination='./hashes.json')
-
-# Uncomment the following if you want to exclude the images, js, styles and vendor directories
-# a_john_shots.get('./',search=regex,algorithm='all',exclude=['public\/vendor','public\/images','public\/js','public\/styles'],output_destination='./hashes.json')
+if path.isdir('./public/vendor'):
+    a_john_shots.get('./',search=regex,algorithm='all',exclude=['public\/vendor'],output=True,output_destination='./hashes.json')
+else:
+    a_john_shots.get('./',search=regex,algorithm='all',output=True,output_destination='./hashes.json')
