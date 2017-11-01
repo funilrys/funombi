@@ -59,4 +59,4 @@ $router->add('502', ['controller' => 'Errors', 'action' => 'badGateway']);
 $router->add('503', ['controller' => 'Errors', 'action' => 'serviceUnavailable']);
 $router->add('504', ['controller' => 'Errors', 'action' => 'gatewayTimeout']);
 
-$router->dispatch(preg_replace("/" . App\Config\Locations::PUBLIC_DIR . "\//", '', $_SERVER['QUERY_STRING']));
+$router->dispatch($_SERVER['QUERY_STRING']);

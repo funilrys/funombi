@@ -134,6 +134,7 @@ class Router
      */
     public function dispatch(string $url)
     {
+        $url = preg_replace("/" . App\Config\Locations::PUBLIC_DIR . "\//", '', $url);
         $url = $this->removeQueryStringVariables($url);
 
         if ($this->match($url)) {
