@@ -12,6 +12,6 @@ if getcwd().endswith('bin'):
     chdir('..')
 
 if path.isdir('./public/vendor'):
-    a_john_shots.get('./',search=regex,algorithm='all',exclude=['public\/vendor'],output=True,output_destination='./hashes.json')
+    a_john_shots.get('./',search=regex,algorithm='all',exclude=['phpdoc-cache','Tests\/coverage','public\/vendor'],output=True,output_destination='./hashes.json')
 else:
-    a_john_shots.get('./',search=regex,algorithm='all',output=True,output_destination='./hashes.json')
+    a_john_shots.get('./',search=regex,algorithm='all',exclude=['phpdoc-cache','Tests\/coverage'],output=True,output_destination='./hashes.json')
