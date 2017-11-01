@@ -29,7 +29,7 @@
 if [[ -d ${PWD}/Core ]]
 then
     rm -fR ${PWD}/docs/*
-    /usr/bin/php /usr/bin/phpdoc run --ansi --progressbar --directory . --target ${PWD}/docs --title Ultimate.Honeypot.Project --ignore ${PWD}/public/vendor/
+    /usr/bin/php /usr/bin/phpdoc run --ansi --progressbar --directory . --target ${PWD}/docs --title funombi --ignore ${PWD}/public/vendor/
     git add ${PWD}/docs && git commit -S -m 'Update of the documentation' && git push
 else
     echo "Please move to the parent directory."
