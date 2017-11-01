@@ -39,7 +39,7 @@ use Core\Arrays;
 use App\Config\Sessions;
 
 /**
- * $_SESSION manipulation
+ * $_SESSION manipulations.
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
@@ -47,7 +47,7 @@ class Session
 {
 
     /**
-     * Start session
+     * Start session.
      * 
      * @return void
      */
@@ -67,7 +67,7 @@ class Session
     }
 
     /**
-     * Destroy current session
+     * Destroy current session.
      * 
      * @return void
      */
@@ -82,7 +82,7 @@ class Session
     }
 
     /**
-     * Check if session is already started;
+     * Check if session is already started.
      * 
      * @return bool
      */
@@ -120,7 +120,7 @@ class Session
     }
 
     /**
-     * Check if a session variable is set
+     * Check if a session variable is set.
      * 
      * @todo Format example 
      * @param array $data The array which represent the data to check
@@ -147,7 +147,7 @@ class Session
     }
 
     /**
-     * Return the current values of given index(es)
+     * Return the current values of given index(es).
      * 
      * @param array $data An array with a list of index 
      * @return array

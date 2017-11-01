@@ -40,7 +40,7 @@ use DateTime;
 use App\Config\Database;
 
 /**
- * Base Model
+ * Main logic behind Model call and usage.
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
@@ -48,7 +48,7 @@ abstract class Model
 {
 
     /**
-     * Get and initiate the PDO database connection
+     * Get and initiate the PDO database connection.
      * 
      * @return mixed
      */
@@ -69,7 +69,7 @@ abstract class Model
     }
 
     /**
-     * Add prefix to table if Database::TABLE_PREFIX is set
+     * Add prefix to table if Database::TABLE_PREFIX is set.
      * 
      * @param string $table Table name to add prefix to
      * @return string Table name with prefix
@@ -89,10 +89,10 @@ abstract class Model
     }
 
     /**
-     * Return rows from the database based on the conditions
+     * Return rows from the database based on the conditions.
      * 
      * @param string $table Name of the table
-     * @param array $conditions  Conditions : select, where, where_or, where_comp_operator, order_by, group_by, limit, return_type
+     * @param array $conditions  Conditions : select, where, where_or, where_operator, order_by, group_by, limit, return_type
      * @return array Data from database
      */
     protected static function getRows(string $table, array $conditions = array())
@@ -177,7 +177,7 @@ abstract class Model
     }
 
     /**
-     * Insert data into the database
+     * Insert data into the database.
      * 
      * @param string $table Name of the table
      * @param array $data Data to insert to table
@@ -223,7 +223,7 @@ abstract class Model
     }
 
     /**
-     * Update data into the database
+     * Update data into the database.
      * 
      * @param string $table Name of the table
      * @param array $data Data to update
@@ -281,7 +281,7 @@ abstract class Model
     }
 
     /**
-     * Delete data from the database
+     * Delete data from the database.
      * 
      * @param string $table Name of the table
      * @param array $conditions WHERE statement

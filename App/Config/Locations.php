@@ -44,37 +44,37 @@ class Locations
 {
 
     /**
-     * Public directory name
+     * Public directory name.
      * @var string Default: 'public'
      */
     const PUBLIC_DIR = 'public';
 
     /**
-     * Stylesheets directory under PUBLIC_DIR
+     * Stylesheets directory under $PUBLIC_DIR.
      * @var string Default: 'styles'
      */
     const STYLESHEETS = 'styles';
 
     /**
-     * Images directory under PUBLIC_DIR
+     * Images directory under $PUBLIC_DIR.
      * @var string Default: 'images'
      */
     const IMAGES = 'images';
 
     /**
-     * Javascripts  directory under PUBLIC_DIR
+     * Javascripts  directory under $PUBLIC_DIR.
      * @var string Default: 'js'
      */
     const JAVASCRIPTS = 'js';
 
     /**
-     * Name of the used template
+     * Name of the used template.
      * @var string Default: 'ajaz'
      */
     const THEME_NAME = 'ajaz';
 
     /**
-     * Name & location of the vendor directory
+     * Name & location of the vendor directory.
      * @var string Default: "self::PUBLIC_DIR . DIRECTORY_SEPARATOR. 'vendor'"
      */
     const VENDOR = self::PUBLIC_DIR . DIRECTORY_SEPARATOR . 'vendor';

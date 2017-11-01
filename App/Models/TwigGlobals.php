@@ -38,7 +38,7 @@ namespace App\Models;
 use Core\Model;
 
 /**
- * This class is used to auto-append custom globals into Twig.
+ * Used to auto-append custom globals into Twig.
  * All function created here should return an array.
  * 
  * 
@@ -48,13 +48,13 @@ class TwigGlobals extends Model
 {
 
     /**
-     * List of globals to set into Twig
+     * List of globals to set into Twig.
      * @var array List of globals 
      */
     public $globals = array();
 
     /**
-     * This call all methods and add the results into $globals
+     * This call all methods and add the results into $globals.
      */
     public function __construct()
     {

@@ -38,7 +38,7 @@ namespace Core;
 use Core\Files;
 
 /**
- * Base View
+ * Main logic behind the call and usage of Views.
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
@@ -46,7 +46,7 @@ class View
 {
 
     /**
-     * Render a view file
+     * Render a view file.
      *
      * @param string $view The view file must be under App/Views/
      * @param array $args Associative array of data to display in the view (optional)
@@ -66,7 +66,9 @@ class View
     }
 
     /**
-     * Render a view template using Twig
+     * Render a view template using Twig.
+     * 
+     * @note If you want to add globals or variables to Twig please report to <b>\App\Models\Twig*.php</b>
      *
      * @param string $template The template file
      * @param array $args Associative array of data to display in the view (optional)
