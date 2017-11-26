@@ -1,4 +1,6 @@
 {
+    "name": "funilrys/funombi",
+    "version": "0.1.0",
     "config": {
         "vendor-dir": "public/vendor"
     },
