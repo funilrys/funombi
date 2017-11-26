@@ -37,6 +37,7 @@ namespace Core;
 
 use App\Config\Locations;
 use App\Config\Sessions;
+use Core\Arrays;
 
 /**
  * File manipulations.
@@ -281,7 +282,6 @@ class Files
             if (file_put_contents($databaseFile, $currentFile)) {
                 continue;
             }
-            return false;
         }
         return true;
     }
@@ -289,36 +289,38 @@ class Files
     /**
      * Write credentials into App/Config/Database.
      * 
-     * @param array $data Database credentials | keys, host, name, user, password, prefix
+     * @param array $data Database credentials | keys: host, name, user, password, prefix
      * @return bool
      */
     public static function writeDatabaseConfig(array $data)
     {
-        if (is_array($data)) {
+        if (Arrays::isAssociative($data)) {
             $root = static::getRoot();
             $databaseFile = $root . 'App' . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'Database.php';
 
             $currentFile = file_get_contents($databaseFile);
 
-            if (strpos($currentFile, 'your') !== false) {
+            if (strpos($currentFile, 'your-') !== false) {
                 $oldToNew = array(
-                    'host' => 'your-database-host',
-                    'name' => 'your-database-name',
-                    'user' => 'your-database-username',
-                    'password' => 'your-database-password',
-                    'prefix' => 'your-table-prefix'
+                    'host' => "DB_HOST",
+                    'name' => "DB_NAME",
+                    'user' => "DB_USER",
+                    'password' => "DB_PASSWORD",
+                    'prefix' => "TABLE_PREFIX"
                 );
 
                 foreach ($oldToNew as $key => $value) {
-                    if (isset($data[$key]) && preg_match("/\@var\sstring\sDefault:\s'$data[$key]'/", $currentFile)) {
-                        $currentFile = str_replace($value, $data[$key], $currentFile);
+                    if (isset($data[$key])) {
+                        $regex = "/$value = .*;/";
+                        $replacement = "$value = '$data[$key]';";
+
+                        $currentFile = preg_replace($regex, $replacement, $currentFile);
                     }
                 }
 
                 if (file_put_contents($databaseFile, $currentFile)) {
                     return true;
                 }
-                return false;
             }
             return false;
         }
