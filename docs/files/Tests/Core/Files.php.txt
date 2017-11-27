@@ -224,12 +224,21 @@ class Files extends atoum
             'prefix' => 'hi_'
         );
 
+        $falseData = array(
+            'Hello',
+            'World',
+            'Iam',
+            'WhoIAm',
+            'hi_',
+        );
+
 
         $this
                 ->given($files = new classToTest())
                 ->then
-                ->boolean($files::writeDatabaseConfig($newData))
-//                ->string($files::hashFile($pathToFile))->isNotEqualTo($currentHash)
+                ->boolean($files::writeDatabaseConfig($newData))->isTrue()
+                ->boolean($files::writeDatabaseConfig($falseData))->isFalse()
+                ->boolean($files::isHashSameAsSystem($pathToFile))->isFalse()
         ;
 
         static::temporaryChangeContent($pathToFile, false);
@@ -240,17 +249,22 @@ class Files extends atoum
                 ->then
                 ->boolean($files::writeDatabaseConfig($newData))->isFalse()
         ;
+
         chmod($pathToFile, 0644);
         $this
                 ->given($file = new classToTest())
                 ->then
                 ->boolean($file::writeDatabaseConfig($newData))->isFalse()
         ;
+
         chmod($pathToFile, 0677);
+        static::temporaryChangeContent($pathToFile, true);
+
         $this
                 ->given($file = new classToTest())
                 ->then
                 ->boolean($file::writeDefaultDatabaseConfig())->isTrue()
+                ->boolean($files::isHashSameAsSystem($pathToFile))->isTrue()
         ;
     }
 

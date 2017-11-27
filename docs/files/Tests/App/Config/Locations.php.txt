@@ -54,25 +54,12 @@ class Locations extends atoum
         $this
                 ->given($loc = new classToTest())
                 ->then
-                ->string($loc::PUBLIC_DIR)
-                ->isNotEmpty()
-                ->notContains(DIRECTORY_SEPARATOR)
-                ->string($loc::STYLESHEETS)
-                ->isNotEmpty()
-                ->notContains(DIRECTORY_SEPARATOR)
-                ->string($loc::IMAGES)
-                ->isNotEmpty()
-                ->notContains(DIRECTORY_SEPARATOR)
-                ->string($loc::JAVASCRIPTS)
-                ->isNotEmpty()
-                ->notContains(DIRECTORY_SEPARATOR)
-                ->string($loc::THEME_NAME)
-                ->isNotEmpty()
-                ->notContains(DIRECTORY_SEPARATOR)
-                ->string($loc::VENDOR)
-                ->isNotEmpty()
-                ->contains($loc::PUBLIC_DIR)
-                ->contains(DIRECTORY_SEPARATOR)
+                ->string($loc::PUBLIC_DIR)->isNotEmpty()->notContains(DIRECTORY_SEPARATOR)
+                ->string($loc::STYLESHEETS)->isNotEmpty()->notContains(DIRECTORY_SEPARATOR)
+                ->string($loc::IMAGES)->isNotEmpty()->notContains(DIRECTORY_SEPARATOR)
+                ->string($loc::JAVASCRIPTS)->isNotEmpty()->notContains(DIRECTORY_SEPARATOR)
+                ->string($loc::THEME_NAME)->isNotEmpty()->notContains(DIRECTORY_SEPARATOR)
+                ->string($loc::VENDOR)->isNotEmpty()->contains($loc::PUBLIC_DIR)->contains(DIRECTORY_SEPARATOR)
         ;
     }
 

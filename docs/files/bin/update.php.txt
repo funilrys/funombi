@@ -1,6 +1,6 @@
+#!/usr/bin/php
 <?php
-
-/*
+/* 
  * The MIT License
  *
  * Copyright 2017 Nissar Chababy <contact at funilrys dot com>.
@@ -25,55 +25,17 @@
  */
 
 /**
- * Class Database | App/Config/Database.php
- *
- * @package     funombi\App\Config
- * @author      Nissar Chababy <contact at funilrys dot com>
- * @version     1.0.0
- * @copyright   Copyright (c) 2017, Nissar Chababy
+ * Composer
  */
+$root = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR;
+$autoloader = $root . 'public'. DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
-namespace App\Config;
-
-/**
- * Database configuration
- * 
- * @note If you're gonna use the Core\Files::writeDatabaseConfig() function please do not change the defaults assignments.
- *
- * @author Nissar Chababy <contact at funilrys dot com>
- */
-class Database
-{
-
-    /**
-     * Database host.
-     * @var string Default: 'your-database-host'
-     */
-    const DB_HOST = 'your-database-host';
-
-    /**
-     * Database name.
-     * @var string Default: 'your-database-name'
-     */
-    const DB_NAME = 'your-database-name';
-
-    /**
-     * Database user.
-     * @var string Default: 'your-database-username'
-     */
-    const DB_USER = 'your-database-username';
-
-    /**
-     * Database password.
-     * @var string Default: 'your-database-password'
-     */
-    const DB_PASSWORD = 'your-database-password';
-
-    /**
-     * Prefix to append to table name?
-     * @var string Default: 'your-table-prefix'
-     */
-    const TABLE_PREFIX = 'your-table-prefix';
-
+if (is_file($autoloader)) {
+    require $autoloader;
+} else {
+    echo "Please install the dependencies with 'bin/composer.phar update' from the root directory.\n";
+    echo "If this message persist, please check the permissions of your current project.\n";
+    exit();
 }
+
 
