@@ -37,8 +37,8 @@ namespace App\Config;
 
 /**
  * Database configuration
- * If you're gonna use the writeDatabase() function please do not change the
- * defaults assignments.
+ * 
+ * @note If you're gonna use the Core\Files::writeDatabaseConfig() function please do not change the defaults assignments.
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
