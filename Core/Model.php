@@ -38,6 +38,7 @@ namespace Core;
 use PDO;
 use DateTime;
 use App\Config\Database;
+use Core\Files;
 
 /**
  * Main logic behind Model call and usage.
@@ -310,6 +311,33 @@ abstract class Model
 
         if ($delete) {
             return true;
+        }
+        return false;
+    }
+
+    /**
+     * Check if App\Config\Database is at its default state.
+     * 
+     * @return boolean
+     */
+    public static function isDefaultDatabaseConfig()
+    {
+        $consts = array(
+            'DB_HOST' => 'your-database-host',
+            'DB_NAME' => 'your-database-name',
+            'DB_USER' => 'your-database-username',
+            'DB_PASSWORD' => 'your-database-password',
+            'TABLE_PREFIX' => 'your-table-prefix'
+        );
+
+        $root = Files::getRoot();
+        $databaseFile = $root . 'App' . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'Database.php';
+        $currentFile = file_get_contents($databaseFile);
+
+        foreach ($consts as $key => $value) {
+            if (preg_match("/const $key = '$value';/", $currentFile)) {
+                return true;
+            }
         }
         return false;
     }
