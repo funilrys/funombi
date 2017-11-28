@@ -51,20 +51,35 @@ abstract class Model
     /**
      * Get and initiate the PDO database connection.
      * 
-     * @return mixed
+     * @staticvar PDO $db
+     * @param bool $only_connection False : we connect and get a database. True : we only connect.
+     * 
+     * @return PDO
      */
-    protected static function getDB()
+    protected static function getDB(bool $only_connection = false)
     {
         static $db = null;
         if ($db === null) {
 
-            $dsn = 'mysql:host=' . Database::DB_HOST . ';dbname=' . Database::DB_NAME . ';charset=utf8';
-            $db = new PDO($dsn, Database::DB_USER, Database::DB_PASSWORD);
+            if ($only_connection) {
+                $dsn = 'mysql:host=' . Database::DB_HOST . ';charset=utf8';
+            } else {
+                $dsn = 'mysql:host=' . Database::DB_HOST . ';dbname=' . Database::DB_NAME . ';charset=utf8';
+            }
 
-            /**
-             * Throw an Exception when an error occurs
-             */
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            try {
+                /**
+                 * Throw an Exception when an error occurs
+                 */
+                $options = array(
+                    PDO::ATTR_ERRMODE,
+                    PDO::ERRMODE_EXCEPTION
+                );
+
+                $db = new PDO($dsn, Database::DB_USER, Database::DB_PASSWORD, $options);
+            } catch (\PDOException $ex) {
+                return $ex->getCode();
+            }
         }
         return $db;
     }
@@ -94,7 +109,7 @@ abstract class Model
      * 
      * @param string $table Name of the table
      * @param array $conditions  Conditions : select, where, where_or, where_operator, order_by, group_by, limit, return_type
-     * @return array Data from database
+     * @return boolean Data from database
      */
     protected static function getRows(string $table, array $conditions = array())
     {
