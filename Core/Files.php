@@ -135,8 +135,12 @@ class Files
     public static function createLinkToFile(string $file, string $type, bool $createHTMLObject = false)
     {
         $http = Sessions::SECURED_COOKIES ? 'https://' : 'http://';
-        $siteURL = $http . $_SERVER['HTTP_HOST'] . explode('index.php', $_SERVER['REDIRECT_URL'])[0];
-
+        
+        if (!empty($_SERVER['REDIRECT_URL']) && strpos($_SERVER['REDIRECT_URL'], 'index.php') !== false) {
+            $siteURL = $http . $_SERVER['HTTP_HOST'] . explode('index.php', $_SERVER['REDIRECT_URL'])[0];
+        } else {
+            $siteURL = $http . $_SERVER['HTTP_HOST'] . '/';
+        }
         if (static::isFile($file) && $createHTMLObject) {
             if ($type === Locations::STYLESHEETS) {
                 echo "<link href = \"" . $siteURL . $file . "\" rel=\"stylesheet\" type=\"text/css\">";
