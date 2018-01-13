@@ -48,9 +48,10 @@ class Sanitize
      * 
      * @note if variable match 'mail' we `FILTER_SANITIZE_EMAIL` and not `FILTER_SANITIZE_STRING`.
      * 
-     * @param string $option 'get' | 'post'
-     * @param string $toGet If specified return the value of $option[index]
-     * @return boolean Sanitized $_POST or $_GET
+     * @param string $option 'get' || 'post'
+     * @param string $toGet If specified return the value of the desired index
+     * 
+     * @return boolean|string Sanitized $_POST or $_GET
      */
     public static function filter(string $option, string $toGet = null)
     {
@@ -72,8 +73,15 @@ class Sanitize
             $data[$key] = $value;
         }
 
-        if ($toGet !== null) {
+        if ($toGet !== null && !is_array($toGet)) {
             return $data[$toGet];
+        } elseif (is_array($toGet) && !Arrays::isAssociative($toGet)) {
+            $result = array();
+
+            foreach ($toGet as $value) {
+                $result = array_merge($result, array($value => $data[$value]));
+            }
+            return $result;
         }
         return $data;
     }
