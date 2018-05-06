@@ -1,12 +1,11 @@
 # Activation of RewriteEngine
 RewriteEngine on
 
-# Desactivation of direct access folder under public/vendor
-Options -Indexes
+# Rewrite the base directory
+RewriteBase /
 
-# Redirect all request to public/*
-RewriteCond %{REQUEST_URI} !public/
-RewriteRule (.*) public/$1 [L]
+# Deactivation of direct access folder under vendor
+#Options -Indexes
 
 # If file doesn't exist
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -14,7 +13,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 # If direcroty doesn't exist
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# If symbolic link doen't exist
+# If symbolic link doesn't exist
 RewriteCond %{REQUEST_FILENAME} !-l
 
 # Then remove the question mark from the request but maintain the query string 
