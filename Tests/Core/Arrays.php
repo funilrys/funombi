@@ -84,22 +84,22 @@ class Arrays extends atoum
      */
     public function testRenameKey()
     {
-        $data = array(
+        $data     = array(
             'Hello' => 'Funilrys',
-            'How' => 'is',
-            'Are' => 'on',
-            'You?' => 'GitHub'
+            'How'   => 'is',
+            'Are'   => 'on',
+            'You?'  => 'GitHub'
         );
         $toChange = array(
-            'How' => 'world',
-            'Are' => 'from',
+            'How'  => 'world',
+            'Are'  => 'from',
             'You?' => 'Germany'
         );
 
-        $validKeys = array('Hello', 'world', 'from', 'Germany');
+        $validKeys   = array('Hello', 'world', 'from', 'Germany');
         $validValues = array('Funilrys', 'is', 'on', 'GitHub');
 
-        $invalidData = array('Funilrys', 'is', 'on', 'GitHub');
+        $invalidData     = array('Funilrys', 'is', 'on', 'GitHub');
         $invalidToChange = array('Hello', 'How', 'Are', 'You?');
 
         $this

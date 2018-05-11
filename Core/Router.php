@@ -42,7 +42,8 @@ use App\Config\Locations;
  *
  * @author Nissar Chababy <contact at funilrys dot com>
  */
-class Router {
+class Router
+{
 
     /**
      * Associative array of routes (routing table).
@@ -63,7 +64,8 @@ class Router {
      * @param array  $params Parameters (controller, action, etc.)
      * @return void
      */
-    public function add(string $route, array $params = []) {
+    public function add(string $route, array $params = [])
+    {
         // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
 
@@ -84,7 +86,8 @@ class Router {
      *
      * @return array
      */
-    public function getRoutes() {
+    public function getRoutes()
+    {
         return $this->routes;
     }
 
@@ -95,7 +98,8 @@ class Router {
      * @param string $url The route URL
      * @return bool  true if a match found, false otherwise
      */
-    public function match(string $url) {
+    public function match(string $url)
+    {
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $url, $matches)) {
                 // Get named capture group values
@@ -118,7 +122,8 @@ class Router {
      *
      * @return array
      */
-    public function getParams() {
+    public function getParams()
+    {
         return $this->params;
     }
 
@@ -129,7 +134,8 @@ class Router {
      * @param string $url The route URL
      * @return void
      */
-    public function dispatch(string $url) {
+    public function dispatch(string $url)
+    {
         $url = preg_replace("/" . Locations::PUBLIC_DIR . "\//", '', $url);
         $url = $this->removeQueryStringVariables($url);
 
@@ -164,7 +170,8 @@ class Router {
      * @param string $string The string to convert
      * @return string
      */
-    protected function convertToStudlyCaps(string $string) {
+    protected function convertToStudlyCaps(string $string)
+    {
         return str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
     }
 
@@ -175,7 +182,8 @@ class Router {
      * @param string $string The string to convert
      * @return string
      */
-    protected function convertToCamelCase(string $string) {
+    protected function convertToCamelCase(string $string)
+    {
         return lcfirst($this->convertToStudlyCaps($string));
     }
 
@@ -201,7 +209,8 @@ class Router {
      * @param string $url The full URL
      * @return string The URL with the query string variables removed
      */
-    protected function removeQueryStringVariables(string $url) {
+    protected function removeQueryStringVariables(string $url)
+    {
         if ($url != '') {
             $parts = explode('&', $url, 2);
 
@@ -221,7 +230,8 @@ class Router {
      *
      * @return string The requested URL
      */
-    protected function getNamespace() {
+    protected function getNamespace()
+    {
         $namespace = 'App\Controllers\\';
 
         if (array_key_exists('namespace', $this->params)) {

@@ -58,7 +58,7 @@ class TwigFunctions extends Model
     public function __construct()
     {
         $modelFunction = get_class_methods('\Core\Model');
-        $methods = get_class_methods($this);
+        $methods       = get_class_methods($this);
 
         $autorised = array_diff($methods, $modelFunction);
         unset($autorised[0]);

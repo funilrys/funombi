@@ -64,7 +64,7 @@ class Files extends atoum
     {
 
         $currentRoot = static::Root();
-        $falseRoot = $currentRoot . 'Core' . DIRECTORY_SEPARATOR;
+        $falseRoot   = $currentRoot . 'Core' . DIRECTORY_SEPARATOR;
 
         $this
                 ->given($files = new classToTest())
@@ -82,9 +82,9 @@ class Files extends atoum
     public function testCheckVitalDirectories()
     {
         $currentRoot = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR;
-        $public = Locations::PUBLIC_DIR . DIRECTORY_SEPARATOR;
-        $images = $public . Locations::IMAGES;
-        $renameWith = $public . 'helloworld';
+        $public      = Locations::PUBLIC_DIR . DIRECTORY_SEPARATOR;
+        $images      = $public . Locations::IMAGES;
+        $renameWith  = $public . 'helloworld';
 
         if (classToTest::isDir($renameWith)) {
             rename($currentRoot . $renameWith, $currentRoot . $images);
@@ -122,7 +122,7 @@ class Files extends atoum
     public function testMatchExtensionToFileSystem()
     {
         $fileToMatch = 'hello.css';
-        $trueResult = Locations::STYLESHEETS;
+        $trueResult  = Locations::STYLESHEETS;
 
         $fileToMatch2 = 'hello.world';
 
@@ -180,7 +180,7 @@ class Files extends atoum
     public function testHashFile()
     {
         $currentRoot = static::Root();
-        $path = $currentRoot . 'App' . DIRECTORY_SEPARATOR . 'Controllers' . DIRECTORY_SEPARATOR . 'Errors.php';
+        $path        = $currentRoot . 'App' . DIRECTORY_SEPARATOR . 'Controllers' . DIRECTORY_SEPARATOR . 'Errors.php';
 
         $trueHash = 'a2909f2a83d2e44c7c30ac096e22cc4f5c7a75a1aaae4a2475f2c168fc20d38291621177dcff929c323b4795008a964af57d0d29a8dc8714ec12f3b3bb75f2e5';
 
@@ -197,11 +197,11 @@ class Files extends atoum
     public function testIsHashSameAsSystem()
     {
         $currentRoot = static::Root();
-        $path = $currentRoot . 'App' . DIRECTORY_SEPARATOR . 'Controllers' . DIRECTORY_SEPARATOR . 'Errors.php';
+        $path        = $currentRoot . 'App' . DIRECTORY_SEPARATOR . 'Controllers' . DIRECTORY_SEPARATOR . 'Errors.php';
 
         $falsePath = $currentRoot . 'Tests/Core/Files.php';
         $this
-                ->given($files = new classToTest())
+                ->given($files     = new classToTest())
                 ->then
                 ->boolean($files::isHashSameAsSystem($path))->isTrue
                 ->boolean($files::isHashSameAsSystem($falsePath))
@@ -213,15 +213,15 @@ class Files extends atoum
      */
     public function testWriteDatabaseConfig()
     {
-        $pathToFile = classToTest::getRoot() . 'App/Config/Database.php';
+        $pathToFile  = classToTest::getRoot() . 'App/Config/Database.php';
         $currentHash = classToTest::hashFile($pathToFile);
 
         $newData = array(
-            'host' => 'Hello',
-            'name' => 'World',
-            'user' => 'Iam',
+            'host'     => 'Hello',
+            'name'     => 'World',
+            'user'     => 'Iam',
             'password' => 'WhoIAm',
-            'prefix' => 'hi_'
+            'prefix'   => 'hi_'
         );
 
 
@@ -242,13 +242,13 @@ class Files extends atoum
         ;
         chmod($pathToFile, 0644);
         $this
-                ->given($file = new classToTest())
+                ->given($file  = new classToTest())
                 ->then
                 ->boolean($file::writeDatabaseConfig($newData))->isFalse()
         ;
         chmod($pathToFile, 0677);
         $this
-                ->given($file = new classToTest())
+                ->given($file  = new classToTest())
                 ->then
                 ->boolean($file::writeDefaultDatabaseConfig())->isTrue()
         ;
