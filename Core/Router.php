@@ -35,6 +35,8 @@
 
 namespace Core;
 
+use App\Config\Locations;
+
 /**
  * Main logic behind redirection of all request to Controller.
  *
@@ -134,7 +136,7 @@ class Router
      */
     public function dispatch(string $url)
     {
-        $url = preg_replace("/" . App\Config\Locations::PUBLIC_DIR . "\//", '', $url);
+        $url = preg_replace("/" . Locations::PUBLIC_DIR . "\//", '', $url);
         $url = $this->removeQueryStringVariables($url);
 
         if ($this->match($url)) {

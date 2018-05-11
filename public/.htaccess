@@ -1,0 +1,20 @@
+# Activation of RewriteEngine
+RewriteEngine on
+
+# Rewrite the base directory
+RewriteBase /
+
+# Deactivation of direct access folder under vendor
+#Options -Indexes
+
+# If file doesn't exist
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# If direcroty doesn't exist
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# If symbolic link doesn't exist
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# Then remove the question mark from the request but maintain the query string 
+RewriteRule ^(.*)$ index.php?$1 [L,QSA]

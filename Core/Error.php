@@ -71,7 +71,7 @@ class Error
      */
     public static function exceptionHandler($exception)
     {
-        $code = $exception->getCode();
+        $code  = $exception->getCode();
         $codes = ['403', '404', '500', '502', '503', '504'];
 
         /**

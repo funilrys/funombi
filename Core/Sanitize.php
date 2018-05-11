@@ -66,7 +66,7 @@ class Sanitize
         foreach ($data as $key => $value) {
             if (preg_match("/mail/mi", $key)) {
                 $sanitized = filter_var($value, FILTER_SANITIZE_EMAIL);
-                $value = filter_var($sanitized, FILTER_VALIDATE_EMAIL);
+                $value     = filter_var($sanitized, FILTER_VALIDATE_EMAIL);
             } else {
                 $value = filter_var($value, FILTER_SANITIZE_STRING);
             }

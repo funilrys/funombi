@@ -1,6 +1,6 @@
 <?php
 
-$root = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR;
+$root       = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR;
 $autoloader = $root . 'public' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
 if (is_file($autoloader)) {

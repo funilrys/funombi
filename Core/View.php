@@ -79,10 +79,10 @@ class View
         static $twig = null;
         if ($twig === null) {
             $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/App/Views');
-            $twig = new \Twig_Environment($loader);
+            $twig   = new \Twig_Environment($loader);
 
             $assetFunction = new \Twig_Function('asset', function ($asset, $createHTMLObject = false) {
-                $dir = Files::matchExtensionToFileSystem($asset);
+                $dir  = Files::matchExtensionToFileSystem($asset);
                 $file = $dir . '/' . $asset;
                 Files::createLinkToFile($file, $dir, $createHTMLObject);
             });

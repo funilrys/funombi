@@ -69,7 +69,7 @@ class Files
         $vital = array(
             Locations::STYLESHEETS => static::isDir(static::getRoot() . Locations::PUBLIC_DIR . DIRECTORY_SEPARATOR . Locations::STYLESHEETS),
             Locations::JAVASCRIPTS => static::isDir(static::getRoot() . Locations::PUBLIC_DIR . DIRECTORY_SEPARATOR . Locations::JAVASCRIPTS),
-            Locations::IMAGES => static::isDir(static::getRoot() . Locations::PUBLIC_DIR . DIRECTORY_SEPARATOR . Locations::IMAGES)
+            Locations::IMAGES      => static::isDir(static::getRoot() . Locations::PUBLIC_DIR . DIRECTORY_SEPARATOR . Locations::IMAGES)
         );
 
         /**
@@ -111,7 +111,7 @@ class Files
         $regx = array(
             Locations::STYLESHEETS => '/^.*\.(css)$/i',
             Locations::JAVASCRIPTS => '/^.*\.(js)$/i',
-            Locations::IMAGES => '/^.*\.(jpg|jpeg|png|gif|ico)$/i'
+            Locations::IMAGES      => '/^.*\.(jpg|jpeg|png|gif|ico)$/i'
         );
 
         foreach ($regx as $key => $value) {
@@ -134,13 +134,9 @@ class Files
      */
     public static function createLinkToFile(string $file, string $type, bool $createHTMLObject = false)
     {
-        $http = Sessions::SECURED_COOKIES ? 'https://' : 'http://';
-        
-        if (!empty($_SERVER['REDIRECT_URL']) && strpos($_SERVER['REDIRECT_URL'], 'index.php') !== false) {
-            $siteURL = $http . $_SERVER['HTTP_HOST'] . explode('index.php', $_SERVER['REDIRECT_URL'])[0];
-        } else {
-            $siteURL = $http . $_SERVER['HTTP_HOST'] . '/';
-        }
+        $http    = Sessions::SECURED_COOKIES ? 'https://' : 'http://';
+        $siteURL = $http . $_SERVER['HTTP_HOST'] . explode('index.php', $_SERVER['REDIRECT_URL'])[0];
+
         if (static::isFile($file) && $createHTMLObject) {
             if ($type === Locations::STYLESHEETS) {
                 echo "<link href = \"" . $siteURL . $file . "\" rel=\"stylesheet\" type=\"text/css\">";
@@ -209,7 +205,7 @@ class Files
         $currentHash = static::hashFile($file);
 
         $filepath = explode(static::getRoot(), $file);
-        $file = $filepath[1];
+        $file     = $filepath[1];
 
         $systemHash = static::getHashesContent(array($file => 'sha512'))[0];
 
@@ -229,12 +225,12 @@ class Files
      */
     public static function getHashesContent(array $toGet)
     {
-        $json = static::getJSON(static::getRoot() . 'hashes.json');
+        $json   = static::getJSON(static::getRoot() . 'hashes.json');
         $hashes = Arrays::flattenKeysRecursively($json);
         $result = array();
 
         foreach ($toGet as $key => $value) {
-            $key = str_replace('/', '.', $key) . '.' . $value;
+            $key    = str_replace('/', '.', $key) . '.' . $value;
             $result = array_merge($result, array($hashes[$key]));
         }
 
@@ -249,7 +245,7 @@ class Files
      */
     public static function getJSON(string $file)
     {
-        $str = file_get_contents($file);
+        $str     = file_get_contents($file);
         $decoded = json_decode($str, true);
 
         return $decoded;
@@ -263,20 +259,20 @@ class Files
     public static function writeDefaultDatabaseConfig()
     {
         $consts = array(
-            'DB_HOST' => 'your-database-host',
-            'DB_NAME' => 'your-database-name',
-            'DB_USER' => 'your-database-username',
-            'DB_PASSWORD' => 'your-database-password',
+            'DB_HOST'      => 'your-database-host',
+            'DB_NAME'      => 'your-database-name',
+            'DB_USER'      => 'your-database-username',
+            'DB_PASSWORD'  => 'your-database-password',
             'TABLE_PREFIX' => 'your-table-prefix'
         );
 
-        $root = static::getRoot();
+        $root         = static::getRoot();
         $databaseFile = $root . 'App' . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'Database.php';
 
         foreach ($consts as $key => $value) {
             $currentFile = file_get_contents($databaseFile);
 
-            $regex = "/const $key = .*;/";
+            $regex       = "/const $key = .*;/";
             $replacement = "const $key = '$value';";
 
             if (preg_match("/\@var\sstring\sDefault:\s'$value'/", $currentFile)) {
@@ -298,24 +294,24 @@ class Files
      */
     public static function writeDatabaseConfig(array $data)
     {
-        if (Arrays::isAssociative($data)) {
-            $root = static::getRoot();
+        if (is_array($data)) {
+            $root         = static::getRoot();
             $databaseFile = $root . 'App' . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'Database.php';
 
             $currentFile = file_get_contents($databaseFile);
 
             if (strpos($currentFile, 'your-') !== false) {
                 $oldToNew = array(
-                    'host' => "DB_HOST",
-                    'name' => "DB_NAME",
-                    'user' => "DB_USER",
+                    'host'     => "DB_HOST",
+                    'name'     => "DB_NAME",
+                    'user'     => "DB_USER",
                     'password' => "DB_PASSWORD",
-                    'prefix' => "TABLE_PREFIX"
+                    'prefix'   => "TABLE_PREFIX"
                 );
 
                 foreach ($oldToNew as $key => $value) {
                     if (isset($data[$key])) {
-                        $regex = "/$value = .*;/";
+                        $regex       = "/$value = .*;/";
                         $replacement = "$value = '$data[$key]';";
 
                         $currentFile = preg_replace($regex, $replacement, $currentFile);

@@ -61,11 +61,8 @@ abstract class Model
         static $db = null;
         if ($db === null) {
 
-            if ($only_connection) {
-                $dsn = 'mysql:host=' . Database::DB_HOST . ';charset=utf8';
-            } else {
-                $dsn = 'mysql:host=' . Database::DB_HOST . ';dbname=' . Database::DB_NAME . ';charset=utf8';
-            }
+            $dsn = 'mysql:host=' . Database::DB_HOST . ';dbname=' . Database::DB_NAME . ';charset=utf8';
+            $db  = new PDO($dsn, Database::DB_USER, Database::DB_PASSWORD);
 
             try {
                 /**
@@ -126,12 +123,12 @@ abstract class Model
 
         if (array_key_exists("where", $conditions)) {
             $sql .= ' WHERE ';
-            $i = 0;
+            $i   = 0;
 
             foreach ($conditions['where'] as $key => $value) {
-                $pre = ($i > 0) ? ' AND ' : '';
+                $pre      = ($i > 0) ? ' AND ' : '';
                 $operator = (is_array($operator)) ? $operator[$i] : $operator;
-                $sql .= $pre . $key . " " . $operator . "'" . $value . "'";
+                $sql      .= $pre . $key . " " . $operator . "'" . $value . "'";
 
                 $i++;
             }
@@ -144,10 +141,10 @@ abstract class Model
             $i = 0;
 
             foreach ($conditions['where_or'] as $key => $value) {
-                $key = preg_replace('/_or/', '', $key);
-                $pre = ($i > 0) ? ' OR ' : '';
+                $key      = preg_replace('/_or/', '', $key);
+                $pre      = ($i > 0) ? ' OR ' : '';
                 $operator = (is_array($operator)) ? $operator[$i] : $operator;
-                $sql .= $pre . $key . " " . $operator . "'" . $value . "'";
+                $sql      .= $pre . $key . " " . $operator . "'" . $value . "'";
 
                 $i++;
             }
@@ -167,7 +164,7 @@ abstract class Model
             $sql .= ' GROUP BY ' . $conditions['group_by'];
         }
 
-        $db = static::getDB();
+        $db    = static::getDB();
         $query = $db->prepare($sql);
         $query->execute();
 
@@ -205,11 +202,11 @@ abstract class Model
 
         if (!empty($data) && is_array($data)) {
             $columns = '';
-            $values = '';
-            $i = 0;
+            $values  = '';
+            $i       = 0;
 
             if (!array_key_exists('created', $data)) {
-                $date = new DateTime();
+                $date            = new DateTime();
                 $data['created'] = $date->getTimestamp();
             }
 
@@ -218,10 +215,10 @@ abstract class Model
             }
 
             $columnString = implode(',', array_keys($data));
-            $valueString = ":" . implode(',:', array_keys($data));
-            $sql = "INSERT INTO " . $table . " (" . $columnString . ") VALUES (" . $valueString . ")";
+            $valueString  = ":" . implode(',:', array_keys($data));
+            $sql          = "INSERT INTO " . $table . " (" . $columnString . ") VALUES (" . $valueString . ")";
 
-            $db = static::getDB();
+            $db    = static::getDB();
             $query = $db->prepare($sql);
 
             foreach ($data as $key => $val) {
@@ -254,16 +251,16 @@ abstract class Model
 
         if (!empty($data) && is_array($data)) {
             $colvalSet = '';
-            $whereSql = '';
-            $i = 0;
+            $whereSql  = '';
+            $i         = 0;
 
             if (!array_key_exists('modified', $data)) {
-                $date = new DateTime();
+                $date             = new DateTime();
                 $data['modified'] = $date->getTimestamp();
             }
 
             foreach ($data as $key => $val) {
-                $pre = ($i > 0) ? ', ' : '';
+                $pre       = ($i > 0) ? ', ' : '';
                 $colvalSet .= $pre . $key . "='" . $val . "'";
 
                 $i++;
@@ -271,7 +268,7 @@ abstract class Model
 
             if (!empty($conditions) && is_array($conditions)) {
                 $whereSql .= ' WHERE ';
-                $i = 0;
+                $i        = 0;
 
                 foreach ($conditions as $key => $value) {
                     $pre = ($i > 0) ? ' AND ' : '';
@@ -283,9 +280,9 @@ abstract class Model
                 }
             }
 
-            $sql = "UPDATE " . $table . " SET " . $colvalSet . $whereSql;
-            $db = static::getDB();
-            $query = $db->prepare($sql);
+            $sql    = "UPDATE " . $table . " SET " . $colvalSet . $whereSql;
+            $db     = static::getDB();
+            $query  = $db->prepare($sql);
             $update = $query->execute();
 
             if ($update) {
@@ -310,18 +307,18 @@ abstract class Model
         $whereSql = '';
         if (!empty($conditions) && is_array($conditions)) {
             $whereSql .= ' WHERE ';
-            $i = 0;
+            $i        = 0;
 
             foreach ($conditions as $key => $value) {
-                $pre = ($i > 0) ? ' AND ' : '';
+                $pre      = ($i > 0) ? ' AND ' : '';
                 $whereSql .= $pre . $key . " = '" . $value . "'";
 
                 $i++;
             }
         }
 
-        $sql = "DELETE FROM " . $table . $whereSql;
-        $db = static::getDB();
+        $sql    = "DELETE FROM " . $table . $whereSql;
+        $db     = static::getDB();
         $delete = $db->exec($sql);
 
         if ($delete) {
@@ -338,16 +335,16 @@ abstract class Model
     public static function isDefaultDatabaseConfig()
     {
         $consts = array(
-            'DB_HOST' => 'your-database-host',
-            'DB_NAME' => 'your-database-name',
-            'DB_USER' => 'your-database-username',
-            'DB_PASSWORD' => 'your-database-password',
+            'DB_HOST'      => 'your-database-host',
+            'DB_NAME'      => 'your-database-name',
+            'DB_USER'      => 'your-database-username',
+            'DB_PASSWORD'  => 'your-database-password',
             'TABLE_PREFIX' => 'your-table-prefix'
         );
 
-        $root = Files::getRoot();
+        $root         = Files::getRoot();
         $databaseFile = $root . 'App' . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'Database.php';
-        $currentFile = file_get_contents($databaseFile);
+        $currentFile  = file_get_contents($databaseFile);
 
         foreach ($consts as $key => $value) {
             if (preg_match("/const $key = '$value';/", $currentFile)) {
