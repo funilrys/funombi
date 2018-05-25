@@ -105,9 +105,13 @@ abstract class Model
      * @param array $conditions  Conditions : select, where, where_or, where_operator, order_by, group_by, limit, return_type
      * @return boolean Data from database
      */
-    protected static function getRows(string $table, array $conditions = array())
+    protected static function getRows(string $table, array $conditions = array(), bool $debug = false)
     {
         $table = static::addPrefixToTable($table);
+
+        if ($debug) {
+            $debugInfo = array();
+        }
 
         /**
          * Check if the key exist so we use the defined operator instead of '='
@@ -178,12 +182,21 @@ abstract class Model
             }
         } elseif ($query->rowCount() > 0) {
             $data = $query->fetchAll();
+        } else {
+            $data = false;
         }
 
-        if (!empty($data)) {
-            return $data;
+        if ($debug) {
+            $debugInfo = array_merge($debugInfo, array(
+                'statement'      => $sql,
+                'extracted_data' => $data
+                    )
+            );
+            
+            \Kint::dump($debugInfo);
         }
-        return false;
+
+        return $data;
     }
 
     /**
