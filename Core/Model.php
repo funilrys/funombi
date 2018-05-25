@@ -52,32 +52,29 @@ abstract class Model
      * Get and initiate the PDO database connection.
      * 
      * @staticvar PDO $db
-     * @param bool $only_connection False : we connect and get a database. True : we only connect.
      * 
      * @return PDO
      */
-    protected static function getDB(bool $only_connection = false)
+    protected static function getDB()
     {
         static $db = null;
+
         if ($db === null) {
 
             $dsn = 'mysql:host=' . Database::DB_HOST . ';dbname=' . Database::DB_NAME . ';charset=utf8';
             $db  = new PDO($dsn, Database::DB_USER, Database::DB_PASSWORD);
 
-            try {
-                /**
-                 * Throw an Exception when an error occurs
-                 */
-                $options = array(
-                    PDO::ATTR_ERRMODE,
-                    PDO::ERRMODE_EXCEPTION
-                );
+            /**
+             * Throw an Exception when an error occurs
+             */
+            $options = array(
+                PDO::ATTR_ERRMODE,
+                PDO::ERRMODE_EXCEPTION
+            );
 
-                $db = new PDO($dsn, Database::DB_USER, Database::DB_PASSWORD, $options);
-            } catch (\PDOException $ex) {
-                return $ex->getCode();
-            }
+            $db = new PDO($dsn, Database::DB_USER, Database::DB_PASSWORD, $options);
         }
+
         return $db;
     }
 
