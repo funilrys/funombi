@@ -38,6 +38,18 @@ if (is_file($autoloader)) {
 }
 
 /**
+ * The following is for safety reason. Indeed, to debug we will exclusively use
+ * Kint as it helps a lot.
+ * 
+ * The following disable the loading of Kint when we are in production mode.
+ */
+if (App\Config\Errors::SHOW_ERRORS) {
+    \Kint::$enabled_mode = true;
+} else {
+    \Kint::$enabled_mode = false;
+}
+
+/**
  * Error and Exception handling
  */
 error_reporting(E_ALL);

@@ -5,7 +5,8 @@
         "vendor-dir": "public/vendor"
     },
     "require": {
-        "twig/twig": "~2.0"
+        "twig/twig": "~2.0",
+        "kint-php/kint": "^2.2"
     },
     "require-dev": {
         "atoum/atoum": "^3.0",
