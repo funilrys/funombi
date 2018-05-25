@@ -115,7 +115,7 @@ abstract class Model
         /**
          * Check if the key exist so we use the defined operator instead of '='
          */
-        $operator = (array_key_exists('where_operator', $conditions)) ? $conditions['where_operator'] : '=';
+        $operators = (array_key_exists('where_operator', $conditions)) ? $conditions['where_operator'] : '=';
 
         $sql = 'SELECT ';
         $sql .= array_key_exists("select", $conditions) ? $conditions['select'] : '*';
@@ -127,8 +127,8 @@ abstract class Model
 
             foreach ($conditions['where'] as $key => $value) {
                 $pre      = ($i > 0) ? ' AND ' : '';
-                $operator = (is_array($operator)) ? $operator[$i] : $operator;
-                $sql      .= $pre . $key . " " . $operator . "'" . $value . "'";
+                $operator = (is_array($operators)) ? $operators[$i] : $operators;
+                $sql      .= $pre . "(" . $key . " " . $operator . "'" . $value . "')";
 
                 $i++;
             }
@@ -143,11 +143,15 @@ abstract class Model
             foreach ($conditions['where_or'] as $key => $value) {
                 $key      = preg_replace('/_or/', '', $key);
                 $pre      = ($i > 0) ? ' OR ' : '';
-                $operator = (is_array($operator)) ? $operator[$i] : $operator;
-                $sql      .= $pre . $key . " " . $operator . "'" . $value . "'";
+                $operator = (is_array($operators)) ? $operators[$i] : $operators;
+                $sql      .= $pre . "(" . $key . " " . $operator . "'" . $value . "')";
 
                 $i++;
             }
+        }
+
+        if (array_key_exists("group_by", $conditions)) {
+            $sql .= ' GROUP BY ' . $conditions['group_by'];
         }
 
         if (array_key_exists("order_by", $conditions)) {
@@ -158,10 +162,6 @@ abstract class Model
             $sql .= ' LIMIT ' . $conditions['start'] . ',' . $conditions['limit'];
         } elseif (!array_key_exists("start", $conditions) && array_key_exists("limit", $conditions)) {
             $sql .= ' LIMIT ' . $conditions['limit'];
-        }
-
-        if (array_key_exists("group_by", $conditions)) {
-            $sql .= ' GROUP BY ' . $conditions['group_by'];
         }
 
         $db    = static::getDB();
@@ -244,7 +244,7 @@ abstract class Model
      * @param array|string $operator Sign of WHERE statement
      * @return booleanean
      */
-    protected static function update(string $table, array $data, array $conditions, $operator = '=')
+    protected static function update(string $table, array $data, array $conditions, $operators = '=')
     {
         $table = static::addPrefixToTable($table);
 
@@ -273,7 +273,7 @@ abstract class Model
                 foreach ($conditions as $key => $value) {
                     $pre = ($i > 0) ? ' AND ' : '';
 
-                    $operator = (is_array($operator)) ? $operator[$i] : $operator;
+                    $operator = (is_array($operators)) ? $operators[$i] : $operators;
                     $whereSql .= $pre . $key . " " . $operator . "'" . $value . "'";
 
                     $i++;
