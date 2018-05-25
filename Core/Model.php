@@ -101,9 +101,10 @@ abstract class Model
     /**
      * Return rows from the database based on the conditions.
      * 
-     * @param string $table Name of the table
-     * @param array $conditions  Conditions : select, where, where_or, where_operator, order_by, group_by, limit, return_type
-     * @return boolean Data from database
+     * @param string $table  Name of the table
+     * @param array $conditions Conditions : select, where, where_or, where_operator, order_by, group_by, limit, return_type
+     * @param bool $debug  True: Show debug on screen | False: Show nothing.
+     * @return boolean  Data from database
      */
     protected static function getRows(string $table, array $conditions = array(), bool $debug = false)
     {
@@ -192,7 +193,7 @@ abstract class Model
                 'extracted_data' => $data
                     )
             );
-            
+
             \Kint::dump($debugInfo);
         }
 
