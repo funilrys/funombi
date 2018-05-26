@@ -27,7 +27,7 @@
 # The following update the documentation.
 updateDocs() {
     rm -fR ${PWD}/docs/*
-    /usr/bin/php /usr/bin/phpdoc run --ansi --progressbar --directory . --target ${PWD}/docs --title funombi --ignore ${PWD}/public/vendor/
+    /usr/bin/php bin/phpDocumentor.phar run --ansi --progressbar --directory . --target ${PWD}/docs --title funombi --ignore ${PWD}/public/vendor/
     git add ${PWD}/docs && git commit -S -m 'Update of the documentation' && git push
 }
 
