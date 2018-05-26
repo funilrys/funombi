@@ -77,9 +77,6 @@ class Controller
 
         if (method_exists($this, $method)) {
 
-            Files::checkVitalDirectories();
-            Session::startSession();
-
             if ($this->before() !== false) {
                 call_user_func_array([$this, $method], $args);
                 $this->after();
@@ -96,7 +93,8 @@ class Controller
      */
     protected function before()
     {
-        
+        Files::checkVitalDirectories();
+        Session::startSession();
     }
 
     /**
