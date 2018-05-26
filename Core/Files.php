@@ -294,7 +294,7 @@ class Files
      */
     public static function writeDatabaseConfig(array $data)
     {
-        if (is_array($data)) {
+        if (Arrays::isAssociative($data)) {
             $root         = static::getRoot();
             $databaseFile = $root . 'App' . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'Database.php';
 
