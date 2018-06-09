@@ -46,14 +46,14 @@ class Sanitize
     /**
      * Used to filter/sanitize 'post' ($_POST) and get ($_GET)
      * 
-     * @note if variable match 'mail' we `FILTER_SANITIZE_EMAIL` and not `FILTER_SANITIZE_STRING`.
+     * @note if variable match 'mail' we run static::mail()
      * 
-     * @param string $option 'get' || 'post'
-     * @param string $toGet If specified return the value of the desired index
+     * @param string $option 'get' || 'post' the type of data to filter.
+     * @param string|array $toGet If specified return the value of the desired index
      * 
      * @return boolean|string Sanitized $_POST or $_GET
      */
-    public static function filter(string $option, string $toGet = null)
+    public static function filter(string $option, $toGet = null)
     {
         if ($option === 'get' && isset($_GET)) {
             $data = $_GET;
@@ -65,17 +65,17 @@ class Sanitize
 
         foreach ($data as $key => $value) {
             if (preg_match("/mail/mi", $key)) {
-                $sanitized = filter_var($value, FILTER_SANITIZE_EMAIL);
-                $value     = filter_var($sanitized, FILTER_VALIDATE_EMAIL);
+                $value = static::email($value);
             } else {
-                $value = filter_var($value, FILTER_SANITIZE_STRING);
+                $value = static::data($value);
             }
+
             $data[$key] = $value;
         }
 
         if ($toGet !== null && !is_array($toGet)) {
             return $data[$toGet];
-        } elseif (is_array($toGet) && !Arrays::isAssociative($toGet)) {
+        } elseif (!Arrays::isAssociative($toGet)) {
             $result = array();
 
             foreach ($toGet as $value) {
@@ -84,6 +84,31 @@ class Sanitize
             return $result;
         }
         return $data;
+    }
+
+    /**
+     * Sanitize a given email.
+     * 
+     * @param string $email the email to sanitize
+     * 
+     * @return string
+     */
+    public static function email(string $email)
+    {
+        $sanitized = filter_var($email, FILTER_SANITIZE_EMAIL);
+        return filter_var($sanitized, FILTER_VALIDATE_EMAIL);
+    }
+
+    /**
+     * Sanitize a given string.
+     * 
+     * @param string $data the data to sanitize
+     * 
+     * @return string
+     */
+    public static function data(string $data)
+    {
+        return filter_var($data, FILTER_SANITIZE_STRING);
     }
 
 }
