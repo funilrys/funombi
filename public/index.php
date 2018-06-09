@@ -71,4 +71,6 @@ $router->add('502', ['controller' => 'Errors', 'action' => 'badGateway']);
 $router->add('503', ['controller' => 'Errors', 'action' => 'serviceUnavailable']);
 $router->add('504', ['controller' => 'Errors', 'action' => 'gatewayTimeout']);
 
+$router->add('505/', ['controller' => 'Errors', 'action' => 'gatewayTimeout']);
+
 $router->dispatch($_SERVER['QUERY_STRING']);
