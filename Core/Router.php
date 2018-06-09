@@ -63,7 +63,6 @@ class Router
      * @param string $route The route excepted URL
      * @param array $params Parameters (controller, action, etc.)
      * @param bool $done If true we do not recheck at the end if it ends with `/` or not.
-     * 
      * @return void
      */
     public function add(string $route, array $params = [], bool $done = false)

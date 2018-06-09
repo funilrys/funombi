@@ -50,7 +50,6 @@ class Sanitize
      * 
      * @param string $option 'get' || 'post' the type of data to filter.
      * @param string|array $toGet If specified return the value of the desired index
-     * 
      * @return boolean|string Sanitized $_POST or $_GET
      */
     public static function filter(string $option, $toGet = null)
@@ -90,7 +89,6 @@ class Sanitize
      * Sanitize a given email.
      * 
      * @param string $email the email to sanitize
-     * 
      * @return string
      */
     public static function email(string $email)
@@ -103,7 +101,6 @@ class Sanitize
      * Sanitize a given string.
      * 
      * @param string $data the data to sanitize
-     * 
      * @return string
      */
     public static function data(string $data)

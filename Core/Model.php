@@ -52,7 +52,6 @@ abstract class Model
      * Get and initiate the PDO database connection.
      * 
      * @staticvar PDO $db
-     * 
      * @return PDO
      */
     protected static function getDB()
@@ -371,7 +370,6 @@ abstract class Model
      * @param string $string The initial string.
      * @param string $substring The substring to check.
      * @param bool $strict If false we check with case insensitive.
-     * 
      * @return boolean
      */
     public static function startsWith(string $string, string $substring, bool $strict = true)
@@ -389,7 +387,6 @@ abstract class Model
      * @param string $string The initial string.
      * @param string $substring The substring to check.
      * @param bool $strict If false we check with case insensitive.
-     * 
      * @return boolean
      */
     public static function endsWith(string $string, string $substring, bool $strict = true)
@@ -409,7 +406,6 @@ abstract class Model
      * @param string $string The initial string.
      * @param string $substring THe substring to check.
      * @param bool $strict If false we check with case insensitive.
-     * 
      * @return boolean
      */
     public static function isPresent(string $string, string $substring, bool $strict = true)

@@ -109,8 +109,9 @@ class Session
      * Initiate session variable based on an associative array.
      * 
      * @todo Format example
+     * 
      * @param array $toCreate Variable to create. Format: array('hello' => 'world','world' => 'hello') === $_SESSION['hello'] = 'world'; $_SESSION['world'] = 'hello'
-     * @return void
+     * @return boolean
      */
     public static function initSessionVariable(array $toCreate)
     {
@@ -118,13 +119,18 @@ class Session
             foreach ($toCreate as $key => $value) {
                 $_SESSION[$key] = $value;
             }
+            
+            return true;
         }
+        
+        return false;
     }
 
     /**
      * Check if a session variable is set.
      * 
      * @todo Format example 
+     * 
      * @param array $data The array which represent the data to check
      * @return boolean
      */
@@ -164,5 +170,6 @@ class Session
         }
         return $results;
     }
+
 
 }
