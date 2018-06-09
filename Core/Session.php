@@ -53,16 +53,18 @@ class Session
      */
     public static function startSession()
     {
-        $cookieParams = session_get_cookie_params();
-        session_set_cookie_params($cookieParams['lifetime'], $cookieParams['path'], $cookieParams['domain'], Sessions::SECURED_COOKIES, Sessions::HTTP_ONLY);
+        if (session_status() == PHP_SESSION_NONE && !headers_sent()) {
+            $cookieParams = session_get_cookie_params();
+            session_set_cookie_params($cookieParams['lifetime'], $cookieParams['path'], $cookieParams['domain'], Sessions::SECURED_COOKIES, Sessions::HTTP_ONLY);
 
-        session_name(Sessions::SESSION_NAME);
+            session_name(Sessions::SESSION_NAME);
 
-        if (static::isSessionStarted() === false) {
-            session_start();
-            session_regenerate_id();
-        } else {
-            session_regenerate_id();
+            if (static::isSessionStarted() === false) {
+                session_start();
+                session_regenerate_id();
+            } else {
+                session_regenerate_id();
+            }
         }
     }
 
