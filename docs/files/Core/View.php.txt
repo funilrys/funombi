@@ -66,6 +66,38 @@ class View
     }
 
     /**
+     * This method provide the logic behind the asset() function under Twig.
+     * 
+     * @return \Twig_Function
+     */
+    protected static function twigAsset()
+    {
+        $assetFunction = new \Twig_Function('asset', function ($asset, $createHTMLObject = false) {
+            $dir  = Files::matchExtensionToFileSystem($asset);
+            $file = $dir . '/' . $asset;
+            Files::createLinkToFile($file, $dir, $createHTMLObject);
+        });
+
+        return $assetFunction;
+    }
+
+    /**
+     * This method provide the logic behind the vendor() function under Twig.
+     * 
+     * @return \Twig_Function
+     */
+    protected static function twigVendor()
+    {
+        $vendorFunction = new \Twig_Function('vendor', function ($vendor, $createHTMLObject = false) {
+            $file = 'vendor/' . $vendor;
+            $type = Files::matchExtensionToFileSystem($vendor);
+            Files::createLinkToFile($file, $type, $createHTMLObject);
+        });
+
+        return $vendorFunction;
+    }
+
+    /**
      * Render a view template using Twig.
      * 
      * @note If you want to add globals or variables to Twig please report to <b>\App\Models\Twig*.php</b>
@@ -80,18 +112,6 @@ class View
         if ($twig === null) {
             $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/App/Views');
             $twig   = new \Twig_Environment($loader);
-
-            $assetFunction = new \Twig_Function('asset', function ($asset, $createHTMLObject = false) {
-                $dir  = Files::matchExtensionToFileSystem($asset);
-                $file = $dir . '/' . $asset;
-                Files::createLinkToFile($file, $dir, $createHTMLObject);
-            });
-
-            $vendorFunction = new \Twig_Function('vendor', function ($vendor, $createHTMLObject = false) {
-                $file = 'vendor/' . $vendor;
-                $type = Files::matchExtensionToFileSystem($vendor);
-                Files::createLinkToFile($file, $type, $createHTMLObject);
-            });
 
             if (class_exists('\App\Models\TwigFunctions')) {
                 $twigFunctions = new \App\Models\TwigFunctions();
@@ -115,8 +135,8 @@ class View
                 }
             }
 
-            $twig->addFunction($assetFunction);
-            $twig->addFunction($vendorFunction);
+            $twig->addFunction(static::twigAsset());
+            $twig->addFunction(static::twigVendor());
 
             $twig->addGlobal('current_template', 'themes/' . \App\Config\Locations::THEME_NAME);
         }

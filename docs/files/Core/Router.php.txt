@@ -59,26 +59,33 @@ class Router
 
     /**
      * Add a route to the routing table.
-     *
-     * @param string $route  The route excepted URL
-     * @param array  $params Parameters (controller, action, etc.)
+     * 
+     * @param string $route The route excepted URL
+     * @param array $params Parameters (controller, action, etc.)
+     * @param bool $done If true we do not recheck at the end if it ends with `/` or not.
      * @return void
      */
-    public function add(string $route, array $params = [])
+    public function add(string $route, array $params = [], bool $done = false)
     {
         // Convert the route to a regular expression: escape forward slashes
-        $route = preg_replace('/\//', '\\/', $route);
+        $formatedRoute = preg_replace('/\//', '\\/', $route);
 
         // Convert variables e.g. {controller}
-        $route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
+        $formatedRoute = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $formatedRoute);
 
         // Convert variables with custom regular expressions e.g. {id:\d+}
-        $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
+        $formatedRoute = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $formatedRoute);
 
         // Add start and end delimiters, and case insensitive flag
-        $route = '/^' . $route . '$/i';
+        $formatedRoute = '/^' . $formatedRoute . '$/i';
 
-        $this->routes[$route] = $params;
+        $this->routes[$formatedRoute] = $params;
+
+        if (!$done && !Model::endsWith($route, "/")) {
+            $this->add($route . "/", $params, true);
+        } elseif (!$done) {
+            $this->add(rtrim($route, "/"), $params, true);
+        }
     }
 
     /**

@@ -52,7 +52,6 @@ abstract class Model
      * Get and initiate the PDO database connection.
      * 
      * @staticvar PDO $db
-     * 
      * @return PDO
      */
     protected static function getDB()
@@ -363,6 +362,59 @@ abstract class Model
             }
         }
         return false;
+    }
+
+    /**
+     * Check if a string starts with substring.
+     * 
+     * @param string $string The initial string.
+     * @param string $substring The substring to check.
+     * @param bool $strict If false we check with case insensitive.
+     * @return boolean
+     */
+    public static function startsWith(string $string, string $substring, bool $strict = true)
+    {
+        if ($strict) {
+            return strpos($string, $substring, 0) === 0;
+        }
+
+        return stripos($string, $substring, 0) === 0;
+    }
+
+    /**
+     * Check if the string ends with substing.
+     * 
+     * @param string $string The initial string.
+     * @param string $substring The substring to check.
+     * @param bool $strict If false we check with case insensitive.
+     * @return boolean
+     */
+    public static function endsWith(string $string, string $substring, bool $strict = true)
+    {
+        $position = strlen($string) - strlen($substring);
+
+        if ($strict) {
+            return strrpos($string, $substring, 0) === $position;
+        }
+
+        return strripos($string, $substring, 0) === $position;
+    }
+
+    /**
+     * Check if the substring is present into string.
+     * 
+     * @param string $string The initial string.
+     * @param string $substring THe substring to check.
+     * @param bool $strict If false we check with case insensitive.
+     * @return boolean
+     */
+    public static function isPresent(string $string, string $substring, bool $strict = true)
+    {
+        if ($strict) {
+            return strpos($string, $substring, 0) !== false;
+        }
+
+        return stripos($string, $substring, 0) !== false;
     }
 
 }
