@@ -101,7 +101,7 @@ abstract class Model
      * Return rows from the database based on the conditions.
      * 
      * @param string $table  Name of the table
-     * @param array $conditions Conditions : select, where, where_or, where_operator, order_by, group_by, limit, return_type
+     * @param array $conditions Conditions : select,advanced_where,  where, where_or, where_operator, order_by, group_by, limit, return_type
      * @param bool $debug  True: Show debug on screen | False: Show nothing.
      * @return boolean  Data from database
      */
@@ -122,20 +122,41 @@ abstract class Model
         $sql .= array_key_exists("select", $conditions) ? $conditions['select'] : '*';
         $sql .= ' FROM ' . $table;
 
-        if (array_key_exists("where", $conditions)) {
+        if (array_key_exists("advanced_where", $conditions)) {
+            $sql   .= ' WHERE ';
+            $i     = 0;
+            $logic = "";
+
+
+            foreach ($conditions['advances_where']['data'] as $key => $value) {
+                $key = preg_replace('/___.*/', '', $key);
+
+                if ($i > 0) {
+                    $logic = is_array($conditions['advanced_where']['logic']) ? ' ' . $conditions['advanced_where']['logic'][$i - 1] . ' ' : ' AND ';
+                }
+
+                $operator = is_array($operators) ? $operators[$i] : $operators;
+
+                if (preg_match('/[a-z]+\.[a-z]+', $value)) {
+                    $sql .= "$logic($key $operator '$value')";
+                }else {
+                    $sql .= "$logic($key $operator $value)";
+                }
+
+                $i++;
+            }
+        } elseif (array_key_exists("where", $conditions)) {
             $sql .= ' WHERE ';
             $i   = 0;
 
             foreach ($conditions['where'] as $key => $value) {
-                $pre      = ($i > 0) ? ' AND ' : '';
+                $logic    = ($i > 0) ? ' AND ' : '';
                 $operator = (is_array($operators)) ? $operators[$i] : $operators;
-                $sql      .= $pre . "(" . $key . " " . $operator . "'" . $value . "')";
+                $sql      .= "$logic($key $operator '$value')";
 
                 $i++;
             }
-        }
-
-        if (array_key_exists("where_or", $conditions)) {
+        } elseif (array_key_exists("where_or", $conditions)) {
             if (!array_key_exists("where", $conditions)) {
                 $sql .= ' WHERE ';
             }
@@ -143,9 +164,9 @@ abstract class Model
 
             foreach ($conditions['where_or'] as $key => $value) {
                 $key      = preg_replace('/_or/', '', $key);
-                $pre      = ($i > 0) ? ' OR ' : '';
+                $logic    = ($i > 0) ? ' OR ' : '';
                 $operator = (is_array($operators)) ? $operators[$i] : $operators;
-                $sql      .= $pre . "(" . $key . " " . $operator . "'" . $value . "')";
+                $sql      .= "$logic($key $operator '$value')";
 
                 $i++;
             }
@@ -169,7 +190,7 @@ abstract class Model
         $query = $db->prepare($sql);
         $query->execute();
 
-        if (array_key_exists("return_type", $conditions) && $conditions['return_type'] != 'all') {
+        if (array_key_exists("return_type", $conditions)) {
             switch ($conditions['return_type']) {
                 case 'count':
                     $data = $query->rowCount();
@@ -177,13 +198,13 @@ abstract class Model
                 case 'single':
                     $data = $query->fetch(PDO::FETCH_ASSOC);
                     break;
+                case 'all':
+                    $data = ($query->rowCount() > 0) ? $query->fetchAll() : false;
                 default:
                     $data = '';
             }
-        } elseif ($query->rowCount() > 0) {
-            $data = $query->fetchAll();
         } else {
-            $data = false;
+            throw new Exception("No 'return_type' set.");
         }
 
         if ($debug) {
