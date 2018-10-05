@@ -123,4 +123,25 @@ class Arrays
         return (is_array($array) && isset($array[$index]));
     }
 
+    /**
+     * Recurcively check if the given keys are present into the given array.
+     * 
+     * @param array $keys The list of key to check.
+     * @param type $array The original array.
+     * @return boolean
+     */
+    public static function areKeysPresent(array $keys, $array)
+    {
+        if (is_array($array)) {
+            foreach ($keys as $key) {
+                if (!static::isKeyPresent($key, $array)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        return false;
+    }
+
 }
