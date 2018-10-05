@@ -144,4 +144,27 @@ class Arrays
         return false;
     }
 
+    /**
+     * Unset the given elements from the given arrays.
+     * 
+     * @param array|string $toUnset
+     * @param array $array
+     */
+    public static function unsetElements($toUnset, &$array)
+    {
+        if (is_array($array)) {
+            if (static::isAssociative($array)) {
+                if (is_array($toUnset)) {
+                    foreach ($toUnset as $key) {
+                        static::unsetElements($key, $array);
+                    }
+                } elseif (is_string($toUnset)) {
+                    if (static::isKeyPresent($toUnset, $array)) {
+                        unset($array[$toUnset]);
+                    }
+                }
+            }
+        }
+    }
+
 }
