@@ -117,19 +117,19 @@ class Controller
          * Indeed, this variable can we used from every controller.
          */
         $this->siteBase = SessionConfig::getFullScheme() . $_SERVER['HTTP_HOST'] . '/';
-        
+
         $this->referer = $this->siteBase;
-        
-        if (Arrays::isKeyPresent('HTTP_REFERER', $_SERVER)){
+
+        if (Arrays::isKeyPresent('HTTP_REFERER', $_SERVER)) {
             $this->referer = $_SERVER['HTTP_REFERER'];
         }
-        
-        if(!empty($_POST)){
+
+        if (!empty($_POST)) {
             $_POST = Sanitize::filter('post');
         }
-        
-        if (!empty($_GET)){
-            $_GET  = Sanitize::filter('get');
+
+        if (!empty($_GET)) {
+            $_GET = Sanitize::filter('get');
         }
     }
 
