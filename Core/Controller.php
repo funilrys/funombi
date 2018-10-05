@@ -35,6 +35,8 @@
 
 namespace Core;
 
+use App\Config\Sessions as SessionConfig;
+
 /**
  * Main logic behind Controller call and usage.
  *
@@ -50,6 +52,19 @@ class Controller
     protected $route_params = [];
 
     /**
+     * Base of the server.
+     * @var string
+     */
+    protected $siteBase = "";
+
+    /**
+     * URL we are redirecting once we are done witht the communication with the
+     * Model.
+     * @var string
+     */
+    protected $referer = "";
+
+    /**
      * Class constructor.w
      * 
      * @param array $route_params Parameters from the route
@@ -57,7 +72,7 @@ class Controller
      */
     public function __construct(array $route_params)
     {
-        $this->route_params = $route_params;
+        $this->route_params = Sanitize::filter($route_params);
     }
 
     /**
@@ -95,6 +110,27 @@ class Controller
     {
         Files::checkVitalDirectories();
         Session::startSession();
+
+        /**
+         * We initiate the $siteBase variable.
+         * 
+         * Indeed, this variable can we used from every controller.
+         */
+        $this->siteBase = SessionConfig::getFullScheme() . $_SERVER['HTTP_HOST'] . '/';
+        
+        $this->referer = $this->siteBase;
+        
+        if (Arrays::isKeyPresent('HTTP_REFERER', $_SERVER)){
+            $this->referer = $_SERVER['HTTP_REFERER'];
+        }
+        
+        if(!empty($_POST)){
+            $_POST = Sanitize::filter('post');
+        }
+        
+        if (!empty($_GET)){
+            $_GET  = Sanitize::filter('get');
+        }
     }
 
     /**
