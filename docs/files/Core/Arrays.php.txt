@@ -51,13 +51,16 @@ class Arrays
      * @param array $array The array to check.
      * @return boolean
      */
-    public static function isAssociative(array $array)
+    public static function isAssociative($array)
     {
-        if (array_values($array) !== $array) {
-            return true;
-        } else {
-            return false;
+        if (is_array($array)) {
+            if (array_values($array) !== $array) {
+                return true;
+            } else {
+                return false;
+            }
         }
+        return false;
     }
 
     /**
@@ -105,6 +108,63 @@ class Arrays
         $result = [];
         Helper::flattenKeyRecursively($array, $result, '');
         return $result;
+    }
+
+    /**
+     * Check if a given key is present into the array.
+     * 
+     * 
+     * @param string $index The index to check.
+     * @param type $array The array to check
+     * @return boolean
+     */
+    public static function isKeyPresent(string $index, $array)
+    {
+        return (is_array($array) && isset($array[$index]));
+    }
+
+    /**
+     * Recurcively check if the given keys are present into the given array.
+     * 
+     * @param array $keys The list of key to check.
+     * @param type $array The original array.
+     * @return boolean
+     */
+    public static function areKeysPresent(array $keys, $array)
+    {
+        if (is_array($array)) {
+            foreach ($keys as $key) {
+                if (!static::isKeyPresent($key, $array)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Unset the given elements from the given arrays.
+     * 
+     * @param array|string $toUnset
+     * @param array $array
+     */
+    public static function unsetElements($toUnset, &$array)
+    {
+        if (is_array($array)) {
+            if (static::isAssociative($array)) {
+                if (is_array($toUnset)) {
+                    foreach ($toUnset as $key) {
+                        static::unsetElements($key, $array);
+                    }
+                } elseif (is_string($toUnset)) {
+                    if (static::isKeyPresent($toUnset, $array)) {
+                        unset($array[$toUnset]);
+                    }
+                }
+            }
+        }
     }
 
 }

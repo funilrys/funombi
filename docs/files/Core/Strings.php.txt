@@ -61,6 +61,7 @@ class Strings
     /**
      * Check if the string starts with substring.
      * 
+     * @param string $string The initial string.
      * @param string $substring The substring to check.
      * @param bool $strict If false we check with case insensitive.
      * @return boolean

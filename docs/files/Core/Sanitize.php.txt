@@ -46,25 +46,35 @@ class Sanitize
     /**
      * Used to filter/sanitize 'post' ($_POST) and get ($_GET)
      * 
-     * @note if variable match 'mail' we run static::mail()
+     * @note if variable match 'mail' we run static::mail().
      * 
      * @param string $option 'get' || 'post' the type of data to filter.
-     * @param string|array $toGet If specified return the value of the desired index
-     * @return boolean|string Sanitized $_POST or $_GET
+     * @param string|array $toGet If specified return the value of the desired index.
+     * @return boolean|string Sanitized $_POST or $_GET.
      */
     public static function filter(string $option, $toGet = null)
     {
-        if ($option === 'get' && isset($_GET)) {
+        if ($option === 'get' && !empty($_GET)) {
             $data = $_GET;
-        } elseif ($option === 'post' && isset($_POST)) {
+        } elseif ($option === 'post' && !empty($_POST)) {
             $data = $_POST;
+        } elseif (is_array($option) && Arrays::isAssociative($option)) {
+            $data = $option;
         } else {
             return false;
         }
 
         foreach ($data as $key => $value) {
             if (preg_match("/mail/mi", $key)) {
+                /**
+                 * We sanitize in case the key have the word `mail`.
+                 */
                 $value = static::email($value);
+            } elseif (preg_match("/url/mi", $key)) {
+                /**
+                 * We sanitize in case the key have the workd `url`.
+                 */
+                $value = static::url($value);
             } else {
                 $value = static::data($value);
             }
@@ -78,7 +88,7 @@ class Sanitize
             $result = array();
 
             foreach ($toGet as $value) {
-                $result = array_merge($result, array($value => $data[$value]));
+                $result[$value] = $data[$value];
             }
             return $result;
         }
@@ -88,7 +98,7 @@ class Sanitize
     /**
      * Sanitize a given email.
      * 
-     * @param string $email the email to sanitize
+     * @param string $email the email to sanitize.
      * @return string
      */
     public static function email(string $email)
@@ -100,12 +110,23 @@ class Sanitize
     /**
      * Sanitize a given string.
      * 
-     * @param string $data the data to sanitize
+     * @param string $data The data to sanitize.
      * @return string
      */
     public static function data(string $data)
     {
         return filter_var($data, FILTER_SANITIZE_STRING);
+    }
+
+    /**
+     * Sanitize a given url.
+     * 
+     * @param string $data The URL to sanitize.
+     * @return mixed
+     */
+    public static function url(string $data)
+    {
+        return filter_var($data, FILTER_SANITIZE_URL);
     }
 
 }
