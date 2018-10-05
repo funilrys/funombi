@@ -110,4 +110,17 @@ class Arrays
         return $result;
     }
 
+    /**
+     * Check if a given key is present into the array.
+     * 
+     * 
+     * @param string $index The index to check.
+     * @param type $array The array to check
+     * @return boolean
+     */
+    public static function isKeyPresent(string $index, $array)
+    {
+        return (is_array($array) && isset($array[$index]));
+    }
+
 }
