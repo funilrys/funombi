@@ -51,13 +51,16 @@ class Arrays
      * @param array $array The array to check.
      * @return boolean
      */
-    public static function isAssociative(array $array)
+    public static function isAssociative($array)
     {
-        if (array_values($array) !== $array) {
-            return true;
-        } else {
-            return false;
+        if (is_array($array)) {
+            if (array_values($array) !== $array) {
+                return true;
+            } else {
+                return false;
+            }
         }
+        return false;
     }
 
     /**
