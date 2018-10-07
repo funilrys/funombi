@@ -35,8 +35,6 @@
 
 namespace App\Config;
 
-use Core\Arrays;
-
 /**
  * Sessions configuration.
  *
@@ -67,21 +65,5 @@ class Sessions
      * @var bool Default: 'false'
      */
     const SECURED_COOKIES = false;
-
-    /**
-     * Specify the scheme (or protocol) we are working with.
-     * 
-     * @note Can be `http://` or `https://`.
-     * 
-     * @return string
-     */
-    public static function getFullScheme()
-    {
-        $request_scheme = (!Arrays::isKeyPresent('REQUEST_SCHEME', $_SERVER)) ? (self::SECURED_COOKIES) ? 'https' : 'http' : $_SERVER['REQUEST_SCHEME'];
-
-        $full_scheme = $request_scheme . '://';
-
-        return $full_scheme;
-    }
 
 }

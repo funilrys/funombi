@@ -35,8 +35,6 @@
 
 namespace Core;
 
-use App\Config\Sessions as SessionConfig;
-
 /**
  * Main logic behind Controller call and usage.
  *
@@ -116,7 +114,7 @@ class Controller
          * 
          * Indeed, this variable can we used from every controller.
          */
-        $this->siteBase = SessionConfig::getFullScheme() . $_SERVER['HTTP_HOST'] . '/';
+        $this->siteBase = Router::getFullScheme() . $_SERVER['HTTP_HOST'] . '/';
 
         $this->referer = $this->siteBase;
 
