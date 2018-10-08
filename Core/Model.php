@@ -200,8 +200,10 @@ abstract class Model
                     break;
                 case 'all':
                     $data = ($query->rowCount() > 0) ? $query->fetchAll() : false;
+                    break;
                 default:
                     $data = '';
+                    break;
             }
         } else {
             throw new Exception("No 'return_type' set.");
