@@ -48,11 +48,11 @@ class Sanitize
      * 
      * @note if variable match 'mail' we run static::mail().
      * 
-     * @param string $option 'get' || 'post' the type of data to filter.
+     * @param string|array $option 'get' | 'post' | an array with the data we are working with.
      * @param string|array $toGet If specified return the value of the desired index.
      * @return boolean|string Sanitized $_POST or $_GET.
      */
-    public static function filter(string $option, $toGet = null)
+    public static function filter($option, $toGet = null)
     {
         if ($option === 'get' && !empty($_GET)) {
             $data = $_GET;
@@ -84,7 +84,7 @@ class Sanitize
 
         if ($toGet !== null && !is_array($toGet)) {
             return $data[$toGet];
-        } elseif (!Arrays::isAssociative($toGet)) {
+        } elseif (!Arrays::isAssociative($toGet) && is_array($toGet)) {
             $result = array();
 
             foreach ($toGet as $value) {
