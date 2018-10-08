@@ -82,7 +82,7 @@ class Router
 
         $this->routes[$formatedRoute] = $params;
 
-        if (!$done && !Model::endsWith($route, "/")) {
+        if (!$done && !Strings::endsWith($route, "/")) {
             $this->add($route . "/", $params, true);
         } elseif (!$done) {
             $this->add(rtrim($route, "/"), $params, true);
