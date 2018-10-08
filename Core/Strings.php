@@ -30,7 +30,7 @@
  * @package     funombi\Core
  * @author      Nissar Chababy <contact at funilrys dot com>
  * @version     1.0.0
- * @copyright   Copyright (c) 2018, Nissar Chababy
+ * @copyright   Copyright (c) 2017-2018, Nissar Chababy
  */
 
 namespace Core;
