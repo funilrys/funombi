@@ -44,69 +44,56 @@ class Strings
 {
 
     /**
-     * This variable will save the initial string.
-     * @var string 
-     */
-    private $data;
-
-    /**
-     * Initiate the string we are working with.
-     * @param string $data the string to manipulate.
-     */
-    public function __construct(string $data)
-    {
-        $this->data = $data;
-    }
-
-    /**
      * Check if the string starts with substring.
      * 
-     * @param string $string The initial string.
      * @param string $substring The substring to check.
+     * @param string $string The string we are working with.
      * @param bool $strict If false we check with case insensitive.
      * @return boolean
      */
-    public function startsWith(string $substring, bool $strict = true)
+    public static function startsWith(string $substring, string $string, bool $strict = true)
     {
         if ($strict) {
-            return strpos($this->data, $substring, 0) === 0;
+            return strpos($string, $substring, 0) === 0;
         }
 
-        return stripos($this->data, $substring, 0) === 0;
+        return stripos($string, $substring, 0) === 0;
     }
 
     /**
      * Check if the string ends with substing.
      * 
      * @param string $substring The substring to check.
+     * @param string $string The string we are working with.
      * @param bool $strict If false we check with case insensitive.
      * @return boolean
      */
-    public function endsWith(string $substring, bool $strict = true)
+    public static function endsWith(string $substring, string $string, bool $strict = true)
     {
-        $position = strlen($this->data) - strlen($substring);
+        $position = strlen($string) - strlen($substring);
 
         if ($strict) {
-            return strrpos($this->data, $substring, 0) === $position;
+            return strrpos($string, $substring, 0) === $position;
         }
 
-        return strripos($this->data, $substring, 0) === $position;
+        return strripos($string, $substring, 0) === $position;
     }
 
     /**
      * Check if the substring is present into string.
      * 
      * @param string $substring The substring to check.
+     * @param string $string The string we are working with.
      * @param bool $strict If false we check with case insensitive.
      * @return boolean
      */
-    public function isPresent(string $substring, bool $strict = true)
+    public static function isPresent(string $substring, string $string, bool $strict = true)
     {
         if ($strict) {
-            return strpos($this->data, $substring, 0) !== false;
+            return strpos($string, $substring, 0) !== false;
         }
 
-        return stripos($this->data, $substring, 0) !== false;
+        return stripos($string, $substring, 0) !== false;
     }
 
 }
