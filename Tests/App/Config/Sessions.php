@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017-2018 Nissar Chababy <contact at funilrys dot com>.
+ * Copyright 2017-2019 Nissar Chababy <contact at funilrys dot com>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@
  * @package     funombi\App\Config\tests
  * @author      Nissar Chababy <contact at funilrys dot com>
  * @version     1.0.0
- * @copyright   Copyright (c) 2017-2018, Nissar Chababy
+ * @copyright   Copyright (c) 2017-2019, Nissar Chababy
  */
 
 namespace App\Config\tests\units;
